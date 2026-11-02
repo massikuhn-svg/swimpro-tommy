@@ -1,26 +1,377 @@
-label class="block text-xs text-slate-400 mb-1">Ziel (Sek)</label>
-                        <input type="number" step="0.1" id="sw-target" placeholder="35.0" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-sm text-slate-100">
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SwimPro Tommy - Talent & Speed Hub</title>
+    <!-- PWA Settings -->
+    <meta name="theme-color" content="#0369a1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: #0f172a; color: #f8fafc; padding-bottom: 30px; font-size: 14px; line-height: 1.5; }
+        
+        /* Header */
+        header { background: linear-gradient(135deg, #0284c7, #1e40af); padding: 16px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 100; }
+        header h1 { font-size: 20px; color: #ffffff; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        header p { font-size: 12px; color: #bae6fd; margin-top: 2px; }
+
+        /* Navigation */
+        nav { background: #1e293b; border-b: 1px solid #334155; display: flex; overflow-x: auto; position: sticky; top: 62px; z-index: 90; scrollbar-width: none; }
+        nav::-webkit-scrollbar { display: none; }
+        .nav-btn { flex: 1; min-width: 90px; padding: 12px 8px; background: none; border: none; color: #94a3b8; font-size: 12px; font-weight: 600; text-align: center; white-space: nowrap; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; }
+        .nav-btn.active { color: #38bdf8; border-bottom-color: #0284c7; background: rgba(56, 189, 248, 0.05); }
+
+        /* Container & Cards */
+        .container { max-width: 600px; margin: 0 auto; padding: 16px; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        .card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 16px; margin-bottom: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .card-title { font-size: 16px; font-weight: 700; color: #38bdf8; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
+        
+        /* Quote Box */
+        .quote-box { background: rgba(14, 165, 233, 0.1); border-left: 4px solid #0284c7; padding: 12px; border-radius: 6px; margin-bottom: 16px; }
+        .quote-text { font-style: italic; font-size: 13px; color: #e2e8f0; }
+        .quote-author { font-style: normal; font-weight: 700; color: #38bdf8; font-size: 11px; margin-top: 4px; display: block; }
+
+        /* Form Controls */
+        .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+        label { font-size: 11px; color: #94a3b8; font-weight: 600; text-transform: uppercase; }
+        input, select { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #334155; background-color: #0f172a; color: #ffffff; font-size: 14px; outline: none; }
+        input:focus, select:focus { border-color: #0284c7; }
+        
+        .btn-primary { width: 100%; padding: 12px; background: #0284c7; color: #ffffff; border: none; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; margin-top: 4px; }
+        .btn-primary:active { background: #0369a1; }
+
+        /* Time Entries */
+        .time-entry { background: #0f172a; border: 1px solid #334155; padding: 12px; border-radius: 8px; margin-top: 8px; }
+        .time-header { display: flex; justify-content: space-between; font-weight: 700; color: #7dd3fc; margin-bottom: 4px; }
+        .time-details { display: flex; justify-content: space-between; font-size: 12px; color: #cbd5e1; margin-bottom: 8px; }
+        .progress-bar { width: 100%; height: 6px; background: #334155; border-radius: 3px; overflow: hidden; }
+        .progress-fill { height: 100%; background: #0284c7; border-radius: 3px; }
+        .del-btn { background: #ef4444; color: white; border: none; padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; }
+
+        /* Accordion Style List */
+        .style-item { background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 12px; margin-bottom: 10px; }
+        .style-title { font-weight: 700; color: #38bdf8; display: flex; justify-content: space-between; align-items: center; }
+        .style-tag { font-size: 10px; background: rgba(56, 189, 248, 0.2); color: #38bdf8; padding: 2px 6px; border-radius: 4px; }
+        .style-desc { font-size: 12px; color: #cbd5e1; margin-top: 6px; line-height: 1.4; }
+
+        /* Checkbox Badges */
+        .badge-item { display: flex; align-items: center; gap: 12px; background: #0f172a; border: 1px solid #334155; padding: 12px; border-radius: 8px; margin-bottom: 8px; cursor: pointer; }
+        .badge-item input[type="checkbox"] { width: 20px; height: 20px; accent-color: #0284c7; cursor: pointer; }
+        .badge-label { font-weight: 600; color: #e2e8f0; }
+
+        /* Tables */
+        .table-wrap { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: left; }
+        th, td { padding: 10px 8px; border-bottom: 1px solid #334155; }
+        th { color: #38bdf8; background: #0f172a; font-weight: 700; }
+        td.highlight { color: #38bdf8; font-weight: 700; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>🏊‍♂️ SwimPro Tommy</h1>
+        <p>Talent & Speed Hub Schweiz</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <button class="nav-btn active" onclick="showTab('ziele')">🎯 Ziele</button>
+        <button class="nav-btn" onclick="showTab('stile')">🏊 Stile</button>
+        <button class="nav-btn" onclick="showTab('abzeichen')">🏆 Abzeichen</button>
+        <button class="nav-btn" onclick="showTab('zeiten')">⏱️ Rekorde</button>
+        <button class="nav-btn" onclick="showTab('ausruestung')">🤿 Gear</button>
+    </nav>
+
+    <!-- Container -->
+    <div class="container">
+
+        <!-- TAB 1: ZIELE & TRACKER -->
+        <div id="tab-ziele" class="tab-content active">
+            <div class="quote-box">
+                <div class="quote-text">"Erfolg kommt nicht vom Wünschen, sondern vom täglichen Training im Wasser."</div>
+                <span class="quote-author">— Inspiriert von Noè Ponti (Olympia-Medaillengewinner)</span>
+            </div>
+
+            <div class="card">
+                <div class="card-title">⏱️ Persoenliche Bestzeiten</div>
+                
+                <div class="form-group">
+                    <label>Disziplin</label>
+                    <select id="sw-style">
+                        <option value="50m Kraul">50m Kraul</option>
+                        <option value="50m Rücken">50m Rücken</option>
+                        <option value="50m Brust">50m Brust</option>
+                        <option value="50m Schmetterling">50m Schmetterling</option>
+                    </select>
+                </div>
+
+                <div style="display: flex; gap: 8px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label>Aktuell (Sek)</label>
+                        <input type="number" step="0.1" id="sw-time" placeholder="z.B. 38.5">
                     </div>
-                    <div class="flex items-end">
-                        <button onclick="addTimeLog()" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-semibold py-2 px-3 rounded text-sm">
-                            Speichern
-                        </button>
+                    <div class="form-group" style="flex: 1;">
+                        <label>Ziel (Sek)</label>
+                        <input type="number" step="0.1" id="sw-target" placeholder="z.B. 35.0">
                     </div>
                 </div>
 
-                <div id="times-list" class="space-y-3 mt-4"></div>
+                <button class="btn-primary" onclick="addTimeLog()">Zeit Speichern</button>
+
+                <div id="times-list" style="margin-top: 16px;"></div>
             </div>
-        </section>
+        </div>
 
         <!-- TAB 2: SCHWIMMSTILE -->
-        <section id="sec-stile" class="hidden space-y-4">
-            <h2 class="text-xl font-bold text-cyan-400 mb-2">Die 4 Schwimmstile</h2>
-            
-            <div class="bg-slate-800 border border-slate-700 rounded-xl p-4">
-                <h3 class="font-bold text-lg text-sky-300">1. Kraul / Freistil</h3>
-                <p class="text-xs text-slate-300 mt-1">Schnellster Stil. Flache Wasserlage, Flatterschlag aus der Hüfte, hoher Ellenbogen beim Armzug.</p>
-            </div>
+        <div id="tab-stile" class="tab-content">
+            <div class="card">
+                <div class="card-title">🏊‍♀️ Schwimmstile & Technik-Tipps</div>
 
-            <div class="bg-slate-800 border border-slate-700 rounded-xl p-4">
-                <h3 class="font-bold text-lg text-purple-300">2. Schmetterling / Delfin</h3>
-                <p 
+                <div class="style-item">
+                    <div class="style-title">
+                        <span>1. Kraul / Freistil</span>
+                        <span class="style-tag">Schnellster Stil</span>
+                    </div>
+                    <div class="style-desc">
+                        • <strong>Wasserlage:</strong> Körper flach halten, Kopf in Verlängerung der Wirbelsäule.<br>
+                        • <strong>Beinschlag:</strong> Lockere Flatterschläge direkt aus der Hüfte (Knie nicht beugen).<br>
+                        • <strong>Armzug:</strong> Hoher Ellenbogen bei der Rückholphase, unter Wasser S-förmig ziehen.
+                    </div>
+                </div>
+
+                <div class="style-item">
+                    <div class="style-title">
+                        <span>2. Schmetterling / Delfin</span>
+                        <span class="style-tag">Kraftvoll</span>
+                    </div>
+                    <div class="style-desc">
+                        • <strong>Wellenbewegung:</strong> Bewegung startet im Kopf und fließt durch den Rumpf.<br>
+                        • <strong>Beinschlag:</strong> Genau 2 Kicks pro Armzug (beim Eintauchen & Abdruck).<br>
+                        • <strong>Armzug:</strong> Beide Arme gleichzeitig und synchron über Wasser nach vorne führen.
+                    </div>
+                </div>
+
+                <div class="style-item">
+                    <div class="style-title">
+                        <span>3. Rücken</span>
+                        <span class="style-tag">Freie Atmung</span>
+                    </div>
+                    <div class="style-desc">
+                        • <strong>Körperrotation:</strong> Schultern leicht mitdrehen bei jedem Zug.<br>
+                        • <strong>Eintauchphase:</strong> Daumen kommt zuerst aus dem Wasser, kleiner Finger taucht zuerst ein.
+                    </div>
+                </div>
+
+                <div class="style-item">
+                    <div class="style-title">
+                        <span>4. Brust</span>
+                        <span class="style-tag">Rhythmus wichtig</span>
+                    </div>
+                    <div class="style-desc">
+                        • <strong>Beinschlag:</strong> Schwunggrätsche mit angezogenen Füßen.<br>
+                        • <strong>Rhythmus:</strong> "Zug – Atmen – Kick – Gleiten". Die Gleitphase aktiv nutzen!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: ABZEICHEN -->
+        <div id="tab-abzeichen" class="tab-content">
+            <div class="card">
+                <div class="card-title">
+                    <span>🏆 Swimsports CH Abzeichen</span>
+                    <span id="badge-progress-text" style="font-size: 12px; color: #94a3b8;">0%</span>
+                </div>
+                
+                <div id="badge-list">
+                    <div class="badge-item" onclick="toggleBadge(0)">
+                        <input type="checkbox" id="b0">
+                        <span class="badge-label">Krebs / Seepferdchen</span>
+                    </div>
+                    <div class="badge-item" onclick="toggleBadge(1)">
+                        <input type="checkbox" id="b1">
+                        <span class="badge-label">Frosch & Pinguin</span>
+                    </div>
+                    <div class="badge-item" onclick="toggleBadge(2)">
+                        <input type="checkbox" id="b2">
+                        <span class="badge-label">Tintenfisch & Seehund</span>
+                    </div>
+                    <div class="badge-item" onclick="toggleBadge(3)">
+                        <input type="checkbox" id="b3">
+                        <span class="badge-label">Wasser-Sicherheits-Check (WSC)</span>
+                    </div>
+                    <div class="badge-item" onclick="toggleBadge(4)">
+                        <input type="checkbox" id="b4">
+                        <span class="badge-label" style="color: #38bdf8;">Delfin / Schwimmstar Talent</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: ZEITEN & REKORDE -->
+        <div id="tab-zeiten" class="tab-content">
+            <div class="card">
+                <div class="card-title">📊 Richtzeiten & Schweizer Rekorde</div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Disziplin</th>
+                                <th>9-10 Jahre</th>
+                                <th>11-12 Jahre</th>
+                                <th>CH-Rekord</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>50m Freistil</td>
+                                <td>34.0 - 39.0s</td>
+                                <td>30.0 - 34.0s</td>
+                                <td class="highlight">21.84 s</td>
+                            </tr>
+                            <tr>
+                                <td>50m Rücken</td>
+                                <td>39.0 - 44.0s</td>
+                                <td>34.0 - 39.0s</td>
+                                <td class="highlight">24.75 s</td>
+                            </tr>
+                            <tr>
+                                <td>50m Brust</td>
+                                <td>43.0 - 48.0s</td>
+                                <td>38.0 - 43.0s</td>
+                                <td class="highlight">27.02 s</td>
+                            </tr>
+                            <tr>
+                                <td>50m Schmetterling</td>
+                                <td>37.0 - 43.0s</td>
+                                <td>32.0 - 37.0s</td>
+                                <td class="highlight">22.65 s (N. Ponti)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: AUSRÜSTUNG -->
+        <div id="tab-ausruestung" class="tab-content">
+            <div class="card">
+                <div class="card-title">🤿 Equipment & Pro-Ausrüstung</div>
+                
+                <div class="style-item">
+                    <div class="style-title">Schwimmbrille & Kurzflossen</div>
+                    <div class="style-desc">Wichtig für Flexibilität im Sprunggelenk, Stärkung der Beine und klare Sicht bei Wettkämpfen.</div>
+                </div>
+
+                <div class="style-item">
+                    <div class="style-title">Hand Paddles & Schnorchel</div>
+                    <div class="style-desc">Paddles verstärken den Wasserwiderstand für Kraftaufbau. Der Mitten-Schnorchel hilft bei reiner Kopf-Wasserlage ohne Atembewegung.</div>
+                </div>
+
+                <div class="style-item">
+                    <div class="style-title">Action Cam (Unterwasser-Analyse)</div>
+                    <div class="style-desc">Perfekt, um Tauchphasen, Wenden und den Abdruck unter Wasser mit der Kamera aufzunehmen und im Team zu analysieren.</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JavaScript Logik -->
+    <script>
+        // Tab Steuerung
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            
+            document.getElementById('tab-' + tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Speicher-Logik für Zeiten
+        let savedTimes = JSON.parse(localStorage.getItem('tommy_times') || '[]');
+
+        function renderTimes() {
+            const list = document.getElementById('times-list');
+            if (savedTimes.length === 0) {
+                list.innerHTML = '<p style="font-size: 12px; color: #64748b; text-align: center; padding: 12px 0;">Noch keine Zeiten eingetragen.</p>';
+                return;
+            }
+            list.innerHTML = savedTimes.map((item, index) => {
+                const pct = Math.min(100, Math.max(0, (item.target / item.time) * 100));
+                return `
+                    <div class="time-entry">
+                        <div class="time-header">
+                            <span>${item.style}</span>
+                            <button class="del-btn" onclick="deleteTime(${index})">Löschen</button>
+                        </div>
+                        <div class="time-details">
+                            <span>Aktuell: <strong>${item.time}s</strong></span>
+                            <span>Ziel: <strong>${item.target}s</strong></span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${pct}%"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function addTimeLog() {
+            const style = document.getElementById('sw-style').value;
+            const time = parseFloat(document.getElementById('sw-time').value);
+            const target = parseFloat(document.getElementById('sw-target').value);
+            
+            if (!time || !target) {
+                alert('Bitte trage beide Zeiten ein!');
+                return;
+            }
+
+            savedTimes.push({ style, time, target });
+            localStorage.setItem('tommy_times', JSON.stringify(savedTimes));
+            document.getElementById('sw-time').value = '';
+            document.getElementById('sw-target').value = '';
+            renderTimes();
+        }
+
+        function deleteTime(index) {
+            savedTimes.splice(index, 1);
+            localStorage.setItem('tommy_times', JSON.stringify(savedTimes));
+            renderTimes();
+        }
+
+        // Speicher-Logik für Abzeichen
+        let savedBadges = JSON.parse(localStorage.getItem('tommy_badges') || '[false, false, false, false, false]');
+
+        function renderBadges() {
+            let checkedCount = 0;
+            savedBadges.forEach((val, idx) => {
+                const el = document.getElementById('b' + idx);
+                if (el) {
+                    el.checked = val;
+                    if (val) checkedCount++;
+                }
+            });
+            const pct = Math.round((checkedCount / savedBadges.length) * 100);
+            document.getElementById('badge-progress-text').innerText = pct + '% Erreicht';
+        }
+
+        function toggleBadge(idx) {
+            savedBadges[idx] = !savedBadges[idx];
+            localStorage.setItem('tommy_badges', JSON.stringify(savedBadges));
+            renderBadges();
+        }
+
+        // Init
+        renderTimes();
+        renderBadges();
+    </script>
+</body>
+</html>
