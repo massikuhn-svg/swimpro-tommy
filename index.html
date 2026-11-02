@@ -18,7 +18,7 @@
         /* Navigation */
         nav { background: #0b0f19; border-bottom: 2px solid #1f2937; display: flex; overflow-x: auto; position: sticky; top: 68px; z-index: 90; scrollbar-width: none; }
         nav::-webkit-scrollbar { display: none; }
-        .nav-btn { flex: 1; min-width: 90px; padding: 14px 10px; background: none; border: none; color: #6b7280; font-size: 12px; font-weight: 700; text-align: center; white-space: nowrap; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; }
+        .nav-btn { flex: 1; min-width: 85px; padding: 12px 8px; background: none; border: none; color: #6b7280; font-size: 11px; font-weight: 700; text-align: center; white-space: nowrap; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; text-decoration: none; display: inline-block; }
         .nav-btn.active { color: #38bdf8; border-bottom-color: #0284c7; background: rgba(56, 189, 248, 0.08); }
 
         /* Container & Cards */
@@ -76,6 +76,10 @@
         th, td { padding: 10px 8px; border-bottom: 1px solid #1f2937; }
         th { color: #38bdf8; background: #030712; font-weight: 800; }
         td.highlight { color: #38bdf8; font-weight: 800; }
+
+        /* Checkbox List General */
+        .check-item { display: flex; align-items: center; gap: 10px; background: #030712; border: 1px solid #1f2937; padding: 10px; border-radius: 8px; margin-bottom: 8px; }
+        .check-item input { width: 18px; height: 18px; accent-color: #0284c7; }
     </style>
 </head>
 <body>
@@ -88,10 +92,13 @@
     <nav>
         <button class="nav-btn active" onclick="showTab('ziele')">🎯 Ziele</button>
         <button class="nav-btn" onclick="showTab('motivation')">🔥 Power</button>
+        <a href="mental.html" class="nav-btn">🧠 Mental</a>
         <button class="nav-btn" onclick="showTab('stile')">🏊 Technik</button>
+        <button class="nav-btn" onclick="showTab('wenden')">🔄 Wenden</button>
+        <button class="nav-btn" onclick="showTab('planer')">📅 Planer</button>
         <button class="nav-btn" onclick="showTab('abzeichen')">🏆 Abzeichen</button>
         <button class="nav-btn" onclick="showTab('zeiten')">⏱️ Rekorde</button>
-        <button class="nav-btn" onclick="showTab('ausruestung')">🤿 Equipment</button>
+        <button class="nav-btn" onclick="showTab('ausruestung')">🤿 Gear</button>
     </nav>
 
     <div class="container">
@@ -136,6 +143,18 @@
 
                 <div id="times-list" style="margin-top: 16px;"></div>
             </div>
+
+            <!-- Kurzbahn vs. Langbahn Rechner -->
+            <div class="card">
+                <div class="card-title">⏱️ 25m vs. 50m Bahn-Rechner</div>
+                <p style="font-size: 11px; color: #9ca3af; margin-bottom: 12px;">Rechne deine 25m-Kurzbahnzeit auf eine 50m-Langbahn um (Abstoß-Bonus berücksichtigt):</p>
+                <div class="form-group">
+                    <label>25m Kurzbahn-Zeit (Sekunden)</label>
+                    <input type="number" step="0.1" id="kb-time" placeholder="z.B. 35.0">
+                </div>
+                <button class="btn-primary" onclick="calcBahn()">Umrechnen auf 50m Bahn</button>
+                <div id="bahn-res" style="margin-top: 10px; font-weight: bold; color: #38bdf8;"></div>
+            </div>
         </div>
 
         <!-- TAB 2: MOTIVATION & MENTAL TRAINING -->
@@ -170,13 +189,12 @@
                 </div>
 
                 <div class="article-box">
-                    <div class="article-title">3. Power-Ernährung & Erholung</div>
+                    <div class="article-title">3. Wettkampf-Ernährung</div>
                     <div class="article-body">
-                        Ein Champion wird in der Pause gemacht!
                         <ul>
-                            <li><strong>Schlaf:</strong> 8-9 Stunden Schlaf unterstützen deine Muskelregeneration und Konzentration.</li>
-                            <li><strong>Trinken:</strong> Ausreichend Wasser trinken – vor, während und nach dem Training.</li>
-                            <li><strong>Energie:</strong> Haferflocken, Bananen und Vollkorn vor dem Training geben dir langanhaltenden Speed.</li>
+                            <li><strong>Vor dem Wettkampf:</strong> Kohlenhydratreich essen (Pasta, Reis, Haferflocken). Keine zu fettigen Speisen!</li>
+                            <li><strong>Am Beckenrand:</strong> Bananen, Traubenzucker oder Fruchtriegel zwischen den Läufen.</li>
+                            <li><strong>Trinken:</strong> Wasser oder verdünnter Apfelsaft – auch im Hallenbad schwitzt der Körper!</li>
                         </ul>
                     </div>
                 </div>
@@ -222,7 +240,6 @@
                         <ul>
                             <li><strong>Schulterrotation:</strong> Die Schulter dreht sich bei jedem Zug leicht aus dem Wasser.</li>
                             <li><strong>Handhaltung:</strong> Daumen kommt zuerst aus dem Wasser, kleiner Finger taucht zuerst ein.</li>
-                            <li><strong>Kontinuierlicher Kick:</strong> Beine schlagen ununterbrochen an der Wasseroberfläche.</li>
                         </ul>
                     </div>
                 </div>
@@ -240,11 +257,74 @@
             </div>
         </div>
 
-        <!-- TAB 4: ALLE SCHWEIZER ABZEICHEN -->
+        <!-- TAB 4: WENDEN & STARTSPRUNG -->
+        <div id="tab-wenden" class="tab-content">
+            <div class="card">
+                <div class="card-title">🔄 Wenden- & Startsprung-Schule</div>
+
+                <div class="article-box">
+                    <div class="article-title">1. Die Kraul-Rollwende (Flip Turn)</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>Entfernung schätzen:</strong> Wenn das T auf dem Beckenboden auftaucht, noch einen letzten Zug machen.</li>
+                            <li><strong>Keine Atmung vor der Wende:</strong> Beim letzten Armzug vor der Wand nicht mehr atmen!</li>
+                            <li><strong>Kinn auf die Brust:</strong> Kopf schnell nach unten ziehen, Beine schwungvoll über das Wasser ziehen.</li>
+                            <li><strong>Explosiver Abstoß:</strong> In Stromlinienform (Streamline) in Rückenlage abstoßen und unter Wasser auf den Bauch drehen.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="article-box">
+                    <div class="article-title">2. Die Kippwende (Brust & Schmetterling)</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>Beidhändiger Anschlag:</strong> Beide Hände müssen gleichzeitig auf gleicher Höhe die Wand berühren!</li>
+                            <li><strong>Ellenbogen anziehen:</strong> Ein Arm löst sich sofort, die Beine werden unter dem Körper an die Wand gezogen.</li>
+                            <li><strong>Tief abtauchen:</strong> Langer Unterwasserzug (Brust-Tauchzug) ausführen.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="article-box">
+                    <div class="article-title">3. Der Startsprung (Track Start)</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>Füße auf der Startbrücke:</strong> Ein Fuß vorne an der Kante, der andere steht hinten.</li>
+                            <li><strong>Hände greifen vorne:</strong> Spannung im ganzen Körper aufbauen.</li>
+                            <li><strong>Beim Signal:</strong> Hände stoßen ab, Beine katapultieren den Körper flach durch das "Gleitloch" ins Wasser.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: TRAININGSPLANER -->
+        <div id="tab-planer" class="tab-content">
+            <div class="card">
+                <div class="card-title">📅 Tommy's Wochenplaner</div>
+                <div class="check-item"><input type="checkbox"> <span>Montag: Schwimmclub Training & Delfin-Kicks</span></div>
+                <div class="check-item"><input type="checkbox"> <span>Dienstag: Athletik & Rumpf-Übungen zu Hause</span></div>
+                <div class="check-item"><input type="checkbox"> <span>Mittwoch: Schwimmclub Hallenbad Burgdorf</span></div>
+                <div class="check-item"><input type="checkbox"> <span>Donnerstag: Beweglichkeit & Dehnen</span></div>
+                <div class="check-item"><input type="checkbox"> <span>Freitag: Technik-Fokus & Wenden-Training</span></div>
+                <div class="check-item"><input type="checkbox"> <span>Wochenende: Regeneration / Wettkampf</span></div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🎒 Schwimmtaschen-Checkliste</div>
+                <div class="check-item"><input type="checkbox"> <span>2x Schwimmbrille (Wettkampf + Ersatz)</span></div>
+                <div class="check-item"><input type="checkbox"> <span>Badekappe (Club-Kappe)</span></div>
+                <div class="check-item"><input type="checkbox"> <span>Kurzflossen & Hand Paddles</span></div>
+                <div class="check-item"><input type="checkbox"> <span>Handtuch & Badeschuhe</span></div>
+                <div class="check-item"><input type="checkbox"> <span>Trinkflasche & Banane/Powerbar</span></div>
+            </div>
+        </div>
+
+        <!-- TAB 6: ALLE SCHWEIZER ABZEICHEN -->
         <div id="tab-abzeichen" class="tab-content">
             <div class="card">
                 <div class="card-title">
-                    <span>🏆 Alle Swimsports CH Abzeichen (1-13)</span>
+                    <span>🏆 Swimsports CH Abzeichen (1-13)</span>
                     <span id="badge-progress-text" style="color: #38bdf8; font-size: 13px;">0%</span>
                 </div>
                 
@@ -369,7 +449,7 @@
             </div>
         </div>
 
-        <!-- TAB 5: ZEITEN & REKORDE -->
+        <!-- TAB 7: ZEITEN & REKORDE -->
         <div id="tab-zeiten" class="tab-content">
             <div class="card">
                 <div class="card-title">📊 Offizielle Richtzeiten & Rekorde</div>
@@ -420,7 +500,7 @@
             </div>
         </div>
 
-        <!-- TAB 6: AUSRÜSTUNG & VIDEO -->
+        <!-- TAB 8: AUSRÜSTUNG & VIDEO -->
         <div id="tab-ausruestung" class="tab-content">
             <img src="https://images.unsplash.com/photo-1519315901367-f34ff9154487?auto=format&fit=crop&w=800&q=80" alt="Equipment" class="hero-img">
 
@@ -430,14 +510,14 @@
                 <div class="article-box">
                     <div class="article-title">1. Wettkampf-Schwimmbrille</div>
                     <div class="article-body">
-                        Verwendet verspiegelte Brillen mit flachem Profil (z. B. Arena Cobra oder Speedo Fastskin). Sie bieten beim Startsprung minimalen Widerstand und halten fest.
+                        Verwendet verspiegelte Brillen mit flachem Profil (z. B. Arena Cobra oder Speedo Fastskin). Sie bieten beim Startsprung minimalen Widerstand.
                     </div>
                 </div>
 
                 <div class="article-box">
                     <div class="article-title">2. Kurzflossen & Hand Paddles</div>
                     <div class="article-body">
-                        Kurzflossen verbessern die Fußgelenk-Flexibilität und den Beinschlag-Druck. Hand Paddles bauen Muskelkraft im Armzug auf.
+                        Kurzflossen verbessern die Fußgelenk-Flexibilität. Hand Paddles bauen Muskelkraft im Armzug auf.
                     </div>
                 </div>
 
@@ -465,7 +545,8 @@
             event.target.classList.add('active');
         }
 
-        let savedTimes = JSON.parse(localStorage.getItem('tommy_times_v3') || '[]');
+        // Times Tracker
+        let savedTimes = JSON.parse(localStorage.getItem('tommy_times_v4') || '[]');
 
         function renderTimes() {
             const list = document.getElementById('times-list');
@@ -504,7 +585,7 @@
             }
 
             savedTimes.push({ style, time, target });
-            localStorage.setItem('tommy_times_v3', JSON.stringify(savedTimes));
+            localStorage.setItem('tommy_times_v4', JSON.stringify(savedTimes));
             document.getElementById('sw-time').value = '';
             document.getElementById('sw-target').value = '';
             renderTimes();
@@ -512,11 +593,19 @@
 
         function deleteTime(index) {
             savedTimes.splice(index, 1);
-            localStorage.setItem('tommy_times_v3', JSON.stringify(savedTimes));
+            localStorage.setItem('tommy_times_v4', JSON.stringify(savedTimes));
             renderTimes();
         }
 
-        let savedBadges = JSON.parse(localStorage.getItem('tommy_badges_v3') || '[]');
+        function calcBahn() {
+            const kb = parseFloat(document.getElementById('kb-time').value);
+            if (!kb) return alert('Bitte Zeit eingeben!');
+            const lb = (kb * 1.035).toFixed(2);
+            document.getElementById('bahn-res').innerText = `Geschätzte 50m Langbahn-Zeit: ~${lb} Sekunden`;
+        }
+
+        // Badges Tracker
+        let savedBadges = JSON.parse(localStorage.getItem('tommy_badges_v4') || '[]');
         if(savedBadges.length < 13) savedBadges = new Array(13).fill(false);
 
         function renderBadges() {
@@ -534,7 +623,7 @@
 
         function toggleBadge(idx) {
             savedBadges[idx] = !savedBadges[idx];
-            localStorage.setItem('tommy_badges_v3', JSON.stringify(savedBadges));
+            localStorage.setItem('tommy_badges_v4', JSON.stringify(savedBadges));
             renderBadges();
         }
 
