@@ -78,8 +78,11 @@
         td.highlight { color: #38bdf8; font-weight: 800; }
 
         /* Checkbox List General */
-        .check-item { display: flex; align-items: center; gap: 10px; background: #030712; border: 1px solid #1f2937; padding: 10px; border-radius: 8px; margin-bottom: 8px; }
-        .check-item input { width: 18px; height: 18px; accent-color: #0284c7; }
+        .check-item { display: flex; align-items: flex-start; gap: 10px; background: #030712; border: 1px solid #1f2937; padding: 10px; border-radius: 8px; margin-bottom: 8px; }
+        .check-item input { width: 18px; height: 18px; accent-color: #0284c7; margin-top: 2px; }
+        .check-text { font-size: 13px; }
+        .check-title { font-weight: 800; color: #f3f4f6; display: block; }
+        .check-sub { font-size: 11px; color: #9ca3af; display: block; margin-top: 2px; }
     </style>
 </head>
 <body>
@@ -293,13 +296,48 @@
         <!-- TAB 7: PLANER -->
         <div id="tab-planer" class="tab-content">
             <div class="card">
-                <div class="card-title">📅 Tommy's Wochenplaner</div>
-                <div class="check-item"><input type="checkbox"> <span>Montag: Schwimmclub Training & Delfin-Kicks</span></div>
-                <div class="check-item"><input type="checkbox"> <span>Dienstag: Athletik & Rumpf-Übungen zu Hause</span></div>
-                <div class="check-item"><input type="checkbox"> <span>Mittwoch: Schwimmclub Hallenbad Burgdorf</span></div>
-                <div class="check-item"><input type="checkbox"> <span>Donnerstag: Beweglichkeit & Dehnen</span></div>
-                <div class="check-item"><input type="checkbox"> <span>Freitag: Technik-Fokus & Wenden-Training</span></div>
-                <div class="check-item"><input type="checkbox"> <span>Wochenende: Regeneration / Wettkampf</span></div>
+                <div class="card-title">📅 Tommy's 4-Tage Trainingsplan</div>
+                
+                <div class="check-item">
+                    <input type="checkbox">
+                    <div class="check-text">
+                        <span class="check-title">Tag 1: Rumpfspannung & Schulterstabilität</span>
+                        <span class="check-sub">Plank (3x30s), Superman & Armkreisen für eine stabile Wasserlage.</span>
+                    </div>
+                </div>
+
+                <div class="check-item">
+                    <input type="checkbox">
+                    <div class="check-text">
+                        <span class="check-title">Tag 2: Sprungkraft & Beine (Start & Wenden)</span>
+                        <span class="check-sub">Squat Jumps (3x10), Ausfallschritte & Wadenheben für explosiven Abstoß.</span>
+                    </div>
+                </div>
+
+                <div class="check-item">
+                    <input type="checkbox">
+                    <div class="check-text">
+                        <span class="check-title">Tag 3: Wasser-Technik & Unterwasser-Kicks</span>
+                        <span class="check-sub">Hallenbad Burgdorf: 6-8 Delfinkicks nach Abstoß & Streamline-Gleiten.</span>
+                    </div>
+                </div>
+
+                <div class="check-item">
+                    <input type="checkbox">
+                    <div class="check-text">
+                        <span class="check-title">Tag 4: Beweglichkeit, Dehnen & Koordination</span>
+                        <span class="check-sub">Fußgelenk-Flexibilität, Schulter-Mobilität & Reaktionsübungen.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🎒 Schwimmtaschen-Checkliste</div>
+                <div class="check-item"><input type="checkbox"> <div class="check-text"><span class="check-title">2x Schwimmbrille (Wettkampf + Ersatz)</span></div></div>
+                <div class="check-item"><input type="checkbox"> <div class="check-text"><span class="check-title">Badekappe (Club-Kappe)</span></div></div>
+                <div class="check-item"><input type="checkbox"> <div class="check-text"><span class="check-title">Kurzflossen & Hand Paddles</span></div></div>
+                <div class="check-item"><input type="checkbox"> <div class="check-text"><span class="check-title">Handtuch & Badeschuhe</span></div></div>
+                <div class="check-item"><input type="checkbox"> <div class="check-text"><span class="check-title">Trinkflasche & Banane/Powerbar</span></div></div>
             </div>
         </div>
 
