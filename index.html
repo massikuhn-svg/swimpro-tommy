@@ -10,18 +10,23 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: #030712; color: #f9fafb; padding-bottom: 60px; font-size: 14px; line-height: 1.6; }
         
-        /* Header */
-        header { background: linear-gradient(135deg, #0284c7, #0369a1, #0f172a); padding: 25px 16px; text-align: center; box-shadow: 0 4px 25px rgba(2, 132, 199, 0.4); position: sticky; top: 0; z-index: 100; border-bottom: 2px solid #38bdf8; }
+        /* Header & Level Bar */
+        header { background: linear-gradient(135deg, #0284c7, #0369a1, #0f172a); padding: 20px 16px; text-align: center; box-shadow: 0 4px 25px rgba(2, 132, 199, 0.4); position: sticky; top: 0; z-index: 100; border-bottom: 2px solid #38bdf8; }
         header h1 { font-size: 24px; color: #fff; font-weight: 900; letter-spacing: 0.8px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        header p { font-size: 12px; color: #7dd3fc; font-weight: 800; margin-top: 3px; letter-spacing: 0.5px; }
+        header p { font-size: 12px; color: #7dd3fc; font-weight: 800; margin-top: 2px; }
+
+        .xp-card { background: rgba(3, 7, 18, 0.6); border: 1px solid #0284c7; border-radius: 10px; padding: 8px 12px; margin-top: 10px; display: flex; align-items: center; justify-content: space-between; }
+        .xp-title { font-size: 11px; font-weight: 900; color: #fbbf24; text-transform: uppercase; }
+        .xp-bar-bg { width: 55%; height: 8px; background: #1f2937; border-radius: 4px; overflow: hidden; }
+        .xp-bar-fill { height: 100%; width: 45%; background: linear-gradient(90deg, #fbbf24, #f59e0b); border-radius: 4px; }
 
         /* Nav Bar */
-        nav { background: #0b0f19; border-bottom: 2px solid #1f2937; display: flex; overflow-x: auto; position: sticky; top: 78px; z-index: 90; scrollbar-width: none; }
+        nav { background: #0b0f19; border-bottom: 2px solid #1f2937; display: flex; overflow-x: auto; position: sticky; top: 108px; z-index: 90; scrollbar-width: none; }
         nav::-webkit-scrollbar { display: none; }
         .nav-btn { flex: 1; min-width: 95px; padding: 14px 10px; background: none; border: none; color: #9ca3af; font-size: 12px; font-weight: 800; text-align: center; white-space: nowrap; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.25s ease; }
         .nav-btn.active { color: #38bdf8; border-bottom-color: #0284c7; background: linear-gradient(180deg, rgba(56, 189, 248, 0.05), rgba(56, 189, 248, 0.15)); }
 
-        /* Container & Animation */
+        /* Layout & Cards */
         .container { max-width: 720px; margin: 0 auto; padding: 16px; }
         .tab-content { display: none; }
         .tab-content.active { display: block; animation: fadeIn 0.3s ease-in-out; }
@@ -31,36 +36,25 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* Cards */
         .card { background: #111827; border: 1px solid #1f2937; border-radius: 16px; padding: 20px; margin-bottom: 22px; box-shadow: 0 6px 20px rgba(0,0,0,0.5); }
         .card-title { font-size: 18px; font-weight: 900; color: #38bdf8; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #1f2937; padding-bottom: 10px; }
         .section-title { font-size: 15px; font-weight: 900; color: #fbbf24; margin: 22px 0 12px 0; border-bottom: 1px dashed #374151; padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
         
         .hero-img { width: 100%; height: 220px; object-fit: cover; border-radius: 12px; margin-bottom: 16px; border: 1px solid #374151; box-shadow: 0 4px 15px rgba(0,0,0,0.6); }
         
-        /* Banners */
-        .quote-box { background: linear-gradient(135deg, rgba(2, 132, 199, 0.25), rgba(15, 23, 42, 0.95)); border-left: 6px solid #0284c7; padding: 16px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .quote-box { background: linear-gradient(135deg, rgba(2, 132, 199, 0.25), rgba(15, 23, 42, 0.95)); border-left: 6px solid #0284c7; padding: 16px; border-radius: 10px; margin-bottom: 20px; }
         .quote-text { font-style: italic; font-size: 14px; color: #f3f4f6; font-weight: 600; line-height: 1.5; }
         .quote-author { font-style: normal; font-weight: 800; color: #38bdf8; font-size: 12px; margin-top: 8px; display: block; }
 
-        /* Form Controls */
+        /* Form Inputs */
         .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
-        label { font-size: 11px; color: #9ca3af; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
-        input, select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #374151; background-color: #030712; color: #ffffff; font-size: 14px; outline: none; transition: border-color 0.2s; }
-        input:focus, select:focus { border-color: #0284c7; }
+        label { font-size: 11px; color: #9ca3af; font-weight: 800; text-transform: uppercase; }
+        input, select, textarea { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #374151; background-color: #030712; color: #ffffff; font-size: 14px; outline: none; }
+        input:focus, select:focus, textarea:focus { border-color: #0284c7; }
         
-        .btn-primary { width: 100%; padding: 14px; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; border: none; border-radius: 10px; font-weight: 900; font-size: 15px; cursor: pointer; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4); transition: transform 0.1s; }
-        .btn-primary:active { transform: scale(0.98); }
+        .btn-primary { width: 100%; padding: 14px; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; border: none; border-radius: 10px; font-weight: 900; font-size: 15px; cursor: pointer; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4); }
 
-        /* Tracker Item Display */
-        .time-entry { background: #030712; border: 1px solid #1f2937; padding: 14px; border-radius: 12px; margin-top: 12px; }
-        .time-header { display: flex; justify-content: space-between; font-weight: 900; color: #38bdf8; margin-bottom: 6px; font-size: 15px; }
-        .time-details { display: flex; justify-content: space-between; font-size: 13px; color: #9ca3af; margin-bottom: 10px; }
-        .progress-bar { width: 100%; height: 10px; background: #1f2937; border-radius: 5px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #0284c7, #38bdf8); border-radius: 5px; }
-        .del-btn { background: #ef4444; color: white; border: none; padding: 4px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; font-weight: bold; }
-
-        /* Deep Content Boxes */
+        /* Content Modules */
         .article-box { background: #030712; border: 1px solid #1f2937; border-radius: 12px; padding: 16px; margin-bottom: 16px; }
         .article-title { font-size: 16px; font-weight: 900; color: #38bdf8; margin-bottom: 8px; }
         .article-subtitle { font-size: 13px; color: #fbbf24; font-weight: 800; margin-bottom: 10px; }
@@ -68,15 +62,20 @@
         .article-body ul { margin-left: 20px; margin-top: 8px; }
         .article-body li { margin-bottom: 8px; }
 
-        /* Badges System */
+        /* Checklists & Badges */
         .badge-grid { display: flex; flex-direction: column; gap: 10px; }
-        .badge-card { display: flex; align-items: center; gap: 14px; background: #030712; border: 1px solid #1f2937; padding: 12px 14px; border-radius: 12px; cursor: pointer; transition: border-color 0.2s; }
-        .badge-card:hover { border-color: #0284c7; }
+        .badge-card { display: flex; align-items: center; gap: 14px; background: #030712; border: 1px solid #1f2937; padding: 12px 14px; border-radius: 12px; cursor: pointer; }
         .badge-icon { font-size: 26px; width: 40px; text-align: center; }
         .badge-info { flex: 1; }
         .badge-name { font-weight: 900; color: #f3f4f6; font-size: 14px; }
         .badge-desc { font-size: 12px; color: #9ca3af; margin-top: 2px; }
-        .badge-card input[type="checkbox"] { width: 22px; height: 22px; accent-color: #0284c7; cursor: pointer; }
+        .badge-card input[type="checkbox"] { width: 22px; height: 22px; accent-color: #0284c7; }
+
+        .check-item { display: flex; align-items: flex-start; gap: 12px; background: #030712; border: 1px solid #1f2937; padding: 12px; border-radius: 10px; margin-bottom: 10px; }
+        .check-item input { width: 20px; height: 20px; accent-color: #0284c7; margin-top: 2px; }
+        .check-text { font-size: 13px; flex: 1; }
+        .check-title { font-weight: 900; color: #f3f4f6; display: block; font-size: 14px; }
+        .check-sub { font-size: 12px; color: #9ca3af; display: block; margin-top: 3px; }
 
         /* Tables */
         .table-wrap { overflow-x: auto; }
@@ -84,13 +83,6 @@
         th, td { padding: 12px 10px; border-bottom: 1px solid #1f2937; }
         th { color: #38bdf8; background: #030712; font-weight: 900; }
         td.highlight { color: #38bdf8; font-weight: 900; }
-
-        /* Checkbox Lists */
-        .check-item { display: flex; align-items: flex-start; gap: 12px; background: #030712; border: 1px solid #1f2937; padding: 12px; border-radius: 10px; margin-bottom: 10px; }
-        .check-item input { width: 20px; height: 20px; accent-color: #0284c7; margin-top: 2px; cursor: pointer; }
-        .check-text { font-size: 13px; flex: 1; }
-        .check-title { font-weight: 900; color: #f3f4f6; display: block; font-size: 14px; }
-        .check-sub { font-size: 12px; color: #9ca3af; display: block; margin-top: 3px; line-height: 1.4; }
     </style>
 </head>
 <body>
@@ -98,6 +90,15 @@
     <header>
         <h1>🏊‍♂️ SwimPro Tommy</h1>
         <p>Road to Gold & Olympia Performance Hub</p>
+        
+        <!-- Gamification XP Bar -->
+        <div class="xp-card">
+            <span class="xp-title">⚡ Level 4 Schwimmtalent</span>
+            <div class="xp-bar-bg">
+                <div class="xp-bar-fill"></div>
+            </div>
+            <span style="font-size: 11px; font-weight: 800; color: #38bdf8;">450 / 1000 XP</span>
+        </div>
     </header>
 
     <nav>
@@ -108,6 +109,8 @@
         <button class="nav-btn" onclick="showTab('stile', event)">🏊 Technik</button>
         <button class="nav-btn" onclick="showTab('wenden', event)">🔄 Wenden</button>
         <button class="nav-btn" onclick="showTab('planer', event)">📅 Planer</button>
+        <button class="nav-btn" onclick="showTab('tagebuch', event)">📝 Tagebuch</button>
+        <button class="nav-btn" onclick="showTab('ernaehrung', event)">🍌 Food</button>
         <button class="nav-btn" onclick="showTab('abzeichen', event)">🏆 Abzeichen</button>
         <button class="nav-btn" onclick="showTab('zeiten', event)">⏱️ Rekorde</button>
         <button class="nav-btn" onclick="showTab('ausruestung', event)">🤿 Gear</button>
@@ -158,7 +161,7 @@
 
             <div class="card">
                 <div class="card-title">⚡ 25m vs. 50m Bahn-Rechner</div>
-                <p style="font-size: 12px; color: #9ca3af; margin-bottom: 14px;">Rechne deine 25m-Kurzbahnzeit auf eine 50m-Langbahn um (Abstoß- & Wendenbonus automatisch berücksichtigt):</p>
+                <p style="font-size: 12px; color: #9ca3af; margin-bottom: 14px;">Rechne deine 25m-Kurzbahnzeit auf eine 50m-Langbahn um:</p>
                 <div class="form-group">
                     <label>25m Kurzbahn-Zeit (Sekunden)</label>
                     <input type="number" step="0.1" id="kb-time" placeholder="z.B. 35.0">
@@ -201,7 +204,7 @@
             </div>
         </div>
 
-        <!-- TAB 3: MENTALTRAINING & CALL ROOM -->
+        <!-- TAB 3: MENTALTRAINING -->
         <div id="tab-mental" class="tab-content">
             <img src="https://images.unsplash.com/photo-1508215885820-4585e56135c8?auto=format&fit=crop&w=1000&q=80" alt="Mentaltraining" class="hero-img">
 
@@ -229,21 +232,10 @@
                         </ul>
                     </div>
                 </div>
-
-                <div class="article-box">
-                    <div class="article-title">Die 15-Meter-Unterwasser-Regel</div>
-                    <div class="article-body">
-                        Unter Wasser bist du bis zu 20% schneller als an der Oberfläche!
-                        <ul>
-                            <li>Gleitphase in perfekter Stromlinienform (Streamline) halten.</li>
-                            <li>6 bis 8 kraftvolle Delfinkicks aus der Hüfte ausführen, bevor der erste Armzug kommt.</li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </div>
 
-        <!-- TAB 4: ATHLETIK & TROCKENTRAINING -->
+        <!-- TAB 4: ATHLETIK -->
         <div id="tab-athletik" class="tab-content">
             <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1000&q=80" alt="Trockentraining & Athletik" class="hero-img">
 
@@ -258,36 +250,23 @@
                             <li><strong>Plank (Unterarmstütz):</strong> Rücken flach wie ein Tisch, Bauch und Po fest anspannen.</li>
                             <li><strong>Superman (Rückenstrecker):</strong> Auf den Bauch legen, Arme und Beine gleichzeitig anheben und halten.</li>
                             <li><strong>Russian Twists:</strong> Sitzen, Beine leicht anheben und den Oberkörper kontrolliert rotieren.</li>
-                            <li><strong>Dead Bug:</strong> Rückenlage, Arme und Beine überkreuz langsam absenken.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="article-box">
-                    <div class="article-title">2. Beinkraft & Sprungschulung (Start & Wende)</div>
-                    <div class="article-subtitle">3 Runden • 10–12 Wiederholungen:</div>
+                    <div class="article-title">2. Sprungkraft & Beinkraft (Start & Wende)</div>
                     <div class="article-body">
                         <ul>
                             <li><strong>Squat Jumps (Kniebeuge-Sprünge):</strong> Tief in die Hocke gehen und lautlos, aber explosiv nach oben katapultieren!</li>
                             <li><strong>Ausfallschritte (Lunges):</strong> Abwechselnd nach vorne steigen für stabile Knie und starken Beinschlag.</li>
-                            <li><strong>Wadenheben:</strong> Auf die Zehenspitzen drücken für maximale Abstoßkraft an der Wand.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="article-box">
-                    <div class="article-title">3. Schulter-Prehab & Beweglichkeit</div>
-                    <div class="article-body">
-                        <ul>
-                            <li><strong>Y-T-W-L Armkreisen:</strong> Schulterblätter bewusst nach hinten-unten ziehen.</li>
-                            <li><strong>Fußgelenk-Stretching:</strong> Auf die Fersen setzen, um die Fußgelenke für Delfinkicks extrem beweglich zu machen.</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 5: SCHWIMMSTILE & PROFI-TECHNIK -->
+        <!-- TAB 5: SCHWIMMSTILE -->
         <div id="tab-stile" class="tab-content">
             <img src="https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?auto=format&fit=crop&w=1000&q=80" alt="Kraultechnik" class="hero-img">
 
@@ -300,8 +279,7 @@
                         <ul>
                             <li><strong>Wasserlage:</strong> Flach wie ein Holzbrett, Blick schräg nach unten auf den Beckenboden.</li>
                             <li><strong>Hoher Ellenbogen:</strong> Beim Überwasserzug führt der Ellenbogen die Hand locker nach vorne.</li>
-                            <li><strong>Unterwasserzug (Catch & Pull):</strong> Erst das Handgelenk anwinkeln, dann S-förmig unter dem Bauch durchziehen.</li>
-                            <li><strong>Atmung:</strong> Ruhige 3er-Atmung; nur ein Brillenglas kommt beim Atmen aus dem Wasser!</li>
+                            <li><strong>Unterwasserzug (Catch & Pull):</strong> Erst das Handgelenk anwinkeln, dann S-förmig durchziehen.</li>
                         </ul>
                     </div>
                 </div>
@@ -312,34 +290,13 @@
                         <ul>
                             <li><strong>Ganzkörperwelle:</strong> Die Bewegung entspringt im Brustkorb und fließt dynamisch bis in die Zehenspitzen.</li>
                             <li><strong>2 Kicks pro Armzug:</strong> 1. Kick beim Eintauchen der Hände, 2. Kick beim kräftigen Abstoß an der Hüfte.</li>
-                            <li><strong>Flache Kopfhaltung:</strong> Kinn bleibt beim Atmen haarscharf an der Wasseroberfläche.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="article-box">
-                    <div class="article-title">3. Rücken (Backstroke)</div>
-                    <div class="article-body">
-                        <ul>
-                            <li><strong>Schulterrotation:</strong> Der Körper dreht sich bei jedem Armzug um die Längsachse (Rollbewegung).</li>
-                            <li><strong>Handhaltung:</strong> Daumen verlässt zuerst das Wasser, kleiner Finger taucht zuerst wieder ein.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="article-box">
-                    <div class="article-title">4. Brust (Breaststroke)</div>
-                    <div class="article-body">
-                        <ul>
-                            <li><strong>Schwunggrätsche:</strong> Füße nach außen drehen und kreisförmig nach hinten peitschen.</li>
-                            <li><strong>Rhythmus:</strong> "Zug – Atmen – Kick – Gleiten". Die lange Gleitphase bringt die maximale Strecke!</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 6: WENDEN & STARTSPRUNG -->
+        <!-- TAB 6: WENDEN -->
         <div id="tab-wenden" class="tab-content">
             <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=1000&q=80" alt="Rollwende im Pool" class="hero-img">
 
@@ -356,26 +313,6 @@
                         </ul>
                     </div>
                 </div>
-
-                <div class="article-box">
-                    <div class="article-title">2. Die Kippwende (Brust & Schmetterling)</div>
-                    <div class="article-body">
-                        <ul>
-                            <li><strong>Beidhändiger Anschlag:</strong> Beide Hände berühren exakt gleichzeitig die Wand.</li>
-                            <li><strong>Ellenbogen anziehen:</strong> Ein Arm löst sich sofort, Beine schnell unter den Körper ziehen.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="article-box">
-                    <div class="article-title">3. Der Startsprung (Track Start)</div>
-                    <div class="article-body">
-                        <ul>
-                            <li><strong>Schwerpunkt nach vorne:</strong> Ein Fuß an der Kante, der andere hinten auf der Startbrücke.</li>
-                            <li><strong>Eintauchen durch ein Nadelöhr:</strong> Der gesamte Körper taucht an exakt derselben Stelle ins Wasser ein.</li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -385,67 +322,72 @@
 
             <div class="card">
                 <div class="card-title">📅 Tommy's Exakter Wochen-Trainingsplan</div>
-                <p style="font-size: 12px; color: #9ca3af; margin-bottom: 14px;">Hake jeden Tag ab, wenn du deine Einheit geschafft hast:</p>
 
-                <div class="check-item">
-                    <input type="checkbox">
-                    <div class="check-text">
-                        <span class="check-title">Montag: Trockentraining zu Hause</span>
-                        <span class="check-sub">Rumpfspannung (Plank/Superman/Dead Bug) & Schulter-Prehab für stabile Wasserlage.</span>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">Montag: Trockentraining zu Hause</span><span class="check-sub">Rumpfspannung (Plank/Superman) & Armkreisen.</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">Dienstag: Schwimmclub Burgdorf (90 Minuten)</span><span class="check-sub">Intensives Vereinstraining im Hallenbad Burgdorf.</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">Mittwoch: Unihockey</span><span class="check-sub">Training & Spiel: Ausdauer, Beinkraft & Schnelligkeit.</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">Donnerstag: Trockentraining zu Hause</span><span class="check-sub">Sprungkraft (Squat Jumps) & Beinkraft für explosiven Abstoß.</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">Freitag: Hallenbad (45 Minuten selbstständig)</span><span class="check-sub">Rollwenden, Startsprünge & 15m-Unterwasser-Delfinkicks.</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">Samstag: Schwimmkurs (40 Minuten)</span><span class="check-sub">Gezielter Technik-Korrektur-Unterricht & Feinschliff.</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">Sonntag: Trockentraining & Dehnen</span><span class="check-sub">Fußgelenk-Flexibilität & Regeneration.</span></div></div>
+            </div>
+        </div>
+
+        <!-- TAB 8: NEU - TRAININGS-TAGEBUCH -->
+        <div id="tab-tagebuch" class="tab-content">
+            <div class="card">
+                <div class="card-title">📝 Tommy's Swim Log & Trainer-Feedback</div>
+                <div class="form-group">
+                    <label>Datum & Einheit</label>
+                    <input type="text" id="log-date" placeholder="z.B. Dienstag Hallenbad Burgdorf">
+                </div>
+                <div class="form-group">
+                    <label>Wie lief das Training? (Gefühl, Fokus, Zeiten)</label>
+                    <textarea id="log-text" rows="3" placeholder="z.B. Wenden waren heute extrem schnell! Beim Schmetterling auf Armzug geachtet."></textarea>
+                </div>
+                <button class="btn-primary" onclick="addLogEntry()">Eintrag im Tagebuch Speichern (+50 XP)</button>
+
+                <div id="journal-list" style="margin-top: 18px;"></div>
+            </div>
+        </div>
+
+        <!-- TAB 9: NEU - ERNÄHRUNG & REGENERATION -->
+        <div id="tab-ernaehrung" class="tab-content">
+            <div class="card">
+                <div class="card-title">🍌 Champions Fuel & Regeneration</div>
+                
+                <div class="article-box">
+                    <div class="article-title">1. Der perfekte Pre-Workout Snack (60 Min. vor Training)</div>
+                    <div class="article-body">
+                        Leicht verdauliche Kohlenhydrate für volle Speicher ohne Magenbeschwerden:
+                        <ul>
+                            <li>1 Banane mit einer Handvoll Haferflocken oder Reiskwaffeln.</li>
+                            <li>Ausreichend Wasser trinken (schon 2 Stunden vor dem Training beginnen!).</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="check-item">
-                    <input type="checkbox">
-                    <div class="check-text">
-                        <span class="check-title">Dienstag: Schwimmclub Burgdorf (90 Minuten)</span>
-                        <span class="check-sub">Intensives Vereinstraining: Ausdauer, Grundschnelligkeit & Serien im Hallenbad Burgdorf.</span>
+                <div class="article-box">
+                    <div class="article-title">2. Post-Workout Power (Innerhalb von 30 Min. danach)</div>
+                    <div class="article-body">
+                        Schnelle Erholung für die Muskeln:
+                        <ul>
+                            <li>Sportriegel / Proteinbar & 1 Flasche Schokomilch oder Wasser.</li>
+                            <li>Abendessen: Ausgewogen mit Kohlenhydraten (Pasta/Reis/Kartoffeln) und Eiweiß.</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="check-item">
-                    <input type="checkbox">
-                    <div class="check-text">
-                        <span class="check-title">Mittwoch: Unihockey</span>
-                        <span class="check-sub">Training & Spiel: Ausdauer, Beinkraft, Schnelligkeit & Teamgeist.</span>
-                    </div>
-                </div>
-
-                <div class="check-item">
-                    <input type="checkbox">
-                    <div class="check-text">
-                        <span class="check-title">Donnerstag: Trockentraining zu Hause</span>
-                        <span class="check-sub">Sprungkraft (Squat Jumps) & Beinkraft für explosiven Abstoß an Start & Wende.</span>
-                    </div>
-                </div>
-
-                <div class="check-item">
-                    <input type="checkbox">
-                    <div class="check-text">
-                        <span class="check-title">Freitag: Hallenbad (45 Minuten selbstständig)</span>
-                        <span class="check-sub">Gezieltes Üben: Rollwenden, Startsprünge & 15m-Unterwasser-Delfinkicks.</span>
-                    </div>
-                </div>
-
-                <div class="check-item">
-                    <input type="checkbox">
-                    <div class="check-text">
-                        <span class="check-title">Samstag: Schwimmkurs (40 Minuten)</span>
-                        <span class="check-sub">Gezielter Technik-Korrektur-Unterricht & Feinschliff an allen 4 Lagen.</span>
-                    </div>
-                </div>
-
-                <div class="check-item">
-                    <input type="checkbox">
-                    <div class="check-text">
-                        <span class="check-title">Sonntag: Trockentraining & Dehnen</span>
-                        <span class="check-sub">Fußgelenk-Flexibilität, Schulter-Mobilität & Regeneration für die neue Woche.</span>
+                <div class="article-box">
+                    <div class="article-title">3. Schlaf – Das stärkste Doping der Welt</div>
+                    <div class="article-body">
+                        Mindestens 9 bis 10 Stunden Schlaf für Nachwuchs-Leistungssportler, damit sich die Muskeln im Schlaf regenerieren und wachsen!
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 8: ALLE SWIMSPORTS CH ABZEICHEN -->
+        <!-- TAB 10: ABZEICHEN -->
         <div id="tab-abzeichen" class="tab-content">
             <div class="card">
                 <div class="card-title">
@@ -455,35 +397,35 @@
                 
                 <div class="section-title">🦀 Grundlagentests 1–7</div>
                 <div class="badge-grid">
-                    <div class="badge-card" onclick="toggleBadge(0)"><div class="badge-icon">🦀</div><div class="badge-info"><div class="badge-name">1. Krebs</div><div class="badge-desc">Gleiten, Schweben, Blubberblasen & Unterwassertauchen.</div></div><input type="checkbox" id="b0"></div>
-                    <div class="badge-card" onclick="toggleBadge(1)"><div class="badge-icon">🦄</div><div class="badge-info"><div class="badge-name">2. Seepferdchen</div><div class="badge-desc">Fortbewegen in Bauch- & Rückenlage, Atmen im Wasser.</div></div><input type="checkbox" id="b1"></div>
-                    <div class="badge-card" onclick="toggleBadge(2)"><div class="badge-icon">🐸</div><div class="badge-info"><div class="badge-name">3. Frosch</div><div class="badge-desc">Rückenschwimmen, Sprung ins tiefe Wasser, Gleitphasen.</div></div><input type="checkbox" id="b2"></div>
-                    <div class="badge-card" onclick="toggleBadge(3)"><div class="badge-icon">🐧</div><div class="badge-info"><div class="badge-name">4. Pinguin</div><div class="badge-desc">Crawl-Beinschlag, Kraul-Armzug, freies Abstoßen.</div></div><input type="checkbox" id="b3"></div>
-                    <div class="badge-card" onclick="toggleBadge(4)"><div class="badge-icon">🐙</div><div class="badge-info"><div class="badge-name">5. Tintenfisch</div><div class="badge-desc">Kraulschwimmen mit Seitatmung, Rücken-Kraul.</div></div><input type="checkbox" id="b4"></div>
-                    <div class="badge-card" onclick="toggleBadge(5)"><div class="badge-icon">🐊</div><div class="badge-info"><div class="badge-name">6. Krokodil</div><div class="badge-desc">Brust-Kombination, Kopfsprung, Unterwasser-Strecke.</div></div><input type="checkbox" id="b5"></div>
-                    <div class="badge-card" onclick="toggleBadge(6)"><div class="badge-icon">🐻‍❄️</div><div class="badge-info"><div class="badge-name">7. Eisbär</div><div class="badge-desc">Ausdauerschwimmen, Ausfall-Wende, Delfinkicks.</div></div><input type="checkbox" id="b6"></div>
-                    <div class="badge-card" onclick="toggleBadge(7)" style="border-color: #0284c7;"><div class="badge-icon">🛡️</div><div class="badge-info"><div class="badge-name" style="color:#0284c7;">WSC (Wasser-Sicherheits-Check)</div><div class="badge-desc">Purzelbaum ins Wasser, 1 Min. an Ort treiben, 50m Schwimmen.</div></div><input type="checkbox" id="b7"></div>
+                    <div class="badge-card" onclick="toggleBadge(0)"><div class="badge-icon">🦀</div><div class="badge-info"><div class="badge-name">1. Krebs</div><div class="badge-desc">Gleiten, Schweben, Blubberblasen.</div></div><input type="checkbox" id="b0"></div>
+                    <div class="badge-card" onclick="toggleBadge(1)"><div class="badge-icon">🦄</div><div class="badge-info"><div class="badge-name">2. Seepferdchen</div><div class="badge-desc">Fortbewegen, Atmen im Wasser.</div></div><input type="checkbox" id="b1"></div>
+                    <div class="badge-card" onclick="toggleBadge(2)"><div class="badge-icon">🐸</div><div class="badge-info"><div class="badge-name">3. Frosch</div><div class="badge-desc">Rückenschwimmen, Sprung ins Tiefe.</div></div><input type="checkbox" id="b2"></div>
+                    <div class="badge-card" onclick="toggleBadge(3)"><div class="badge-icon">🐧</div><div class="badge-info"><div class="badge-name">4. Pinguin</div><div class="badge-desc">Crawl-Beinschlag, Kraul-Armzug.</div></div><input type="checkbox" id="b3"></div>
+                    <div class="badge-card" onclick="toggleBadge(4)"><div class="badge-icon">🐙</div><div class="badge-info"><div class="badge-name">5. Tintenfisch</div><div class="badge-desc">Kraulschwimmen mit Seitatmung.</div></div><input type="checkbox" id="b4"></div>
+                    <div class="badge-card" onclick="toggleBadge(5)"><div class="badge-icon">🐊</div><div class="badge-info"><div class="badge-name">6. Krokodil</div><div class="badge-desc">Brust-Kombination, Kopfsprung.</div></div><input type="checkbox" id="b5"></div>
+                    <div class="badge-card" onclick="toggleBadge(6)"><div class="badge-icon">🐻‍❄️</div><div class="badge-info"><div class="badge-name">7. Eisbär</div><div class="badge-desc">Ausdauerschwimmen & Wenden.</div></div><input type="checkbox" id="b6"></div>
+                    <div class="badge-card" onclick="toggleBadge(7)" style="border-color: #0284c7;"><div class="badge-icon">🛡️</div><div class="badge-info"><div class="badge-name" style="color:#0284c7;">WSC (Wasser-Sicherheits-Check)</div><div class="badge-desc">Purzelbaum ins Wasser, Treiben, 50m.</div></div><input type="checkbox" id="b7"></div>
                 </div>
 
                 <div class="section-title">🏊‍♂️ Schwimmtests 1–4</div>
                 <div class="badge-grid">
-                    <div class="badge-card" onclick="toggleBadge(8)"><div class="badge-icon">🐋</div><div class="badge-info"><div class="badge-name">Schwimmtest 1 (Wal)</div><div class="badge-desc">Grundlagen Wal-Level & Wasserlage.</div></div><input type="checkbox" id="b8"></div>
-                    <div class="badge-card" onclick="toggleBadge(9)"><div class="badge-icon">🦈</div><div class="badge-info"><div class="badge-name">Schwimmtest 2 (Haifisch)</div><div class="badge-desc">Kraul- & Rückenwende, Sprint-Speed.</div></div><input type="checkbox" id="b9"></div>
-                    <div class="badge-card" onclick="toggleBadge(10)"><div class="badge-icon">🐬</div><div class="badge-info"><div class="badge-name">Schwimmtest 3 (Delfin)</div><div class="badge-desc">Delfin-Technik, Startsprung & Wenden.</div></div><input type="checkbox" id="b10"></div>
-                    <div class="badge-card" onclick="toggleBadge(11)"><div class="badge-icon">🐟</div><div class="badge-info"><div class="badge-name">Schwimmtest 4 (Hecht)</div><div class="badge-desc">Erweiterte Ausdauer & Lagen-Grundlagen.</div></div><input type="checkbox" id="b11"></div>
+                    <div class="badge-card" onclick="toggleBadge(8)"><div class="badge-icon">🐋</div><div class="badge-info"><div class="badge-name">Schwimmtest 1 (Wal)</div><div class="badge-desc">Grundlagen Wal-Level.</div></div><input type="checkbox" id="b8"></div>
+                    <div class="badge-card" onclick="toggleBadge(9)"><div class="badge-icon">🦈</div><div class="badge-info"><div class="badge-name">Schwimmtest 2 (Haifisch)</div><div class="badge-desc">Kraul- & Rückenwende, Sprint.</div></div><input type="checkbox" id="b9"></div>
+                    <div class="badge-card" onclick="toggleBadge(10)"><div class="badge-icon">🐬</div><div class="badge-info"><div class="badge-name">Schwimmtest 3 (Delfin)</div><div class="badge-desc">Delfin-Technik & Ausdauer.</div></div><input type="checkbox" id="b10"></div>
+                    <div class="badge-card" onclick="toggleBadge(11)"><div class="badge-icon">🐟</div><div class="badge-info"><div class="badge-name">Schwimmtest 4 (Hecht)</div><div class="badge-desc">Erweiterte Ausdauer & Lagen.</div></div><input type="checkbox" id="b11"></div>
                 </div>
 
                 <div class="section-title">🥇 Kombitests 1–4</div>
                 <div class="badge-grid">
-                    <div class="badge-card" onclick="toggleBadge(12)"><div class="badge-icon">🥇</div><div class="badge-info"><div class="badge-name">Kombitest 1</div><div class="badge-desc">Nachwuchs-Wettkampf-Level: Lagen & Ausdauer.</div></div><input type="checkbox" id="b12"></div>
-                    <div class="badge-card" onclick="toggleBadge(13)"><div class="badge-icon">🥈</div><div class="badge-info"><div class="badge-name">Kombitest 2</div><div class="badge-desc">Erweiterte Kombination, Taktik & Speed.</div></div><input type="checkbox" id="b13"></div>
-                    <div class="badge-card" onclick="toggleBadge(14)"><div class="badge-icon">🥉</div><div class="badge-info"><div class="badge-name">Kombitest 3</div><div class="badge-desc">Profi-Kombination: Ausdauer & Präzision.</div></div><input type="checkbox" id="b14"></div>
-                    <div class="badge-card" onclick="toggleBadge(15)"><div class="badge-icon">🏆</div><div class="badge-info"><div class="badge-name">Kombitest 4</div><div class="badge-desc">Höchste Stufe: Kombitest-Champion.</div></div><input type="checkbox" id="b15"></div>
+                    <div class="badge-card" onclick="toggleBadge(12)"><div class="badge-icon">🥇</div><div class="badge-info"><div class="badge-name">Kombitest 1</div><div class="badge-desc">Polysportive Wassersport-Kombination.</div></div><input type="checkbox" id="b12"></div>
+                    <div class="badge-card" onclick="toggleBadge(13)"><div class="badge-icon">🥈</div><div class="badge-info"><div class="badge-name">Kombitest 2</div><div class="badge-desc">Erweiterte Kombination & Taktik.</div></div><input type="checkbox" id="b13"></div>
+                    <div class="badge-card" onclick="toggleBadge(14)"><div class="badge-icon">🥉</div><div class="badge-info"><div class="badge-name">Kombitest 3</div><div class="badge-desc">Profi-Kombination: Ausdauer.</div></div><input type="checkbox" id="b14"></div>
+                    <div class="badge-card" onclick="toggleBadge(15)"><div class="badge-icon">🏆</div><div class="badge-info"><div class="badge-name">Kombitest 4</div><div class="badge-desc">Höchste Stufe: Kombitest-Champ.</div></div><input type="checkbox" id="b15"></div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 9: REKORDE -->
+        <!-- TAB 11: REKORDE -->
         <div id="tab-zeiten" class="tab-content">
             <div class="card">
                 <div class="card-title">📊 Richtzeiten & Schweizer Rekorde</div>
@@ -523,44 +465,29 @@
             </div>
         </div>
 
-        <!-- TAB 10: MEGA-GEAR / AUSRÜSTUNG -->
+        <!-- TAB 12: AUSRÜSTUNG -->
         <div id="tab-ausruestung" class="tab-content">
             <img src="https://images.unsplash.com/photo-1519315901367-f34ff9154487?auto=format&fit=crop&w=1000&q=80" alt="Equipment" class="hero-img">
 
             <div class="card">
                 <div class="card-title">🎒 Tommy's Profi-Schwimmtasche</div>
-                <p style="font-size: 12px; color: #9ca3af; margin-bottom: 14px;">Hake alles ab, was vor dem Training in den Rucksack gehört:</p>
 
-                <div class="check-item"><input type="checkbox"> <div class="check-text"><span class="check-title">🎒 Schwimm-Rucksack</span><span class="check-sub">Geräumiger Rucksack für das gesamte Equipment</span></div></div>
-                <div class="check-item"><input type="checkbox"> <div class="check-text"><span class="check-title">💳 Schwimmabo / Eintrittskarte</span><span class="check-sub">Wichtig für den Einlass im Hallenbad Burgdorf</span></div></div>
-                <div class="check-item"><input type="checkbox"> <div class="check-text"><span class="check-title">🩳 Badehose</span><span class="check-sub">Enganliegende Wettkampf- oder Trainingsbadehose</span></div></div>
-                <div class="check-item"><input type="checkbox"> <div class="check-text"><span class="check-title">🏊‍♂️ Badekappe</span><span class="check-sub">Silikonkappe (Schwimmclub Burgdorf)</span></div></div>
-                <div class="check-item"><input type="checkbox"> <div class="check-text"><span class="check-title">🤿 Schwimmbrille</span><span class="check-sub">Verspiegelte oder klare Brille, gut eingestellt</span></div></div>
-                <div class="check-item"><input type="checkbox"> <div class="check-text"><span class="check-title">🛟 Pullbuoy</span><span class="check-sub">Für gezieltes Armzug- und Rumpftraining</span></div></div>
-                <div class="check-item"><input type="checkbox"> <div class="check-text"><span class="check-title">🦶 Flossen (Kurzflossen)</span><span class="check-sub">Kräftigt die Beine & verbessert Delphinkicks</span></div></div>
-                <div class="check-item"><input type="checkbox"> <div class="check-text"><span class="check-title">🤿 Schnorchel (Frontschnorchel)</span><span class="check-sub">Für optimale Kopfhaltung ohne Atembewegung</span></div></div>
-                <div class="check-item"><input type="checkbox"> <div class="check-text"><span class="check-title">🚿 Duschzeug & Shampoo</span><span class="check-sub">Für die gründliche Dusche nach dem Chlorwasser</span></div></div>
-                <div class="check-item"><input type="checkbox"> <div class="check-text"><span class="check-title">🧴 Badetuch / Großes Handtuch</span><span class="check-sub">Zum Abtrocknen am Beckenrand & Dusche</span></div></div>
-                <div class="check-item"><input type="checkbox"> <div class="check-text"><span class="check-title">🍾 Trinkflasche</span><span class="check-sub">Wasser oder Isodrink direkt am Beckenrand</span></div></div>
-                <div class="check-item"><input type="checkbox"> <div class="check-text"><span class="check-title">🍫 Sportriegel / Energybar</span><span class="check-sub">Schnelle Kohlenhydrate direkt nach dem Training</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🎒 Schwimm-Rucksack</span><span class="check-sub">Geräumiger Rucksack für das gesamte Equipment</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">💳 Schwimmabo / Eintrittskarte</span><span class="check-sub">Wichtig für den Einlass im Hallenbad Burgdorf</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🩳 Badehose</span><span class="check-sub">Enganliegende Wettkampf- oder Trainingsbadehose</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🏊‍♂️ Badekappe</span><span class="check-sub">Silikonkappe (Schwimmclub Burgdorf)</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🤿 Schwimmbrille</span><span class="check-sub">Verspiegelte oder klare Brille, gut eingestellt</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🛟 Pullbuoy</span><span class="check-sub">Für gezieltes Armzug- und Rumpftraining</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🦶 Flossen (Kurzflossen)</span><span class="check-sub">Kräftigt die Beine & verbessert Delphinkicks</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🤿 Schnorchel (Frontschnorchel)</span><span class="check-sub">Für optimale Kopfhaltung ohne Atembewegung</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🚿 Duschzeug & Shampoo</span><span class="check-sub">Gründliche Dusche nach dem Chlorwasser</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🧴 Badetuch / Großes Handtuch</span><span class="check-sub">Zum Abtrocknen am Beckenrand & Dusche</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🍾 Trinkflasche</span><span class="check-sub">Wasser oder Isodrink direkt am Beckenrand</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🍫 Sportriegel / Energybar</span><span class="check-sub">Schnelle Kohlenhydrate direkt nach dem Training</span></div></div>
 
                 <div class="section-title">❄️ Winter-Special (Oktober–April)</div>
-                <div class="check-item"><input type="checkbox"> <div class="check-text"><span class="check-title">🧥 Warme Jacke</span><span class="check-sub">Schützt vor Erkältung nach dem warmen Hallenbad</span></div></div>
-                <div class="check-item"><input type="checkbox"> <div class="check-text"><span class="check-title">🧢 Warme Kappe / Mütze</span><span class="check-sub">Sehr wichtig für feuchte Haare und den Kopf!</span></div></div>
-            </div>
-
-            <div class="card">
-                <div class="card-title">📹 Unterwasser-Videoanalyse mit Action Cam</div>
-                <div class="article-box">
-                    <div class="article-title">Fehler erkennen & Technik perfektionieren</div>
-                    <div class="article-body">
-                        Filmt Tommy beim Vorbeischwimmen mit der Action Cam (GoPro / DJI Action Cam):
-                        <ul>
-                            <li><strong>Wenden-Check:</strong> Dreht er schnell genug ab? Stimmt die Gleitphase?</li>
-                            <li><strong>Armzug-Check:</strong> Bleibt der Ellenbogen unter Wasser hoch genug?</li>
-                        </ul>
-                    </div>
-                </div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🧥 Warme Jacke</span><span class="check-sub">Schützt vor Erkältung nach dem warmen Hallenbad</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🧢 Warme Kappe / Mütze</span><span class="check-sub">Sehr wichtig für feuchte Haare und den Kopf!</span></div></div>
             </div>
         </div>
 
@@ -581,8 +508,8 @@
             }
         }
 
-        // Times Tracker
-        let savedTimes = JSON.parse(localStorage.getItem('tommy_times_v5') || '[]');
+        // Bestzeiten Tracker
+        let savedTimes = JSON.parse(localStorage.getItem('tommy_times_v6') || '[]');
 
         function renderTimes() {
             const list = document.getElementById('times-list');
@@ -622,7 +549,7 @@
             }
 
             savedTimes.push({ style, time, target });
-            localStorage.setItem('tommy_times_v5', JSON.stringify(savedTimes));
+            localStorage.setItem('tommy_times_v6', JSON.stringify(savedTimes));
             document.getElementById('sw-time').value = '';
             document.getElementById('sw-target').value = '';
             renderTimes();
@@ -630,7 +557,7 @@
 
         function deleteTime(index) {
             savedTimes.splice(index, 1);
-            localStorage.setItem('tommy_times_v5', JSON.stringify(savedTimes));
+            localStorage.setItem('tommy_times_v6', JSON.stringify(savedTimes));
             renderTimes();
         }
 
@@ -641,8 +568,38 @@
             document.getElementById('bahn-res').innerText = `Geschätzte 50m Langbahn-Zeit: ~${lb} Sekunden`;
         }
 
-        // Badges Tracker für alle 16 Abzeichen
-        let savedBadges = JSON.parse(localStorage.getItem('tommy_badges_v7') || '[]');
+        // Journal Log System
+        let savedLogs = JSON.parse(localStorage.getItem('tommy_journal_v1') || '[]');
+
+        function renderJournal() {
+            const list = document.getElementById('journal-list');
+            if (!list) return;
+            if (savedLogs.length === 0) {
+                list.innerHTML = '<p style="font-size: 13px; color: #64748b; text-align: center; padding: 12px 0;">Noch keine Tagebucheinträge vorhanden.</p>';
+                return;
+            }
+            list.innerHTML = savedLogs.map((item, index) => `
+                <div class="article-box">
+                    <div class="article-title">${item.date}</div>
+                    <div class="article-body">${item.text}</div>
+                </div>
+            `).join('');
+        }
+
+        function addLogEntry() {
+            const date = document.getElementById('log-date').value;
+            const text = document.getElementById('log-text').value;
+            if (!date || !text) return alert('Bitte Datum und Text ausfüllen!');
+
+            savedLogs.unshift({ date, text });
+            localStorage.setItem('tommy_journal_v1', JSON.stringify(savedLogs));
+            document.getElementById('log-date').value = '';
+            document.getElementById('log-text').value = '';
+            renderJournal();
+        }
+
+        // Badges Tracker
+        let savedBadges = JSON.parse(localStorage.getItem('tommy_badges_v8') || '[]');
         if(savedBadges.length < 16) savedBadges = new Array(16).fill(false);
 
         function renderBadges() {
@@ -663,11 +620,12 @@
 
         function toggleBadge(idx) {
             savedBadges[idx] = !savedBadges[idx];
-            localStorage.setItem('tommy_badges_v7', JSON.stringify(savedBadges));
+            localStorage.setItem('tommy_badges_v8', JSON.stringify(savedBadges));
             renderBadges();
         }
 
         renderTimes();
+        renderJournal();
         renderBadges();
     </script>
 </body>
