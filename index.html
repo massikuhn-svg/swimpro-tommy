@@ -18,7 +18,7 @@
         /* Navigation */
         nav { background: #0b0f19; border-bottom: 2px solid #1f2937; display: flex; overflow-x: auto; position: sticky; top: 68px; z-index: 90; scrollbar-width: none; }
         nav::-webkit-scrollbar { display: none; }
-        .nav-btn { flex: 1; min-width: 85px; padding: 12px 8px; background: none; border: none; color: #6b7280; font-size: 11px; font-weight: 700; text-align: center; white-space: nowrap; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; text-decoration: none; display: inline-block; }
+        .nav-btn { flex: 1; min-width: 85px; padding: 12px 8px; background: none; border: none; color: #6b7280; font-size: 11px; font-weight: 700; text-align: center; white-space: nowrap; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; }
         .nav-btn.active { color: #38bdf8; border-bottom-color: #0284c7; background: rgba(56, 189, 248, 0.08); }
 
         /* Container & Cards */
@@ -90,16 +90,16 @@
     </header>
 
     <nav>
-        <button class="nav-btn active" onclick="showTab('ziele')">🎯 Ziele</button>
-        <button class="nav-btn" onclick="showTab('motivation')">🔥 Power</button>
-        <a href="mental.html" class="nav-btn">🧠 Mental</a>
-        <a href="athletik.html" class="nav-btn">🏋️ Athletik</a>
-        <button class="nav-btn" onclick="showTab('stile')">🏊 Technik</button>
-        <button class="nav-btn" onclick="showTab('wenden')">🔄 Wenden</button>
-        <button class="nav-btn" onclick="showTab('planer')">📅 Planer</button>
-        <button class="nav-btn" onclick="showTab('abzeichen')">🏆 Abzeichen</button>
-        <button class="nav-btn" onclick="showTab('zeiten')">⏱️ Rekorde</button>
-        <button class="nav-btn" onclick="showTab('ausruestung')">🤿 Gear</button>
+        <button class="nav-btn active" onclick="showTab('ziele', event)">🎯 Ziele</button>
+        <button class="nav-btn" onclick="showTab('motivation', event)">🔥 Power</button>
+        <button class="nav-btn" onclick="showTab('mental', event)">🧠 Mental</button>
+        <button class="nav-btn" onclick="showTab('athletik', event)">🏋️ Athletik</button>
+        <button class="nav-btn" onclick="showTab('stile', event)">🏊 Technik</button>
+        <button class="nav-btn" onclick="showTab('wenden', event)">🔄 Wenden</button>
+        <button class="nav-btn" onclick="showTab('planer', event)">📅 Planer</button>
+        <button class="nav-btn" onclick="showTab('abzeichen', event)">🏆 Abzeichen</button>
+        <button class="nav-btn" onclick="showTab('zeiten', event)">⏱️ Rekorde</button>
+        <button class="nav-btn" onclick="showTab('ausruestung', event)">🤿 Gear</button>
     </nav>
 
     <div class="container">
@@ -145,7 +145,6 @@
                 <div id="times-list" style="margin-top: 16px;"></div>
             </div>
 
-            <!-- Kurzbahn vs. Langbahn Rechner -->
             <div class="card">
                 <div class="card-title">⏱️ 25m vs. 50m Bahn-Rechner</div>
                 <p style="font-size: 11px; color: #9ca3af; margin-bottom: 12px;">Rechne deine 25m-Kurzbahnzeit auf eine 50m-Langbahn um (Abstoß-Bonus berücksichtigt):</p>
@@ -158,7 +157,7 @@
             </div>
         </div>
 
-        <!-- TAB 2: MOTIVATION & MENTAL TRAINING -->
+        <!-- TAB 2: MOTIVATION -->
         <div id="tab-motivation" class="tab-content">
             <img src="https://images.unsplash.com/photo-1519315901367-f34ff9154487?auto=format&fit=crop&w=800&q=80" alt="Startblock" class="hero-img">
 
@@ -188,118 +187,110 @@
                         </ul>
                     </div>
                 </div>
+            </div>
+        </div>
 
+        <!-- TAB 3: MENTALTRAINING -->
+        <div id="tab-mental" class="tab-content">
+            <div class="card">
+                <div class="card-title">🧠 Olympia Mentaltraining & Noè Ponti Masterclass</div>
                 <div class="article-box">
-                    <div class="article-title">3. Wettkampf-Ernährung</div>
+                    <div class="article-title">Die 4-7-8 Atemtechnik gegen Nervosität</div>
+                    <div class="article-body">
+                        Aufregung vor dem Start ist völlig normal – sie bringt Energie! So steuerst du deinen Puls kurz vor dem Aufruf:
+                        <ul>
+                            <li><strong>4 Sekunden:</strong> Tief durch die Nase in den Bauch einatmen.</li>
+                            <li><strong>7 Sekunden:</strong> Den Atem ruhig anhalten und fokussieren.</li>
+                            <li><strong>8 Sekunden:</strong> Langsam und vollständig durch den Mund ausatmen.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="article-box">
+                    <div class="article-title">Noè Ponti's 15m-Unterwasser-Regel</div>
                     <div class="article-body">
                         <ul>
-                            <li><strong>Vor dem Wettkampf:</strong> Kohlenhydratreich essen (Pasta, Reis, Haferflocken). Keine zu fettigen Speisen!</li>
-                            <li><strong>Am Beckenrand:</strong> Bananen, Traubenzucker oder Fruchtriegel zwischen den Läufen.</li>
-                            <li><strong>Trinken:</strong> Wasser oder verdünnter Apfelsaft – auch im Hallenbad schwitzt der Körper!</li>
+                            <li><strong>Gleitphase nutzen:</strong> Erst die Pfeilposition halten!</li>
+                            <li><strong>Explosive Kicks:</strong> 6 bis 8 kraftvolle Delfinkicks aus der Hüfte machen, bevor der erste Armzug kommt.</li>
+                            <li><strong>Unterwasser-Speed halten:</strong> Unter Wasser bist du bis zu 20% schneller als an der Oberfläche!</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 3: SCHWIMMSTILE & TECHNIK GUIDE -->
-        <div id="tab-stile" class="tab-content">
-            <img src="https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?auto=format&fit=crop&w=800&q=80" alt="Kraultechnik" class="hero-img">
+        <!-- TAB 4: ATHLETIK -->
+        <div id="tab-athletik" class="tab-content">
+            <div class="card">
+                <div class="card-title">🏋️ Trockentraining & Athletik</div>
+                <div class="article-box">
+                    <div class="article-title">1. Der Rumpf- & Core-Zirkel (10 Minuten)</div>
+                    <div class="article-subtitle">3 Runden mit jeweils 30 Sekunden Belastung:</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>Plank (Unterarmstütz):</strong> Rücken flach wie ein Tisch, Bauch fest anspannen.</li>
+                            <li><strong>Superman:</strong> Auf den Bauch legen, Arme und Beine gleichzeitig leicht anheben.</li>
+                            <li><strong>Russian Twists:</strong> Auf den Po setzen und den Oberkörper von links nach rechts drehen.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="article-box">
+                    <div class="article-title">2. Beinkraft & Sprungschulung</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>Squat Jumps (Kniebeuge-Sprünge):</strong> Tief in die Kniebeuge gehen und explosiv nach oben abspringen!</li>
+                            <li><strong>Ausfallschritte (Lunges):</strong> Kräftigt die Oberschenkel für den Beinschlag.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!-- TAB 5: SCHWIMMSTILE -->
+        <div id="tab-stile" class="tab-content">
             <div class="card">
                 <div class="card-title">🏊 Profi-Technik-Schule</div>
 
                 <div class="article-box">
                     <div class="article-title">1. Freistil / Kraul (Crawl)</div>
-                    <div class="article-subtitle">Der schnellste Schwimmstil</div>
                     <div class="article-body">
                         <ul>
-                            <li><strong>Wasserlage:</strong> Flach wie ein Brett, Kopf schaut schräg nach unten auf den Beckenboden.</li>
+                            <li><strong>Wasserlage:</strong> Flach wie ein Brett, Kopf schaut schräg nach unten.</li>
                             <li><strong>Hoher Ellenbogen:</strong> Über Wasser führt der Ellenbogen die Hand nach vorne.</li>
-                            <li><strong>S-Zug unter Wasser:</strong> Erst das Handgelenk anwinkeln (Catch-Phase), dann kraftvoll unter dem Bauch durchziehen.</li>
-                            <li><strong>3er-Atmung:</strong> Regelmäßig alle 3 Armzüge atmen für eine gerade Wasserlage.</li>
+                            <li><strong>S-Zug unter Wasser:</strong> Erst das Handgelenk anwinkeln, dann kraftvoll durchziehen.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="article-box">
                     <div class="article-title">2. Schmetterling / Delfin (Butterfly)</div>
-                    <div class="article-subtitle">Maximale Explosion & Rhythmus</div>
                     <div class="article-body">
                         <ul>
-                            <li><strong>Ganzkörperwelle:</strong> Die Bewegung beginnt im Brustkorb und fließt bis in die Zehenspitzen.</li>
-                            <li><strong>Zwei Kicks:</strong> 1. Kick beim Eintauchen der Hände, 2. Kick beim kraftvollen Abdruck an der Hüfte.</li>
-                            <li><strong>Flache Atmung:</strong> Kinn bleibt beim Atmen dicht an der Wasseroberfläche.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="article-box">
-                    <div class="article-title">3. Rücken (Backstroke)</div>
-                    <div class="article-subtitle">Perfekte Rotation & Ausdauer</div>
-                    <div class="article-body">
-                        <ul>
-                            <li><strong>Schulterrotation:</strong> Die Schulter dreht sich bei jedem Zug leicht aus dem Wasser.</li>
-                            <li><strong>Handhaltung:</strong> Daumen kommt zuerst aus dem Wasser, kleiner Finger taucht zuerst ein.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="article-box">
-                    <div class="article-title">4. Brust (Breaststroke)</div>
-                    <div class="article-subtitle">Rhythmus & Gleitphase</div>
-                    <div class="article-body">
-                        <ul>
-                            <li><strong>Beinschlag:</strong> Schwunggrätsche mit nach außen gedrehten Füßen.</li>
-                            <li><strong>Rhythmus:</strong> "Zug – Atmen – Kick – Gleiten". Die Gleitphase nach dem Kick bringt die meiste Strecke!</li>
+                            <li><strong>Ganzkörperwelle:</strong> Die Bewegung beginnt im Brustkorb.</li>
+                            <li><strong>Zwei Kicks:</strong> 1. Kick beim Eintauchen, 2. Kick beim Abdruck an der Hüfte.</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 4: WENDEN & STARTSPRUNG -->
+        <!-- TAB 6: WENDEN -->
         <div id="tab-wenden" class="tab-content">
             <div class="card">
                 <div class="card-title">🔄 Wenden- & Startsprung-Schule</div>
-
                 <div class="article-box">
-                    <div class="article-title">1. Die Kraul-Rollwende (Flip Turn)</div>
+                    <div class="article-title">Die Kraul-Rollwende (Flip Turn)</div>
                     <div class="article-body">
                         <ul>
-                            <li><strong>Entfernung schätzen:</strong> Wenn das T auf dem Beckenboden auftaucht, noch einen letzten Zug machen.</li>
                             <li><strong>Keine Atmung vor der Wende:</strong> Beim letzten Armzug vor der Wand nicht mehr atmen!</li>
-                            <li><strong>Kinn auf die Brust:</strong> Kopf schnell nach unten ziehen, Beine schwungvoll über das Wasser ziehen.</li>
-                            <li><strong>Explosiver Abstoß:</strong> In Stromlinienform (Streamline) in Rückenlage abstoßen und unter Wasser auf den Bauch drehen.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="article-box">
-                    <div class="article-title">2. Die Kippwende (Brust & Schmetterling)</div>
-                    <div class="article-body">
-                        <ul>
-                            <li><strong>Beidhändiger Anschlag:</strong> Beide Hände müssen gleichzeitig auf gleicher Höhe die Wand berühren!</li>
-                            <li><strong>Ellenbogen anziehen:</strong> Ein Arm löst sich sofort, die Beine werden unter dem Körper an die Wand gezogen.</li>
-                            <li><strong>Tief abtauchen:</strong> Langer Unterwasserzug (Brust-Tauchzug) ausführen.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="article-box">
-                    <div class="article-title">3. Der Startsprung (Track Start)</div>
-                    <div class="article-body">
-                        <ul>
-                            <li><strong>Füße auf der Startbrücke:</strong> Ein Fuß vorne an der Kante, der andere steht hinten.</li>
-                            <li><strong>Hände greifen vorne:</strong> Spannung im ganzen Körper aufbauen.</li>
-                            <li><strong>Beim Signal:</strong> Hände stoßen ab, Beine katapultieren den Körper flach durch das "Gleitloch" ins Wasser.</li>
+                            <li><strong>Kinn auf die Brust:</strong> Kopf schnell nach unten ziehen, Beine drüberziehen.</li>
+                            <li><strong>Explosiver Abstoß:</strong> In Streamline abstoßen und unter Wasser auf den Bauch drehen.</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 5: TRAININGSPLANER -->
+        <!-- TAB 7: PLANER -->
         <div id="tab-planer" class="tab-content">
             <div class="card">
                 <div class="card-title">📅 Tommy's Wochenplaner</div>
@@ -310,18 +301,9 @@
                 <div class="check-item"><input type="checkbox"> <span>Freitag: Technik-Fokus & Wenden-Training</span></div>
                 <div class="check-item"><input type="checkbox"> <span>Wochenende: Regeneration / Wettkampf</span></div>
             </div>
-
-            <div class="card">
-                <div class="card-title">🎒 Schwimmtaschen-Checkliste</div>
-                <div class="check-item"><input type="checkbox"> <span>2x Schwimmbrille (Wettkampf + Ersatz)</span></div>
-                <div class="check-item"><input type="checkbox"> <span>Badekappe (Club-Kappe)</span></div>
-                <div class="check-item"><input type="checkbox"> <span>Kurzflossen & Hand Paddles</span></div>
-                <div class="check-item"><input type="checkbox"> <span>Handtuch & Badeschuhe</span></div>
-                <div class="check-item"><input type="checkbox"> <span>Trinkflasche & Banane/Powerbar</span></div>
-            </div>
         </div>
 
-        <!-- TAB 6: ALLE SCHWEIZER ABZEICHEN -->
+        <!-- TAB 8: ABZEICHEN -->
         <div id="tab-abzeichen" class="tab-content">
             <div class="card">
                 <div class="card-title">
@@ -338,7 +320,6 @@
                         </div>
                         <input type="checkbox" id="b0">
                     </div>
-
                     <div class="badge-card" onclick="toggleBadge(1)">
                         <div class="badge-icon">🦄</div>
                         <div class="badge-info">
@@ -347,7 +328,6 @@
                         </div>
                         <input type="checkbox" id="b1">
                     </div>
-
                     <div class="badge-card" onclick="toggleBadge(2)">
                         <div class="badge-icon">🐸</div>
                         <div class="badge-info">
@@ -356,7 +336,6 @@
                         </div>
                         <input type="checkbox" id="b2">
                     </div>
-
                     <div class="badge-card" onclick="toggleBadge(3)">
                         <div class="badge-icon">🐧</div>
                         <div class="badge-info">
@@ -365,92 +344,11 @@
                         </div>
                         <input type="checkbox" id="b3">
                     </div>
-
-                    <div class="badge-card" onclick="toggleBadge(4)">
-                        <div class="badge-icon">🐙</div>
-                        <div class="badge-info">
-                            <div class="badge-name">5. Tintenfisch</div>
-                            <div class="badge-desc">Kraulschwimmen mit Seitatmung, Rücken-Kraul.</div>
-                        </div>
-                        <input type="checkbox" id="b4">
-                    </div>
-
-                    <div class="badge-card" onclick="toggleBadge(5)">
-                        <div class="badge-icon">🐊</div>
-                        <div class="badge-info">
-                            <div class="badge-name">6. Krokodil</div>
-                            <div class="badge-desc">Brust-Kombination, Kopfsprung, Unterwasser-Strecke.</div>
-                        </div>
-                        <input type="checkbox" id="b5">
-                    </div>
-
-                    <div class="badge-card" onclick="toggleBadge(6)">
-                        <div class="badge-icon">🐻‍❄️</div>
-                        <div class="badge-info">
-                            <div class="badge-name">7. Eisbär</div>
-                            <div class="badge-desc">Ausdauerschwimmen, Ausfall-Wende, Delfinkicks.</div>
-                        </div>
-                        <input type="checkbox" id="b6">
-                    </div>
-
-                    <div class="badge-card" onclick="toggleBadge(7)" style="border-color: #0284c7;">
-                        <div class="badge-icon">🛡️</div>
-                        <div class="badge-info">
-                            <div class="badge-name" style="color:#0284c7;">8. WSC (Wasser-Sicherheits-Check)</div>
-                            <div class="badge-desc">Purzelbaum ins Wasser, 1 Min. an Ort treiben, 50m Schwimmen.</div>
-                        </div>
-                        <input type="checkbox" id="b7">
-                    </div>
-
-                    <div class="badge-card" onclick="toggleBadge(8)">
-                        <div class="badge-icon">🐋</div>
-                        <div class="badge-info">
-                            <div class="badge-name">9. Wal</div>
-                            <div class="badge-desc">100m Lagen-Grundlagen, Kippwende, Ausdauer.</div>
-                        </div>
-                        <input type="checkbox" id="b8">
-                    </div>
-
-                    <div class="badge-card" onclick="toggleBadge(9)">
-                        <div class="badge-icon">🦈</div>
-                        <div class="badge-info">
-                            <div class="badge-name">10. Haifisch</div>
-                            <div class="badge-desc">Perfekte Kraul- & Rückenwende, Sprint-Speed.</div>
-                        </div>
-                        <input type="checkbox" id="b9">
-                    </div>
-
-                    <div class="badge-card" onclick="toggleBadge(10)">
-                        <div class="badge-icon">🐬</div>
-                        <div class="badge-info">
-                            <div class="badge-name" style="color:#38bdf8;">11. Delfin / Wettkampf-Talent</div>
-                            <div class="badge-desc">Schmetterling-Technik, Startsprung & Wenden.</div>
-                        </div>
-                        <input type="checkbox" id="b10">
-                    </div>
-
-                    <div class="badge-card" onclick="toggleBadge(11)">
-                        <div class="badge-icon">🥇</div>
-                        <div class="badge-info">
-                            <div class="badge-name" style="color:#fbbf24;">12. Kombi-Test 1-2</div>
-                            <div class="badge-desc">Nachwuchs-Wettkampf-Level: Lagen & Ausdauer.</div>
-                        </div>
-                        <input type="checkbox" id="b11">
-                    </div>
-
-                    <div class="badge-card" onclick="toggleBadge(12)">
-                        <div class="badge-icon">🏆</div>
-                        <div class="badge-info">
-                            <div class="badge-name" style="color:#fbbf24;">13. Kombi-Test 3-4</div>
-                            <div class="badge-desc">Profi-Kombination: Taktik, Wenden & Sprint.</div>
-                        </div>
-                        <input type="checkbox" id="b12">
-                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 7: ZEITEN & REKORDE -->
+        <!-- TAB 9: REKORDE -->
         <div id="tab-zeiten" class="tab-content">
             <div class="card">
                 <div class="card-title">📊 Offizielle Richtzeiten & Rekorde</div>
@@ -460,7 +358,6 @@
                             <tr>
                                 <th>Disziplin</th>
                                 <th>9-10 Jahre</th>
-                                <th>11-12 Jahre</th>
                                 <th>Schweizer Rekord</th>
                             </tr>
                         </thead>
@@ -468,32 +365,12 @@
                             <tr>
                                 <td>50m Freistil</td>
                                 <td>34.00 - 39.00s</td>
-                                <td>30.00 - 34.00s</td>
                                 <td class="highlight">21.84 s</td>
-                            </tr>
-                            <tr>
-                                <td>50m Rücken</td>
-                                <td>39.00 - 44.00s</td>
-                                <td>34.00 - 39.00s</td>
-                                <td class="highlight">24.75 s</td>
-                            </tr>
-                            <tr>
-                                <td>50m Brust</td>
-                                <td>43.00 - 48.00s</td>
-                                <td>38.00 - 43.00s</td>
-                                <td class="highlight">27.02 s</td>
                             </tr>
                             <tr>
                                 <td>50m Schmetterling</td>
                                 <td>37.00 - 43.00s</td>
-                                <td>32.00 - 37.00s</td>
                                 <td class="highlight">22.65 s (Noè Ponti)</td>
-                            </tr>
-                            <tr>
-                                <td>100m Freistil</td>
-                                <td>1:16.00 - 1:26.00</td>
-                                <td>1:06.00 - 1:15.00</td>
-                                <td class="highlight">47.86 s</td>
                             </tr>
                         </tbody>
                     </table>
@@ -501,29 +378,12 @@
             </div>
         </div>
 
-        <!-- TAB 8: AUSRÜSTUNG & VIDEO -->
+        <!-- TAB 10: GEAR -->
         <div id="tab-ausruestung" class="tab-content">
-            <img src="https://images.unsplash.com/photo-1519315901367-f34ff9154487?auto=format&fit=crop&w=800&q=80" alt="Equipment" class="hero-img">
-
             <div class="card">
                 <div class="card-title">🤿 Pro-Equipment & Action-Cam Guide</div>
-
                 <div class="article-box">
-                    <div class="article-title">1. Wettkampf-Schwimmbrille</div>
-                    <div class="article-body">
-                        Verwendet verspiegelte Brillen mit flachem Profil (z. B. Arena Cobra oder Speedo Fastskin). Sie bieten beim Startsprung minimalen Widerstand.
-                    </div>
-                </div>
-
-                <div class="article-box">
-                    <div class="article-title">2. Kurzflossen & Hand Paddles</div>
-                    <div class="article-body">
-                        Kurzflossen verbessern die Fußgelenk-Flexibilität. Hand Paddles bauen Muskelkraft im Armzug auf.
-                    </div>
-                </div>
-
-                <div class="article-box">
-                    <div class="article-title">3. Unterwasser-Videoanalyse mit Action Cam</div>
+                    <div class="article-title">Unterwasser-Videoanalyse mit Action Cam</div>
                     <div class="article-body">
                         Filmt Tommy beim Vorbeischwimmen mit der Action Cam (GoPro / DJI):
                         <ul>
@@ -538,12 +398,18 @@
     </div>
 
     <script>
-        function showTab(tabId) {
+        function showTab(tabId, e) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             
-            document.getElementById('tab-' + tabId).classList.add('active');
-            event.target.classList.add('active');
+            const targetTab = document.getElementById('tab-' + tabId);
+            if (targetTab) {
+                targetTab.classList.add('active');
+            }
+            
+            if (e && e.currentTarget) {
+                e.currentTarget.classList.add('active');
+            }
         }
 
         // Times Tracker
@@ -551,6 +417,7 @@
 
         function renderTimes() {
             const list = document.getElementById('times-list');
+            if (!list) return;
             if (savedTimes.length === 0) {
                 list.innerHTML = '<p style="font-size: 12px; color: #64748b; text-align: center; padding: 12px 0;">Noch keine Bestzeiten eingetragen.</p>';
                 return;
@@ -607,7 +474,7 @@
 
         // Badges Tracker
         let savedBadges = JSON.parse(localStorage.getItem('tommy_badges_v4') || '[]');
-        if(savedBadges.length < 13) savedBadges = new Array(13).fill(false);
+        if(savedBadges.length < 4) savedBadges = new Array(4).fill(false);
 
         function renderBadges() {
             let checkedCount = 0;
@@ -618,8 +485,11 @@
                     if (val) checkedCount++;
                 }
             });
-            const pct = Math.round((checkedCount / savedBadges.length) * 100);
-            document.getElementById('badge-progress-text').innerText = pct + '% Erreicht';
+            const progressEl = document.getElementById('badge-progress-text');
+            if (progressEl) {
+                const pct = Math.round((checkedCount / savedBadges.length) * 100);
+                progressEl.innerText = pct + '% Erreicht';
+            }
         }
 
         function toggleBadge(idx) {
