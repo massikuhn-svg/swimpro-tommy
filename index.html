@@ -15,13 +15,13 @@
         header h1 { font-size: 24px; color: #fff; font-weight: 900; letter-spacing: 0.8px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
         header p { font-size: 12px; color: #7dd3fc; font-weight: 800; margin-top: 2px; }
 
-        .xp-card { background: rgba(3, 7, 18, 0.6); border: 1px solid #0284c7; border-radius: 10px; padding: 8px 12px; margin-top: 10px; display: flex; align-items: center; justify-content: space-between; }
+        .xp-card { background: rgba(3, 7, 18, 0.7); border: 1px solid #0284c7; border-radius: 10px; padding: 8px 12px; margin-top: 10px; display: flex; align-items: center; justify-content: space-between; }
         .xp-title { font-size: 11px; font-weight: 900; color: #fbbf24; text-transform: uppercase; }
-        .xp-bar-bg { width: 55%; height: 8px; background: #1f2937; border-radius: 4px; overflow: hidden; }
-        .xp-bar-fill { height: 100%; width: 45%; background: linear-gradient(90deg, #fbbf24, #f59e0b); border-radius: 4px; }
+        .xp-bar-bg { width: 50%; height: 8px; background: #1f2937; border-radius: 4px; overflow: hidden; }
+        .xp-bar-fill { height: 100%; width: 55%; background: linear-gradient(90deg, #fbbf24, #f59e0b); border-radius: 4px; transition: width 0.3s; }
 
         /* Nav Bar */
-        nav { background: #0b0f19; border-bottom: 2px solid #1f2937; display: flex; overflow-x: auto; position: sticky; top: 108px; z-index: 90; scrollbar-width: none; }
+        nav { background: #0b0f19; border-bottom: 2px solid #1f2937; display: flex; overflow-x: auto; position: sticky; top: 112px; z-index: 90; scrollbar-width: none; }
         nav::-webkit-scrollbar { display: none; }
         .nav-btn { flex: 1; min-width: 95px; padding: 14px 10px; background: none; border: none; color: #9ca3af; font-size: 12px; font-weight: 800; text-align: center; white-space: nowrap; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.25s ease; }
         .nav-btn.active { color: #38bdf8; border-bottom-color: #0284c7; background: linear-gradient(180deg, rgba(56, 189, 248, 0.05), rgba(56, 189, 248, 0.15)); }
@@ -53,6 +53,11 @@
         input:focus, select:focus, textarea:focus { border-color: #0284c7; }
         
         .btn-primary { width: 100%; padding: 14px; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; border: none; border-radius: 10px; font-weight: 900; font-size: 15px; cursor: pointer; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4); }
+        .btn-secondary { width: 100%; padding: 10px; background: #1f2937; color: #38bdf8; border: 1px solid #374151; border-radius: 8px; font-weight: 800; font-size: 13px; cursor: pointer; margin-top: 8px; }
+
+        /* Timer Display */
+        .timer-display { font-size: 48px; font-weight: 900; color: #38bdf8; text-align: center; font-family: monospace; letter-spacing: 2px; margin: 15px 0; }
+        .timer-controls { display: flex; gap: 10px; }
 
         /* Content Modules */
         .article-box { background: #030712; border: 1px solid #1f2937; border-radius: 12px; padding: 16px; margin-bottom: 16px; }
@@ -93,16 +98,18 @@
         
         <!-- Gamification XP Bar -->
         <div class="xp-card">
-            <span class="xp-title">⚡ Level 4 Schwimmtalent</span>
+            <span class="xp-title">⚡ Level <span id="user-level">5</span> Champ</span>
             <div class="xp-bar-bg">
-                <div class="xp-bar-fill"></div>
+                <div class="xp-bar-fill" id="xp-fill"></div>
             </div>
-            <span style="font-size: 11px; font-weight: 800; color: #38bdf8;">450 / 1000 XP</span>
+            <span style="font-size: 11px; font-weight: 800; color: #38bdf8;" id="xp-text">550 / 1000 XP</span>
         </div>
     </header>
 
     <nav>
         <button class="nav-btn active" onclick="showTab('ziele', event)">🎯 Ziele</button>
+        <button class="nav-btn" onclick="showTab('timer', event)">⏱️ Timer</button>
+        <button class="nav-btn" onclick="showTab('quiz', event)">🧩 Quiz</button>
         <button class="nav-btn" onclick="showTab('motivation', event)">🔥 Power</button>
         <button class="nav-btn" onclick="showTab('mental', event)">🧠 Mental</button>
         <button class="nav-btn" onclick="showTab('athletik', event)">🏋️ Athletik</button>
@@ -154,24 +161,47 @@
                     </div>
                 </div>
 
-                <button class="btn-primary" onclick="addTimeLog()">Bestzeit Speichern & Fortschritt berechnen</button>
+                <button class="btn-primary" onclick="addTimeLog()">Bestzeit Speichern & XP kassieren</button>
 
                 <div id="times-list" style="margin-top: 18px;"></div>
             </div>
 
             <div class="card">
-                <div class="card-title">⚡ 25m vs. 50m Bahn-Rechner</div>
-                <p style="font-size: 12px; color: #9ca3af; margin-bottom: 14px;">Rechne deine 25m-Kurzbahnzeit auf eine 50m-Langbahn um:</p>
+                <div class="card-title">⚡ Renntaktik & Split-Zeiten Rechner</div>
                 <div class="form-group">
-                    <label>25m Kurzbahn-Zeit (Sekunden)</label>
-                    <input type="number" step="0.1" id="kb-time" placeholder="z.B. 35.0">
+                    <label>Zielzeit für 50m (Sekunden)</label>
+                    <input type="number" step="0.1" id="split-target" placeholder="z.B. 34.0">
                 </div>
-                <button class="btn-primary" onclick="calcBahn()">Umrechnen auf 50m Langbahn</button>
-                <div id="bahn-res" style="margin-top: 12px; font-weight: 900; color: #38bdf8; font-size: 15px; text-align: center;"></div>
+                <button class="btn-primary" onclick="calcSplits()">Wettkampf-Splits Berechnen</button>
+                <div id="split-res" style="margin-top: 12px; font-size: 13px; color: #d1d5db;"></div>
             </div>
         </div>
 
-        <!-- TAB 2: MOTIVATION -->
+        <!-- TAB 2: NEU - BECKENRAND STOPPUHR -->
+        <div id="tab-timer" class="tab-content">
+            <div class="card">
+                <div class="card-title">⏱️ Intervall- & Serien-Stoppuhr</div>
+                <div class="timer-display" id="timer-val">00:00.0</div>
+                <div class="timer-controls">
+                    <button class="btn-primary" onclick="startTimer()" style="background: #22c55e;">Start</button>
+                    <button class="btn-primary" onclick="stopTimer()" style="background: #ef4444;">Stopp</button>
+                    <button class="btn-secondary" onclick="resetTimer()">Reset</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: NEU - SCHWIMM-QUIZ -->
+        <div id="tab-quiz" class="tab-content">
+            <div class="card">
+                <div class="card-title">🧩 Schwimm-Profi Quiz (+50 XP)</div>
+                <div id="quiz-box">
+                    <p style="font-weight: 800; font-size: 15px; margin-bottom: 12px;" id="quiz-q">Frage wird geladen...</p>
+                    <div id="quiz-opts" style="display: flex; flex-direction: column; gap: 8px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: MOTIVATION -->
         <div id="tab-motivation" class="tab-content">
             <img src="https://images.unsplash.com/photo-1519315901367-f34ff9154487?auto=format&fit=crop&w=1000&q=80" alt="Startblock Hallenbad" class="hero-img">
 
@@ -204,7 +234,7 @@
             </div>
         </div>
 
-        <!-- TAB 3: MENTALTRAINING -->
+        <!-- TAB 5: MENTALTRAINING -->
         <div id="tab-mental" class="tab-content">
             <img src="https://images.unsplash.com/photo-1508215885820-4585e56135c8?auto=format&fit=crop&w=1000&q=80" alt="Mentaltraining" class="hero-img">
 
@@ -221,21 +251,10 @@
                         </ul>
                     </div>
                 </div>
-
-                <div class="article-box">
-                    <div class="article-title">⏱️ Call-Room Protokoll (15 Minuten vor dem Start)</div>
-                    <div class="article-body">
-                        <ul>
-                            <li><strong>15 Min vorher:</strong> Muskeln warmhalten (Aktivierungs-Hüpfer, Schulterkreisen).</li>
-                            <li><strong>10 Min vorher:</strong> Brille und Kappe auf Sitz und Dichtigkeit prüfen.</li>
-                            <li><strong>5 Min vorher:</strong> 3x tief durchatmen, Augen schließen und das komplette Rennen im Kopf in Zeitraffer durchgehen.</li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </div>
 
-        <!-- TAB 4: ATHLETIK -->
+        <!-- TAB 6: ATHLETIK -->
         <div id="tab-athletik" class="tab-content">
             <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1000&q=80" alt="Trockentraining & Athletik" class="hero-img">
 
@@ -244,29 +263,18 @@
                 
                 <div class="article-box">
                     <div class="article-title">1. Der Rumpf- & Core-Zirkel (10–12 Minuten)</div>
-                    <div class="article-subtitle">3 Runden • 30 Sek. Belastung / 15 Sek. Pause:</div>
                     <div class="article-body">
                         <ul>
                             <li><strong>Plank (Unterarmstütz):</strong> Rücken flach wie ein Tisch, Bauch und Po fest anspannen.</li>
-                            <li><strong>Superman (Rückenstrecker):</strong> Auf den Bauch legen, Arme und Beine gleichzeitig anheben und halten.</li>
-                            <li><strong>Russian Twists:</strong> Sitzen, Beine leicht anheben und den Oberkörper kontrolliert rotieren.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="article-box">
-                    <div class="article-title">2. Sprungkraft & Beinkraft (Start & Wende)</div>
-                    <div class="article-body">
-                        <ul>
-                            <li><strong>Squat Jumps (Kniebeuge-Sprünge):</strong> Tief in die Hocke gehen und lautlos, aber explosiv nach oben katapultieren!</li>
-                            <li><strong>Ausfallschritte (Lunges):</strong> Abwechselnd nach vorne steigen für stabile Knie und starken Beinschlag.</li>
+                            <li><strong>Superman (Rückenstrecker):</strong> Auf den Bauch legen, Arme und Beine gleichzeitig anheben.</li>
+                            <li><strong>Russian Twists:</strong> Sitzen, Beine anheben und den Oberkörper kontrolliert rotieren.</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 5: SCHWIMMSTILE -->
+        <!-- TAB 7: SCHWIMMSTILE -->
         <div id="tab-stile" class="tab-content">
             <img src="https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?auto=format&fit=crop&w=1000&q=80" alt="Kraultechnik" class="hero-img">
 
@@ -279,61 +287,46 @@
                         <ul>
                             <li><strong>Wasserlage:</strong> Flach wie ein Holzbrett, Blick schräg nach unten auf den Beckenboden.</li>
                             <li><strong>Hoher Ellenbogen:</strong> Beim Überwasserzug führt der Ellenbogen die Hand locker nach vorne.</li>
-                            <li><strong>Unterwasserzug (Catch & Pull):</strong> Erst das Handgelenk anwinkeln, dann S-förmig durchziehen.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="article-box">
-                    <div class="article-title">2. Schmetterling / Delfin (Butterfly)</div>
-                    <div class="article-body">
-                        <ul>
-                            <li><strong>Ganzkörperwelle:</strong> Die Bewegung entspringt im Brustkorb und fließt dynamisch bis in die Zehenspitzen.</li>
-                            <li><strong>2 Kicks pro Armzug:</strong> 1. Kick beim Eintauchen der Hände, 2. Kick beim kräftigen Abstoß an der Hüfte.</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 6: WENDEN -->
+        <!-- TAB 8: WENDEN -->
         <div id="tab-wenden" class="tab-content">
             <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=1000&q=80" alt="Rollwende im Pool" class="hero-img">
 
             <div class="card">
                 <div class="card-title">🔄 Wenden- & Startsprung-Schule</div>
-                
                 <div class="article-box">
                     <div class="article-title">1. Die Kraul-Rollwende (Flip Turn)</div>
                     <div class="article-body">
                         <ul>
                             <li><strong>Keine Atmung vor der Wende:</strong> Beim letzten Armzug vor dem 'T' nicht mehr atmen!</li>
-                            <li><strong>Kinn auf die Brust:</strong> Kopf schnell nach unten ziehen und die Beine schwungvoll über das Wasser ziehen.</li>
-                            <li><strong>Explosiver Abstoß:</strong> In Pfeilposition (Streamline) abstoßen und unter Wasser auf den Bauch drehen.</li>
+                            <li><strong>Explosiver Abstoß:</strong> In Pfeilposition (Streamline) abstoßen.</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 7: PLANER -->
+        <!-- TAB 9: PLANER -->
         <div id="tab-planer" class="tab-content">
-            <img src="https://images.unsplash.com/photo-1508215885820-4585e56135c8?auto=format&fit=crop&w=1000&q=80" alt="Trainingsplan" class="hero-img">
-
             <div class="card">
                 <div class="card-title">📅 Tommy's Exakter Wochen-Trainingsplan</div>
 
                 <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">Montag: Trockentraining zu Hause</span><span class="check-sub">Rumpfspannung (Plank/Superman) & Armkreisen.</span></div></div>
                 <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">Dienstag: Schwimmclub Burgdorf (90 Minuten)</span><span class="check-sub">Intensives Vereinstraining im Hallenbad Burgdorf.</span></div></div>
                 <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">Mittwoch: Unihockey</span><span class="check-sub">Training & Spiel: Ausdauer, Beinkraft & Schnelligkeit.</span></div></div>
-                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">Donnerstag: Trockentraining zu Hause</span><span class="check-sub">Sprungkraft (Squat Jumps) & Beinkraft für explosiven Abstoß.</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">Donnerstag: Trockentraining zu Hause</span><span class="check-sub">Sprungkraft (Squat Jumps) für explosiven Abstoß.</span></div></div>
                 <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">Freitag: Hallenbad (45 Minuten selbstständig)</span><span class="check-sub">Rollwenden, Startsprünge & 15m-Unterwasser-Delfinkicks.</span></div></div>
                 <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">Samstag: Schwimmkurs (40 Minuten)</span><span class="check-sub">Gezielter Technik-Korrektur-Unterricht & Feinschliff.</span></div></div>
                 <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">Sonntag: Trockentraining & Dehnen</span><span class="check-sub">Fußgelenk-Flexibilität & Regeneration.</span></div></div>
             </div>
         </div>
 
-        <!-- TAB 8: NEU - TRAININGS-TAGEBUCH -->
+        <!-- TAB 10: TAGEBUCH -->
         <div id="tab-tagebuch" class="tab-content">
             <div class="card">
                 <div class="card-title">📝 Tommy's Swim Log & Trainer-Feedback</div>
@@ -342,52 +335,26 @@
                     <input type="text" id="log-date" placeholder="z.B. Dienstag Hallenbad Burgdorf">
                 </div>
                 <div class="form-group">
-                    <label>Wie lief das Training? (Gefühl, Fokus, Zeiten)</label>
-                    <textarea id="log-text" rows="3" placeholder="z.B. Wenden waren heute extrem schnell! Beim Schmetterling auf Armzug geachtet."></textarea>
+                    <label>Wie lief das Training?</label>
+                    <textarea id="log-text" rows="3" placeholder="z.B. Wenden waren heute extrem schnell!"></textarea>
                 </div>
-                <button class="btn-primary" onclick="addLogEntry()">Eintrag im Tagebuch Speichern (+50 XP)</button>
-
+                <button class="btn-primary" onclick="addLogEntry()">Eintrag Speichern (+50 XP)</button>
                 <div id="journal-list" style="margin-top: 18px;"></div>
             </div>
         </div>
 
-        <!-- TAB 9: NEU - ERNÄHRUNG & REGENERATION -->
+        <!-- TAB 11: ERNÄHRUNG -->
         <div id="tab-ernaehrung" class="tab-content">
             <div class="card">
                 <div class="card-title">🍌 Champions Fuel & Regeneration</div>
-                
                 <div class="article-box">
-                    <div class="article-title">1. Der perfekte Pre-Workout Snack (60 Min. vor Training)</div>
-                    <div class="article-body">
-                        Leicht verdauliche Kohlenhydrate für volle Speicher ohne Magenbeschwerden:
-                        <ul>
-                            <li>1 Banane mit einer Handvoll Haferflocken oder Reiskwaffeln.</li>
-                            <li>Ausreichend Wasser trinken (schon 2 Stunden vor dem Training beginnen!).</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="article-box">
-                    <div class="article-title">2. Post-Workout Power (Innerhalb von 30 Min. danach)</div>
-                    <div class="article-body">
-                        Schnelle Erholung für die Muskeln:
-                        <ul>
-                            <li>Sportriegel / Proteinbar & 1 Flasche Schokomilch oder Wasser.</li>
-                            <li>Abendessen: Ausgewogen mit Kohlenhydraten (Pasta/Reis/Kartoffeln) und Eiweiß.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="article-box">
-                    <div class="article-title">3. Schlaf – Das stärkste Doping der Welt</div>
-                    <div class="article-body">
-                        Mindestens 9 bis 10 Stunden Schlaf für Nachwuchs-Leistungssportler, damit sich die Muskeln im Schlaf regenerieren und wachsen!
-                    </div>
+                    <div class="article-title">1. Der perfekte Pre-Workout Snack</div>
+                    <div class="article-body">1 Banane mit Haferflocken 60 Minuten vor dem Training.</div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 10: ABZEICHEN -->
+        <!-- TAB 12: ABZEICHEN -->
         <div id="tab-abzeichen" class="tab-content">
             <div class="card">
                 <div class="card-title">
@@ -425,7 +392,7 @@
             </div>
         </div>
 
-        <!-- TAB 11: REKORDE -->
+        <!-- TAB 13: REKORDE -->
         <div id="tab-zeiten" class="tab-content">
             <div class="card">
                 <div class="card-title">📊 Richtzeiten & Schweizer Rekorde</div>
@@ -449,45 +416,32 @@
                                 <td>37.00 - 43.00s</td>
                                 <td class="highlight">22.65 s (Noè Ponti)</td>
                             </tr>
-                            <tr>
-                                <td>50m Rücken</td>
-                                <td>39.00 - 44.00s</td>
-                                <td class="highlight">24.75 s</td>
-                            </tr>
-                            <tr>
-                                <td>50m Brust</td>
-                                <td>43.00 - 48.00s</td>
-                                <td class="highlight">27.02 s</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 12: AUSRÜSTUNG -->
+        <!-- TAB 14: AUSRÜSTUNG -->
         <div id="tab-ausruestung" class="tab-content">
-            <img src="https://images.unsplash.com/photo-1519315901367-f34ff9154487?auto=format&fit=crop&w=1000&q=80" alt="Equipment" class="hero-img">
-
             <div class="card">
                 <div class="card-title">🎒 Tommy's Profi-Schwimmtasche</div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🎒 Schwimm-Rucksack</span><span class="check-sub">Basis für die Ausrüstung</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">💳 Schwimmabo / Eintrittskarte</span><span class="check-sub">Hallenbad Burgdorf</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🩳 Badehose</span><span class="check-sub">Wettkampf / Training</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🏊‍♂️ Badekappe</span><span class="check-sub">Silikonkappe Club</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🤿 Schwimmbrille</span><span class="check-sub">Gut eingestellt</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🛟 Pullbuoy</span><span class="check-sub">Armzug-Training</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🦶 Flossen (Kurzflossen)</span><span class="check-sub">Delfinkicks & Beinkraft</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🤿 Schnorchel (Frontschnorchel)</span><span class="check-sub">Kopfhaltung</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🚿 Duschzeug & Shampoo</span><span class="check-sub">Dusche danach</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🧴 Badetuch / Großes Handtuch</span><span class="check-sub">Abtrocknen</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🍾 Trinkflasche</span><span class="check-sub">Wasser am Beckenrand</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🍫 Sportriegel / Energybar</span><span class="check-sub">Nach dem Training</span></div></div>
 
-                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🎒 Schwimm-Rucksack</span><span class="check-sub">Geräumiger Rucksack für das gesamte Equipment</span></div></div>
-                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">💳 Schwimmabo / Eintrittskarte</span><span class="check-sub">Wichtig für den Einlass im Hallenbad Burgdorf</span></div></div>
-                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🩳 Badehose</span><span class="check-sub">Enganliegende Wettkampf- oder Trainingsbadehose</span></div></div>
-                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🏊‍♂️ Badekappe</span><span class="check-sub">Silikonkappe (Schwimmclub Burgdorf)</span></div></div>
-                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🤿 Schwimmbrille</span><span class="check-sub">Verspiegelte oder klare Brille, gut eingestellt</span></div></div>
-                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🛟 Pullbuoy</span><span class="check-sub">Für gezieltes Armzug- und Rumpftraining</span></div></div>
-                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🦶 Flossen (Kurzflossen)</span><span class="check-sub">Kräftigt die Beine & verbessert Delphinkicks</span></div></div>
-                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🤿 Schnorchel (Frontschnorchel)</span><span class="check-sub">Für optimale Kopfhaltung ohne Atembewegung</span></div></div>
-                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🚿 Duschzeug & Shampoo</span><span class="check-sub">Gründliche Dusche nach dem Chlorwasser</span></div></div>
-                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🧴 Badetuch / Großes Handtuch</span><span class="check-sub">Zum Abtrocknen am Beckenrand & Dusche</span></div></div>
-                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🍾 Trinkflasche</span><span class="check-sub">Wasser oder Isodrink direkt am Beckenrand</span></div></div>
-                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🍫 Sportriegel / Energybar</span><span class="check-sub">Schnelle Kohlenhydrate direkt nach dem Training</span></div></div>
-
-                <div class="section-title">❄️ Winter-Special (Oktober–April)</div>
-                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🧥 Warme Jacke</span><span class="check-sub">Schützt vor Erkältung nach dem warmen Hallenbad</span></div></div>
-                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🧢 Warme Kappe / Mütze</span><span class="check-sub">Sehr wichtig für feuchte Haare und den Kopf!</span></div></div>
+                <div class="section-title">❄️ Winter-Special</div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🧥 Warme Jacke</span><span class="check-sub">Gegen Kälte</span></div></div>
+                <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">🧢 Warme Kappe / Mütze</span><span class="check-sub">Für nasses Haar</span></div></div>
             </div>
         </div>
 
@@ -508,9 +462,76 @@
             }
         }
 
-        // Bestzeiten Tracker
-        let savedTimes = JSON.parse(localStorage.getItem('tommy_times_v6') || '[]');
+        // XP Gamification
+        let currentXP = parseInt(localStorage.getItem('tommy_xp') || '550');
+        function addXP(amount) {
+            currentXP += amount;
+            localStorage.setItem('tommy_xp', currentXP.toString());
+            updateXPDisplay();
+        }
 
+        function updateXPDisplay() {
+            const level = Math.floor(currentXP / 200) + 1;
+            const xpRem = currentXP % 200;
+            const pct = (xpRem / 200) * 100;
+            
+            document.getElementById('user-level').innerText = level;
+            document.getElementById('xp-fill').style.width = pct + '%';
+            document.getElementById('xp-text').innerText = `${xpRem} / 200 XP`;
+        }
+
+        // Stoppuhr
+        let timerInterval;
+        let timerTime = 0;
+        function startTimer() {
+            clearInterval(timerInterval);
+            const startTime = Date.now() - timerTime;
+            timerInterval = setInterval(() => {
+                timerTime = Date.now() - startTime;
+                const m = Math.floor(timerTime / 60000).toString().padStart(2, '0');
+                const s = Math.floor((timerTime % 60000) / 1000).toString().padStart(2, '0');
+                const ms = Math.floor((timerTime % 1000) / 100);
+                document.getElementById('timer-val').innerText = `${m}:${s}.${ms}`;
+            }, 100);
+        }
+        function stopTimer() { clearInterval(timerInterval); }
+        function resetTimer() { clearInterval(timerInterval); timerTime = 0; document.getElementById('timer-val').innerText = '00:00.0'; }
+
+        // Quiz System
+        const quizData = [
+            { q: "Wie weit darfst du nach dem Startsprung unter Wasser bleiben?", opts: ["10 Meter", "15 Meter", "20 Meter"], a: 1 },
+            { q: "Welcher Schweizer Schwimmer holte Olympia-Medaillen über Schmetterling?", opts: ["Noè Ponti", "Jeremy Desplanches", "Dominik Meichtry"], a: 0 }
+        ];
+        let quizIdx = 0;
+        function renderQuiz() {
+            const q = quizData[quizIdx];
+            document.getElementById('quiz-q').innerText = q.q;
+            document.getElementById('quiz-opts').innerHTML = q.opts.map((opt, i) => `
+                <button class="btn-secondary" onclick="checkQuiz(${i})">${opt}</button>
+            `).join('');
+        }
+        function checkQuiz(idx) {
+            if(idx === quizData[quizIdx].a) {
+                alert("Richtig! +50 XP erhalten! 🎉");
+                addXP(50);
+            } else {
+                alert("Leider falsch, probiere es nochmal! 😉");
+            }
+            quizIdx = (quizIdx + 1) % quizData.length;
+            renderQuiz();
+        }
+
+        // Splitt Rechner
+        function calcSplits() {
+            const t = parseFloat(document.getElementById('split-target').value);
+            if(!t) return alert('Bitte Zeit eingeben!');
+            const s1 = (t * 0.47).toFixed(2);
+            const s2 = (t * 0.53).toFixed(2);
+            document.getElementById('split-res').innerHTML = `<strong>Taktik-Splits für ${t}s:</strong><br>1. 25m Sprint: <strong>${s1}s</strong><br>2. 25m Finish: <strong>${s2}s</strong>`;
+        }
+
+        // Times Tracker
+        let savedTimes = JSON.parse(localStorage.getItem('tommy_times_v7') || '[]');
         function renderTimes() {
             const list = document.getElementById('times-list');
             if (!list) return;
@@ -543,34 +564,22 @@
             const time = parseFloat(document.getElementById('sw-time').value);
             const target = parseFloat(document.getElementById('sw-target').value);
             
-            if (!time || !target) {
-                alert('Bitte trage beide Zeiten ein!');
-                return;
-            }
+            if (!time || !target) return alert('Bitte beide Zeiten eintragen!');
 
             savedTimes.push({ style, time, target });
-            localStorage.setItem('tommy_times_v6', JSON.stringify(savedTimes));
-            document.getElementById('sw-time').value = '';
-            document.getElementById('sw-target').value = '';
+            localStorage.setItem('tommy_times_v7', JSON.stringify(savedTimes));
+            addXP(30);
             renderTimes();
         }
 
         function deleteTime(index) {
             savedTimes.splice(index, 1);
-            localStorage.setItem('tommy_times_v6', JSON.stringify(savedTimes));
+            localStorage.setItem('tommy_times_v7', JSON.stringify(savedTimes));
             renderTimes();
         }
 
-        function calcBahn() {
-            const kb = parseFloat(document.getElementById('kb-time').value);
-            if (!kb) return alert('Bitte Zeit eingeben!');
-            const lb = (kb * 1.035).toFixed(2);
-            document.getElementById('bahn-res').innerText = `Geschätzte 50m Langbahn-Zeit: ~${lb} Sekunden`;
-        }
-
-        // Journal Log System
-        let savedLogs = JSON.parse(localStorage.getItem('tommy_journal_v1') || '[]');
-
+        // Journal
+        let savedLogs = JSON.parse(localStorage.getItem('tommy_journal_v2') || '[]');
         function renderJournal() {
             const list = document.getElementById('journal-list');
             if (!list) return;
@@ -578,7 +587,7 @@
                 list.innerHTML = '<p style="font-size: 13px; color: #64748b; text-align: center; padding: 12px 0;">Noch keine Tagebucheinträge vorhanden.</p>';
                 return;
             }
-            list.innerHTML = savedLogs.map((item, index) => `
+            list.innerHTML = savedLogs.map((item) => `
                 <div class="article-box">
                     <div class="article-title">${item.date}</div>
                     <div class="article-body">${item.text}</div>
@@ -592,14 +601,15 @@
             if (!date || !text) return alert('Bitte Datum und Text ausfüllen!');
 
             savedLogs.unshift({ date, text });
-            localStorage.setItem('tommy_journal_v1', JSON.stringify(savedLogs));
+            localStorage.setItem('tommy_journal_v2', JSON.stringify(savedLogs));
+            addXP(50);
             document.getElementById('log-date').value = '';
             document.getElementById('log-text').value = '';
             renderJournal();
         }
 
-        // Badges Tracker
-        let savedBadges = JSON.parse(localStorage.getItem('tommy_badges_v8') || '[]');
+        // Badges
+        let savedBadges = JSON.parse(localStorage.getItem('tommy_badges_v9') || '[]');
         if(savedBadges.length < 16) savedBadges = new Array(16).fill(false);
 
         function renderBadges() {
@@ -620,10 +630,13 @@
 
         function toggleBadge(idx) {
             savedBadges[idx] = !savedBadges[idx];
-            localStorage.setItem('tommy_badges_v8', JSON.stringify(savedBadges));
+            localStorage.setItem('tommy_badges_v9', JSON.stringify(savedBadges));
+            if(savedBadges[idx]) addXP(40);
             renderBadges();
         }
 
+        updateXPDisplay();
+        renderQuiz();
         renderTimes();
         renderJournal();
         renderBadges();
