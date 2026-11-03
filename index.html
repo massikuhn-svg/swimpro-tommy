@@ -5,90 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SwimPro Tommy - Ultimate Performance Hub</title>
     <meta name="theme-color" content="#0284c7">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background-color: #030712; color: #f9fafb; padding-bottom: 60px; font-size: 14px; line-height: 1.6; }
-        
-        /* Header & Level Bar */
-        header { background: linear-gradient(135deg, #0284c7, #0369a1, #0f172a); padding: 20px 16px; text-align: center; box-shadow: 0 4px 25px rgba(2, 132, 199, 0.4); position: sticky; top: 0; z-index: 100; border-bottom: 2px solid #38bdf8; }
-        header h1 { font-size: 22px; color: #fff; font-weight: 900; letter-spacing: 0.8px; }
-        header p { font-size: 12px; color: #7dd3fc; font-weight: 800; margin-top: 2px; }
-
-        .xp-card { background: rgba(3, 7, 18, 0.7); border: 1px solid #0284c7; border-radius: 10px; padding: 8px 12px; margin-top: 10px; display: flex; align-items: center; justify-content: space-between; }
-        .xp-title { font-size: 11px; font-weight: 900; color: #fbbf24; text-transform: uppercase; }
-        .xp-bar-bg { width: 50%; height: 8px; background: #1f2937; border-radius: 4px; overflow: hidden; }
-        .xp-bar-fill { height: 100%; width: 55%; background: linear-gradient(90deg, #fbbf24, #f59e0b); border-radius: 4px; transition: width 0.3s; }
-
-        /* Nav Bar */
-        nav { background: #0b0f19; border-bottom: 2px solid #1f2937; display: flex; overflow-x: auto; position: sticky; top: 108px; z-index: 90; scrollbar-width: none; }
-        nav::-webkit-scrollbar { display: none; }
-        .nav-btn { flex: 1; min-width: 90px; padding: 12px 8px; background: none; border: none; color: #9ca3af; font-size: 11px; font-weight: 800; text-align: center; white-space: nowrap; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.25s ease; }
-        .nav-btn.active { color: #38bdf8; border-bottom-color: #0284c7; background: linear-gradient(180deg, rgba(56, 189, 248, 0.05), rgba(56, 189, 248, 0.15)); }
-
-        /* Layout & Cards */
-        .container { max-width: 720px; margin: 0 auto; padding: 16px; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; animation: fadeIn 0.3s ease-in-out; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .card { background: #111827; border: 1px solid #1f2937; border-radius: 16px; padding: 18px; margin-bottom: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.5); }
-        .card-title { font-size: 17px; font-weight: 900; color: #38bdf8; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #1f2937; padding-bottom: 8px; }
-        .section-title { font-size: 14px; font-weight: 900; color: #fbbf24; margin: 18px 0 10px 0; border-bottom: 1px dashed #374151; padding-bottom: 4px; }
-        
-        .hero-img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 14px; border: 1px solid #374151; }
-        
-        .quote-box { background: linear-gradient(135deg, rgba(2, 132, 199, 0.25), rgba(15, 23, 42, 0.95)); border-left: 5px solid #0284c7; padding: 14px; border-radius: 10px; margin-bottom: 18px; }
-        .quote-text { font-style: italic; font-size: 13px; color: #f3f4f6; font-weight: 600; }
-        .quote-author { font-style: normal; font-weight: 800; color: #38bdf8; font-size: 11px; margin-top: 6px; display: block; }
-
-        /* Form Inputs */
-        .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
-        label { font-size: 11px; color: #9ca3af; font-weight: 800; text-transform: uppercase; }
-        input, select, textarea { width: 100%; padding: 11px; border-radius: 8px; border: 1px solid #374151; background-color: #030712; color: #ffffff; font-size: 14px; outline: none; }
-        input:focus, select:focus, textarea:focus { border-color: #0284c7; }
-        
-        .btn-primary { width: 100%; padding: 13px; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; border: none; border-radius: 8px; font-weight: 900; font-size: 14px; cursor: pointer; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4); }
-        .btn-secondary { width: 100%; padding: 10px; background: #1f2937; color: #38bdf8; border: 1px solid #374151; border-radius: 8px; font-weight: 800; font-size: 13px; cursor: pointer; margin-top: 6px; }
-
-        /* Timer Display */
-        .timer-display { font-size: 44px; font-weight: 900; color: #38bdf8; text-align: center; font-family: monospace; letter-spacing: 2px; margin: 12px 0; }
-        .timer-controls { display: flex; gap: 8px; }
-
-        /* Content Modules */
-        .article-box { background: #030712; border: 1px solid #1f2937; border-radius: 10px; padding: 14px; margin-bottom: 14px; }
-        .article-title { font-size: 15px; font-weight: 900; color: #38bdf8; margin-bottom: 6px; }
-        .article-subtitle { font-size: 12px; color: #fbbf24; font-weight: 800; margin-bottom: 8px; }
-        .article-body { font-size: 13px; color: #d1d5db; line-height: 1.6; }
-        .article-body ul { margin-left: 18px; margin-top: 6px; }
-        .article-body li { margin-bottom: 6px; }
-
-        /* Checklists & Badges */
-        .badge-grid { display: flex; flex-direction: column; gap: 8px; }
-        .badge-card { display: flex; align-items: center; gap: 12px; background: #030712; border: 1px solid #1f2937; padding: 10px 12px; border-radius: 10px; cursor: pointer; }
-        .badge-icon { font-size: 24px; width: 36px; text-align: center; }
-        .badge-info { flex: 1; }
-        .badge-name { font-weight: 900; color: #f3f4f6; font-size: 13px; }
-        .badge-desc { font-size: 11px; color: #9ca3af; margin-top: 2px; }
-        .badge-card input[type="checkbox"] { width: 20px; height: 20px; accent-color: #0284c7; }
-
-        .check-item { display: flex; align-items: flex-start; gap: 10px; background: #030712; border: 1px solid #1f2937; padding: 10px; border-radius: 8px; margin-bottom: 8px; }
-        .check-item input { width: 18px; height: 18px; accent-color: #0284c7; margin-top: 2px; }
-        .check-text { font-size: 13px; flex: 1; }
-        .check-title { font-weight: 900; color: #f3f4f6; display: block; font-size: 13px; }
-        .check-sub { font-size: 11px; color: #9ca3af; display: block; margin-top: 2px; }
-
-        /* Tables */
-        .table-wrap { overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: left; margin-top: 8px; }
-        th, td { padding: 10px 8px; border-bottom: 1px solid #1f2937; }
-        th { color: #38bdf8; background: #030712; font-weight: 900; }
-        td.highlight { color: #38bdf8; font-weight: 900; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -96,13 +13,12 @@
         <h1>🏊‍♂️ SwimPro Tommy</h1>
         <p>Road to Gold & Olympia Performance Hub</p>
         
-        <!-- Gamification XP Bar -->
         <div class="xp-card">
-            <span class="xp-title">⚡ Level <span id="user-level">5</span> Champ</span>
+            <span class="xp-title">⚡ Level <span id="user-level">1</span> Champ</span>
             <div class="xp-bar-bg">
                 <div class="xp-bar-fill" id="xp-fill"></div>
             </div>
-            <span style="font-size: 11px; font-weight: 800; color: #38bdf8;" id="xp-text">550 / 1000 XP</span>
+            <span id="xp-text" style="font-size: 11px; font-weight: 800; color: #38bdf8;">0 / 200 XP</span>
         </div>
     </header>
 
@@ -125,7 +41,7 @@
 
     <div class="container">
 
-        <!-- TAB 1: ZIELE & TRACKER -->
+        <!-- TAB 1: ZIELE -->
         <div id="tab-ziele" class="tab-content active">
             <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=1000&q=80" alt="Profi Schwimmer" class="hero-img">
 
@@ -162,7 +78,6 @@
                 </div>
 
                 <button class="btn-primary" onclick="addTimeLog()">Bestzeit Speichern & XP kassieren</button>
-
                 <div id="times-list" style="margin-top: 16px;"></div>
             </div>
 
@@ -177,7 +92,7 @@
             </div>
         </div>
 
-        <!-- TAB 2: BECKENRAND STOPPUHR -->
+        <!-- TAB 2: TIMER -->
         <div id="tab-timer" class="tab-content">
             <div class="card">
                 <div class="card-title">⏱️ Intervall- & Serien-Stoppuhr</div>
@@ -190,7 +105,7 @@
             </div>
         </div>
 
-        <!-- TAB 3: SCHWIMM-QUIZ -->
+        <!-- TAB 3: QUIZ -->
         <div id="tab-quiz" class="tab-content">
             <div class="card">
                 <div class="card-title">🧩 Schwimm-Profi Quiz (+50 XP)</div>
@@ -207,7 +122,6 @@
 
             <div class="card">
                 <div class="card-title">🔥 Mental Strong: Mindset von echten Champions</div>
-                
                 <div class="article-box">
                     <div class="article-title">1. Der Fokus am Startblock</div>
                     <div class="article-body">
@@ -219,34 +133,29 @@
                         </ul>
                     </div>
                 </div>
-
                 <div class="article-box">
                     <div class="article-title">2. Noè Ponti's Erfolgsgeheimnis</div>
                     <div class="article-body">
-                        Wie wird man Schweizer Rekordhalter und Olympia-Medaillengewinner?
                         <ul>
                             <li><strong>Die ersten 15 Meter entscheiden:</strong> Nutze die Unterwasserphase nach Start und Wende voll aus.</li>
                             <li><strong>Konstanz schlägt Talent:</strong> Jeden Tag im Training 100% geben bringt am Ende Gold!</li>
-                            <li><strong>Freude am Sport:</strong> Habe immer Spaß beim Training mit deinem Team!</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 5: MENTALTRAINING -->
+        <!-- TAB 5: MENTAL -->
         <div id="tab-mental" class="tab-content">
             <img src="https://images.unsplash.com/photo-1508215885820-4585e56135c8?auto=format&fit=crop&w=1000&q=80" alt="Mentaltraining" class="hero-img">
-
             <div class="card">
                 <div class="card-title">🧠 Mentaltraining & Wettkampf-Protokoll</div>
                 <div class="article-box">
                     <div class="article-title">Die 4-7-8 Atemtechnik gegen Nervosität</div>
                     <div class="article-body">
-                        Vor dem Start ist Aufregung völlig normal. So steuerst du deinen Puls perfekt:
                         <ul>
                             <li><strong>4 Sekunden:</strong> Tief durch die Nase in den Bauch einatmen.</li>
-                            <li><strong>7 Sekunden:</strong> Den Atem ruhig anhalten und dich auf das Rennen fokussieren.</li>
+                            <li><strong>7 Sekunden:</strong> Den Atem ruhig anhalten und fokussieren.</li>
                             <li><strong>8 Sekunden:</strong> Langsam und vollständig durch den Mund ausatmen.</li>
                         </ul>
                     </div>
@@ -257,36 +166,32 @@
         <!-- TAB 6: ATHLETIK -->
         <div id="tab-athletik" class="tab-content">
             <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1000&q=80" alt="Trockentraining & Athletik" class="hero-img">
-
             <div class="card">
                 <div class="card-title">🏋️ Detaillierter Athletik- & Dryland-Zirkel</div>
-                
                 <div class="article-box">
                     <div class="article-title">1. Der Rumpf- & Core-Zirkel (10–12 Minuten)</div>
                     <div class="article-body">
                         <ul>
-                            <li><strong>Plank (Unterarmstütz):</strong> Rücken flach wie ein Tisch, Bauch und Po fest anspannen.</li>
-                            <li><strong>Superman (Rückenstrecker):</strong> Auf den Bauch legen, Arme und Beine gleichzeitig anheben.</li>
-                            <li><strong>Russian Twists:</strong> Sitzen, Beine anheben und den Oberkörper kontrolliert rotieren.</li>
+                            <li><strong>Plank (Unterarmstütz):</strong> Rücken flach wie ein Tisch.</li>
+                            <li><strong>Superman (Rückenstrecker):</strong> Auf den Bauch legen, Arme und Beine anheben.</li>
+                            <li><strong>Russian Twists:</strong> Oberkörper kontrolliert rotieren.</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 7: SCHWIMMSTILE -->
+        <!-- TAB 7: STILE -->
         <div id="tab-stile" class="tab-content">
             <img src="https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?auto=format&fit=crop&w=1000&q=80" alt="Kraultechnik" class="hero-img">
-
             <div class="card">
                 <div class="card-title">🏊 Profi-Technik-Schule (Alle 4 Lagen)</div>
-                
                 <div class="article-box">
                     <div class="article-title">1. Freistil / Kraul (Crawl)</div>
                     <div class="article-body">
                         <ul>
-                            <li><strong>Wasserlage:</strong> Flach wie ein Holzbrett, Blick schräg nach unten auf den Beckenboden.</li>
-                            <li><strong>Hoher Ellenbogen:</strong> Beim Überwasserzug führt der Ellenbogen die Hand locker nach vorne.</li>
+                            <li><strong>Wasserlage:</strong> Flach wie ein Holzbrett, Blick schräg nach unten.</li>
+                            <li><strong>Hoher Ellenbogen:</strong> Überwasserzug führt der Ellenbogen die Hand.</li>
                         </ul>
                     </div>
                 </div>
@@ -296,14 +201,13 @@
         <!-- TAB 8: WENDEN -->
         <div id="tab-wenden" class="tab-content">
             <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=1000&q=80" alt="Rollwende im Pool" class="hero-img">
-
             <div class="card">
                 <div class="card-title">🔄 Wenden- & Startsprung-Schule</div>
                 <div class="article-box">
                     <div class="article-title">1. Die Kraul-Rollwende (Flip Turn)</div>
                     <div class="article-body">
                         <ul>
-                            <li><strong>Keine Atmung vor der Wende:</strong> Beim letzten Armzug vor dem 'T' nicht mehr atmen!</li>
+                            <li><strong>Keine Atmung vor der Wende:</strong> Beim letzten Armzug vor dem 'T' nicht atmen!</li>
                             <li><strong>Explosiver Abstoß:</strong> In Pfeilposition (Streamline) abstoßen.</li>
                         </ul>
                     </div>
@@ -315,7 +219,6 @@
         <div id="tab-planer" class="tab-content">
             <div class="card">
                 <div class="card-title">📅 Tommy's Exakter Wochen-Trainingsplan</div>
-
                 <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">Montag: Trockentraining zu Hause</span><span class="check-sub">Rumpfspannung (Plank/Superman) & Armkreisen.</span></div></div>
                 <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">Dienstag: Schwimmclub Burgdorf (90 Minuten)</span><span class="check-sub">Intensives Vereinstraining im Hallenbad Burgdorf.</span></div></div>
                 <div class="check-item"><input type="checkbox"><div class="check-text"><span class="check-title">Mittwoch: Unihockey</span><span class="check-sub">Training & Spiel: Ausdauer, Beinkraft & Schnelligkeit.</span></div></div>
@@ -422,7 +325,7 @@
             </div>
         </div>
 
-        <!-- TAB 14: AUSRÜSTUNG -->
+        <!-- TAB 14: GEAR -->
         <div id="tab-ausruestung" class="tab-content">
             <div class="card">
                 <div class="card-title">🎒 Tommy's Profi-Schwimmtasche</div>
@@ -447,205 +350,6 @@
 
     </div>
 
-    <script>
-        function showTab(tabId, e) {
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            
-            const targetTab = document.getElementById('tab-' + tabId);
-            if (targetTab) {
-                targetTab.classList.add('active');
-            }
-            
-            if (e && e.currentTarget) {
-                e.currentTarget.classList.add('active');
-            }
-        }
-
-        // XP Gamification
-        let currentXP = parseInt(localStorage.getItem('tommy_xp') || '550');
-        function addXP(amount) {
-            currentXP += amount;
-            localStorage.setItem('tommy_xp', currentXP.toString());
-            updateXPDisplay();
-        }
-
-        function updateXPDisplay() {
-            const level = Math.floor(currentXP / 200) + 1;
-            const xpRem = currentXP % 200;
-            const pct = (xpRem / 200) * 100;
-            
-            const lvlEl = document.getElementById('user-level');
-            const fillEl = document.getElementById('xp-fill');
-            const textEl = document.getElementById('xp-text');
-
-            if(lvlEl) lvlEl.innerText = level;
-            if(fillEl) fillEl.style.width = pct + '%';
-            if(textEl) textEl.innerText = `${xpRem} / 200 XP`;
-        }
-
-        // Stoppuhr
-        let timerInterval;
-        let timerTime = 0;
-        function startTimer() {
-            clearInterval(timerInterval);
-            const startTime = Date.now() - timerTime;
-            timerInterval = setInterval(() => {
-                timerTime = Date.now() - startTime;
-                const m = Math.floor(timerTime / 60000).toString().padStart(2, '0');
-                const s = Math.floor((timerTime % 60000) / 1000).toString().padStart(2, '0');
-                const ms = Math.floor((timerTime % 1000) / 100);
-                const valEl = document.getElementById('timer-val');
-                if(valEl) valEl.innerText = `${m}:${s}.${ms}`;
-            }, 100);
-        }
-        function stopTimer() { clearInterval(timerInterval); }
-        function resetTimer() { clearInterval(timerInterval); timerTime = 0; const valEl = document.getElementById('timer-val'); if(valEl) valEl.innerText = '00:00.0'; }
-
-        // Quiz System
-        const quizData = [
-            { q: "Wie weit darfst du nach dem Startsprung unter Wasser bleiben?", opts: ["10 Meter", "15 Meter", "20 Meter"], a: 1 },
-            { q: "Welcher Schweizer Schwimmer holte Olympia-Medaillen über Schmetterling?", opts: ["Noè Ponti", "Jeremy Desplanches", "Dominik Meichtry"], a: 0 }
-        ];
-        let quizIdx = 0;
-        function renderQuiz() {
-            const q = quizData[quizIdx];
-            const qEl = document.getElementById('quiz-q');
-            const optsEl = document.getElementById('quiz-opts');
-            if(qEl) qEl.innerText = q.q;
-            if(optsEl) {
-                optsEl.innerHTML = q.opts.map((opt, i) => `
-                    <button class="btn-secondary" onclick="checkQuiz(${i})">${opt}</button>
-                `).join('');
-            }
-        }
-        function checkQuiz(idx) {
-            if(idx === quizData[quizIdx].a) {
-                alert("Richtig! +50 XP erhalten! 🎉");
-                addXP(50);
-            } else {
-                alert("Leider falsch, probiere es nochmal! 😉");
-            }
-            quizIdx = (quizIdx + 1) % quizData.length;
-            renderQuiz();
-        }
-
-        // Splitt Rechner
-        function calcSplits() {
-            const t = parseFloat(document.getElementById('split-target').value);
-            if(!t) return alert('Bitte Zeit eingeben!');
-            const s1 = (t * 0.47).toFixed(2);
-            const s2 = (t * 0.53).toFixed(2);
-            document.getElementById('split-res').innerHTML = `<strong>Taktik-Splits für ${t}s:</strong><br>1. 25m Sprint: <strong>${s1}s</strong><br>2. 25m Finish: <strong>${s2}s</strong>`;
-        }
-
-        // Times Tracker
-        let savedTimes = JSON.parse(localStorage.getItem('tommy_times_v7') || '[]');
-        function renderTimes() {
-            const list = document.getElementById('times-list');
-            if (!list) return;
-            if (savedTimes.length === 0) {
-                list.innerHTML = '<p style="font-size: 12px; color: #64748b; text-align: center; padding: 12px 0;">Noch keine Bestzeiten eingetragen.</p>';
-                return;
-            }
-            list.innerHTML = savedTimes.map((item, index) => {
-                const pct = Math.min(100, Math.max(0, (item.target / item.time) * 100));
-                return `
-                    <div style="background: #030712; border: 1px solid #1f2937; padding: 10px; border-radius: 8px; margin-top: 8px;">
-                        <div style="display: flex; justify-content: space-between; font-weight: bold; color: #38bdf8;">
-                            <span>${item.style}</span>
-                            <button onclick="deleteTime(${index})" style="background: #ef4444; color: white; border: none; padding: 2px 6px; border-radius: 4px; font-size: 10px;">Löschen</button>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 11px; color: #9ca3af; margin: 4px 0;">
-                            <span>Aktuell: ${item.time}s</span>
-                            <span>Ziel: ${item.target}s</span>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function addTimeLog() {
-            const style = document.getElementById('sw-style').value;
-            const time = parseFloat(document.getElementById('sw-time').value);
-            const target = parseFloat(document.getElementById('sw-target').value);
-            
-            if (!time || !target) return alert('Bitte beide Zeiten eintragen!');
-
-            savedTimes.push({ style, time, target });
-            localStorage.setItem('tommy_times_v7', JSON.stringify(savedTimes));
-            addXP(30);
-            renderTimes();
-        }
-
-        function deleteTime(index) {
-            savedTimes.splice(index, 1);
-            localStorage.setItem('tommy_times_v7', JSON.stringify(savedTimes));
-            renderTimes();
-        }
-
-        // Journal
-        let savedLogs = JSON.parse(localStorage.getItem('tommy_journal_v2') || '[]');
-        function renderJournal() {
-            const list = document.getElementById('journal-list');
-            if (!list) return;
-            if (savedLogs.length === 0) {
-                list.innerHTML = '<p style="font-size: 12px; color: #64748b; text-align: center; padding: 12px 0;">Noch keine Tagebucheinträge vorhanden.</p>';
-                return;
-            }
-            list.innerHTML = savedLogs.map((item) => `
-                <div class="article-box">
-                    <div class="article-title">${item.date}</div>
-                    <div class="article-body">${item.text}</div>
-                </div>
-            `).join('');
-        }
-
-        function addLogEntry() {
-            const date = document.getElementById('log-date').value;
-            const text = document.getElementById('log-text').value;
-            if (!date || !text) return alert('Bitte Datum und Text ausfüllen!');
-
-            savedLogs.unshift({ date, text });
-            localStorage.setItem('tommy_journal_v2', JSON.stringify(savedLogs));
-            addXP(50);
-            document.getElementById('log-date').value = '';
-            document.getElementById('log-text').value = '';
-            renderJournal();
-        }
-
-        // Badges
-        let savedBadges = JSON.parse(localStorage.getItem('tommy_badges_v9') || '[]');
-        if(savedBadges.length < 16) savedBadges = new Array(16).fill(false);
-
-        function renderBadges() {
-            let checkedCount = 0;
-            savedBadges.forEach((val, idx) => {
-                const el = document.getElementById('b' + idx);
-                if (el) {
-                    el.checked = val;
-                    if (val) checkedCount++;
-                }
-            });
-            const progressEl = document.getElementById('badge-progress-text');
-            if (progressEl) {
-                const pct = Math.round((checkedCount / savedBadges.length) * 100);
-                progressEl.innerText = pct + '% Erreicht';
-            }
-        }
-
-        function toggleBadge(idx) {
-            savedBadges[idx] = !savedBadges[idx];
-            localStorage.setItem('tommy_badges_v9', JSON.stringify(savedBadges));
-            if(savedBadges[idx]) addXP(40);
-            renderBadges();
-        }
-
-        updateXPDisplay();
-        renderQuiz();
-        renderTimes();
-        renderJournal();
-        renderBadges();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
