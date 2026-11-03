@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SwimPro Tommy - Swiss Elite Hub</title>
+    <title>SwimPro Tommy - Swiss Selection Hub</title>
     <meta name="theme-color" content="#dc2626">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
@@ -48,6 +48,7 @@
         
         .article-box { background: #030712; border: 1px solid #1f2937; border-radius: 8px; padding: 12px; margin-bottom: 10px; }
         .article-title { font-size: 14px; font-weight: 900; color: #38bdf8; margin-bottom: 4px; }
+        .article-subtitle { font-size: 11px; font-weight: 800; color: #fbbf24; margin-bottom: 6px; }
         .article-body { font-size: 12px; color: #d1d5db; line-height: 1.5; }
         .article-body ul { margin-left: 16px; margin-top: 4px; }
         .article-body li { margin-bottom: 4px; }
@@ -76,7 +77,7 @@
             <span class="olympic-rings">🥇🥇🥇</span>
         </div>
         <h1>🏊‍♂️ SwimPro Tommy</h1>
-        <p>Road to Gold & Swiss Olympic Performance Hub</p>
+        <p>Road to Gold & Swiss Olympic Hub</p>
 
         <div class="xp-card">
             <span class="xp-title">🥇 Level <span id="user-level">1</span> Champ</span>
@@ -113,7 +114,7 @@
             </div>
 
             <div class="card">
-                <div class="card-title">⏱️ Tommy's Bestzeiten & Ziel-Tracker</div>
+                <div class="card-title">⏱️ Bestzeiten & Ziel-Tracker</div>
                 <div class="form-group">
                     <label>Disziplin wählen</label>
                     <select id="sw-style">
@@ -135,7 +136,7 @@
             </div>
 
             <div class="card">
-                <div class="card-title">⚡ Renntaktik & Split-Rechner</div>
+                <div class="card-title">⚡ Renntaktik Split-Rechner</div>
                 <div class="form-group"><label>Zielzeit für 50m (Sekunden)</label><input type="number" step="0.1" id="split-target" placeholder="34.0"></div>
                 <button class="btn-primary" onclick="calcSplits()">Wettkampf-Splits Berechnen</button>
                 <div id="split-res" style="margin-top: 8px; font-size: 12px; color: #d1d5db;"></div>
@@ -145,7 +146,7 @@
         <!-- TAB 2: TIMER -->
         <div id="tab-timer" class="tab-content">
             <div class="card">
-                <div class="card-title">⏱️ Intervall- & Serien-Stoppuhr</div>
+                <div class="card-title">⏱️ Stoppuhr</div>
                 <div class="timer-display" id="timer-val">00:00.0</div>
                 <div style="display: flex; gap: 8px;">
                     <button class="btn-primary" onclick="startTimer()" style="background: #22c55e;">Start</button>
@@ -158,7 +159,7 @@
         <!-- TAB 3: QUIZ -->
         <div id="tab-quiz" class="tab-content">
             <div class="card">
-                <div class="card-title">🧩 Schwimm-Profi Quiz (+50 XP)</div>
+                <div class="card-title">🧩 Schwimm-Quiz (+50 XP)</div>
                 <p style="font-weight: 800; font-size: 13px; margin-bottom: 8px;" id="quiz-q"></p>
                 <div id="quiz-opts" style="display: flex; flex-direction: column; gap: 6px;"></div>
             </div>
@@ -170,22 +171,29 @@
             <div class="card">
                 <div class="card-title">🔥 Marathon Mindset & Power</div>
                 <div class="article-box">
-                    <div class="article-title">1. Die Marathon-Mentalität</div>
+                    <div class="article-title">1. Der Schwimmsport ist ein Marathon!</div>
                     <div class="article-body">
-                        Schwimmen ist ein Sport der Millionen Armzüge. Ein einziges schlechtes Training entscheidet gar nichts:
+                        Bestzeiten entstehen nicht an einem Tag. Es braucht hunderte Trainingsstunden:
                         <ul>
-                            <li><strong>Geduld & Kontinuität:</strong> Jeden Tag 100% geben summiert sich über Monate zu Goldzeiten.</li>
-                            <li><strong>Schlechte Tage nutzen:</strong> Wenn du müde bist und trotzdem trainierst, wächst deine mentale Stärke.</li>
+                            <li><strong>Geduld schlägt Hektik:</strong> Jeder Meter im Hallenbad Burgdorf baut deinen Körper auf.</li>
+                            <li><strong>Schlechte Tage gehören dazu:</strong> Wenn ein Training schwerfällt und du es trotzdem durchziehst, schärfst du deinen Champion-Charakter!</li>
+                            <li><strong>Freude behalten:</strong> Habe immer Spaß mit deinen Teamkollegen im Schwimmclub.</li>
                         </ul>
                     </div>
                 </div>
                 <div class="article-box">
-                    <div class="article-title">2. Tunnelblick am Startblock</div>
-                    <div class="article-body">Auf "Auf die Plätze!" zählt nur deine Bahn. Schaue weder links noch rechts. Visualisiere vor dem Start die ersten 15m Unterwasserphase!</div>
+                    <div class="article-title">2. Die 3 Regeln am Startblock</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>1. Tunnelblick:</strong> Schaue weder nach links noch nach rechts – nur deine Bahn zählt.</li>
+                            <li><strong>2. Volle Körperspannung:</strong> Aufrecht stehen, Selbstbewusstsein ausstrahlen.</li>
+                            <li><strong>3. Kopffilm abspielen:</strong> Visualisiere vor dem Start den perfekten Absprung und die 15m Unterwasserphase.</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="article-box">
                     <div class="article-title">3. Noè Ponti's Schweizer Erfolgsformel 🇨🇭</div>
-                    <div class="article-body">Unterwasser-Dominanz ist der Schlüssel: Wer die 15 Meter Unterwasserphase perfekt beherrscht, gewinnt die entscheidenden Zentimeter!</div>
+                    <div class="article-body">Unterwasser-Dominanz ist der Schlüssel! Wer nach dem Start und jeder Wende 15m flach und kraftvoll unter Wasser bleibt, gewinnt das Rennen.</div>
                 </div>
             </div>
         </div>
@@ -196,17 +204,29 @@
                 <div class="card-title">🧠 Mentaltraining & Wettkampf-Protokoll</div>
                 <div class="article-box">
                     <div class="article-title">1. Die 4-7-8 Atemtechnik gegen Nervosität</div>
-                    <div class="article-body">4 Sek Einatmen ➔ 7 Sek Atem anhalten ➔ 8 Sek kontrolliert Ausatmen für maximale Gelassenheit.</div>
-                </div>
-                <div class="article-box">
-                    <div class="article-title">2. Das Call-Room Protokoll</div>
                     <div class="article-body">
+                        Wenn das Herz am Start rasch klopft:
                         <ul>
-                            <li><strong>60 Min vorher:</strong> Einschwimmen & Ausrüstung prüfen.</li>
-                            <li><strong>30 Min vorher:</strong> Trockene Wettausrüstung anziehen & warmhalten.</li>
-                            <li><strong>15 Min vorher:</strong> Call-Room Betreten: Schulterkreisen & kurze Aktivierungs-Sprünge.</li>
+                            <li><strong>4 Sek:</strong> Tief durch die Nase in den Bauch einatmen.</li>
+                            <li><strong>7 Sek:</strong> Atem halten und Muskeln entspannen.</li>
+                            <li><strong>8 Sek:</strong> Langsam und kontrolliert durch den Mund ausatmen.</li>
                         </ul>
                     </div>
+                </div>
+                <div class="article-box">
+                    <div class="article-title">2. Das 60-Minuten Call-Room Protokoll</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>60 Min vorher:</strong> Einschwimmen, Wassergefühl testen & Puls steigern.</li>
+                            <li><strong>30 Min vorher:</strong> Trockene Wettausrüstung anziehen & warmhalten.</li>
+                            <li><strong>15 Min vorher:</strong> Call-Room: Aktivierungs-Hüpfer, Schulterkreisen.</li>
+                            <li><strong>5 Min vorher:</strong> 3x tief durchatmen, Fokus schärfen, Start visualisieren.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="article-box">
+                    <div class="article-title">3. Umgang mit Enttäuschungen</div>
+                    <div class="article-body">Die 5-Minuten-Regel: 5 Minuten ärgern erlaubt – danach wird analysiert (Was kann ich beim nächsten Start besser machen?) und sofort nach vorne geschaut!</div>
                 </div>
             </div>
         </div>
@@ -216,12 +236,30 @@
             <div class="card">
                 <div class="card-title">🏋️ Detaillierter Athletik- & Dryland-Zirkel</div>
                 <div class="article-box">
-                    <div class="article-title">1. Core- & Rumpf-Stabilität</div>
-                    <div class="article-body">Unterarmstütz (Plank), Superman (Rückenstrecker), Russian Twists & Dead Bug (3 Runden à 30 Sek) für die perfekte Flachlage im Wasser.</div>
+                    <div class="article-title">1. Core- & Rumpf-Stabilität (Basis für Flachlage)</div>
+                    <div class="article-subtitle">3 Runden • 30 Sek Belastung / 15 Sek Pause:</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>Unterarmstütz (Plank):</strong> Rücken flach wie ein Brett, Bauch fest anspannen.</li>
+                            <li><strong>Superman:</strong> Bauchlage, Arme & Beine gleichzeitig leicht anheben.</li>
+                            <li><strong>Russian Twists:</strong> Rotationskraft für Schulterdrehung im Kraul.</li>
+                            <li><strong>Dead Bug:</strong> Rücken flach am Boden, Diagonale kontrolliert absenken.</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="article-box">
                     <div class="article-title">2. Sprungkraft (Start & Wende)</div>
-                    <div class="article-body">Squat Jumps (Kniebeugen-Sprünge) & Ausfallschritte für maximale Explosivität am Startblock.</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>Squat Jumps:</strong> Explosiv aus der Kniebeuge nach oben katapultieren (3x10 Wdh).</li>
+                            <li><strong>Ausfallschritte (Lunges):</strong> Für gleichmäßige Beinkraft (3x12 Wdh).</li>
+                            <li><strong>Wadenheben:</strong> Max-Druck auf die Zehenspitzen am Startblock.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="article-box">
+                    <div class="article-title">3. Schulter & Fußgelenk-Flexibilität</div>
+                    <div class="article-body">Tägliches Dehnen der Brust- und Latissimusmuskeln sowie Fußgelenk-Streckung für peitschenartigen Beinschlag.</div>
                 </div>
             </div>
         </div>
@@ -234,24 +272,42 @@
                     <div class="article-title">1. Freistil / Kraul (Crawl)</div>
                     <div class="article-body">
                         <ul>
-                            <li><strong>Wasserlage:</strong> Kopf schräg nach unten, Hüfte hoch an der Oberfläche.</li>
-                            <li><strong>Hoher Ellenbogen:</strong> Überwasserzug entspannt führen.</li>
-                            <li><strong>Catch, Pull & Push:</strong> S-förmiger Druck nach hinten bis zum Oberschenkel.</li>
+                            <li><strong>Wasserlage:</strong> Kopf schräg nach unten, Hüfte hoch an der Wasseroberfläche.</li>
+                            <li><strong>Hoher Ellenbogen:</strong> Beim Überwasserzug führt der Ellenbogen entspannt.</li>
+                            <li><strong>Unterwasserzug (Catch, Pull, Push):</strong> Handgelenk anwinkeln ("über das Fass greifen"), S-förmig bis zum Oberschenkel durchziehen.</li>
                             <li><strong>Atmung:</strong> Nur seitlich drehen (ein Auge im Wasser). 3er-Rhythmus.</li>
                         </ul>
                     </div>
                 </div>
                 <div class="article-box">
                     <div class="article-title">2. Schmetterling / Delfin (Butterfly)</div>
-                    <div class="article-body">Ganzkörperwelle aus dem Brustkorb, 2 Kicks pro Armzug, flacher Überzug knapp über der Wasseroberfläche.</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>Ganzkörperwelle:</strong> Bewegung beginnt am Kopf und fließt bis in die Zehen.</li>
+                            <li><strong>2 Kicks pro Armzug:</strong> 1. Kick beim Eintauchen der Hände, 2. Kick beim kräftigen Abstoß an der Hüfte.</li>
+                            <li><strong>Armüberzug:</strong> Beidhändig flach dicht über dem Wasser nach vorne führen.</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="article-box">
                     <div class="article-title">3. Rücken (Backstroke)</div>
-                    <div class="article-body">Kopf stabil halten wie auf einem Kissen, Körper bis 45° rotieren, Daumen verlässt zuerst das Wasser, kleiner Finger taucht ein.</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>Kopfposition:</strong> Kopf liegt vollkommen ruhig wie auf einem Kissen.</li>
+                            <li><strong>Rollbewegung:</strong> Körper schultrig bis zu 45° um die Längsachse rotieren.</li>
+                            <li><strong>Eintauchphase:</strong> Daumen verlässt zuerst das Wasser, kleiner Finger taucht ein!</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="article-box">
                     <div class="article-title">4. Brust (Breaststroke)</div>
-                    <div class="article-body">Kreisförmiger Kick aus den Fersen, Schlüsselloch-Armzug, Rhythmus: Zug - Atmen - Kick - Gleiten!</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>Gleitzug:</strong> Nach dem Beinschlag Beine schließen und stromlinienförmig gleiten!</li>
+                            <li><strong>Beinschlag:</strong> Fersen ans Gesäß, Füße nach außen drehen, kreisförmig zusammendrücken.</li>
+                            <li><strong>Timing:</strong> Zug - Atmen - Kick - Gleiten!</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -262,15 +318,34 @@
                 <div class="card-title">🔄 Wenden- & Startsprung-Schule</div>
                 <div class="article-box">
                     <div class="article-title">1. Die Kraul-Rollwende (Flip Turn)</div>
-                    <div class="article-body">Kein Atmen vorm schwarzem 'T', Kinn rasch auf die Brust ziehen, Beine werfen, Wandabstoß in Streamline-Pfeilposition + 3–5 Unterwasser-Kicks.</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>Kein Atmen vor der Wende:</strong> Letzter Armzug vor dem schwarzem 'T' ohne Atmen!</li>
+                            <li><strong>Kinn auf die Brust:</strong> Kopf rasch nach unten ziehen, Beine schwungvoll über das Wasser werfen.</li>
+                            <li><strong>Wandabstoß:</strong> Füße fest ansetzen, in Streamline-Pfeilposition abstoßen.</li>
+                            <li><strong>Unterwasser-Delfinkicks:</strong> 3–5 kräftige Kicks vor dem ersten Armzug.</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="article-box">
                     <div class="article-title">2. Brust- & Delfin-Kippwende</div>
-                    <div class="article-body">Beide Hände berühren gleichzeitig die Wand. Ein Arm zieht unter Wasser zügig zurück, Knie anziehen.</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>Beidhändiges Anschlagen:</strong> Beide Hände berühren exakt gleichzeitig die Wand.</li>
+                            <li><strong>Schnelle Drehung:</strong> Ein Arm zieht unter Wasser zügig zurück, Knie anziehen.</li>
+                            <li><strong>Unterwasserzug (Brust):</strong> 1 langer Tauchzug bis zur Hüfte + 1 Kick ausführen.</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="article-box">
-                    <div class="article-title">3. Track Start</div>
-                    <div class="article-body">Hauptfuß vorne an der Kante. Beim Signal schlagartig abspringen und durch ein einziges Bleistift-Loch eintauchen.</div>
+                    <div class="article-title">3. Profi-Startsprung (Track Start)</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>Fußstellung:</strong> Hauptfuß vorne an der Kante, zweiter Fuß etwas dahinter.</li>
+                            <li><strong>Explosiver Abstoß:</strong> Beim Signal schlagartig nach vorne ziehen und abspringen.</li>
+                            <li><strong>Bleistift-Eintauchloch:</strong> Der ganze Körper tritt durch ein einziges kleines Loch ins Wasser ein.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
