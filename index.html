@@ -3,58 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SwimPro Tommy - Swiss Elite Performance Hub</title>
+    <title>SwimPro Tommy - Swiss Elite Hub</title>
     <meta name="theme-color" content="#dc2626">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: #030712; color: #f9fafb; padding-bottom: 60px; font-size: 14px; line-height: 1.6; }
-        header { background: linear-gradient(135deg, #b91c1c, #991b1b, #0f172a); padding: 20px 16px; text-align: center; box-shadow: 0 4px 25px rgba(220,38,38,0.4); position: sticky; top: 0; z-index: 100; border-bottom: 3px solid #fbbf24; }
+        
+        header { background: linear-gradient(135deg, #b91c1c, #991b1b, #0f172a); padding: 20px 16px; text-align: center; box-shadow: 0 4px 25px rgba(220, 38, 38, 0.4); position: sticky; top: 0; z-index: 100; border-bottom: 3px solid #fbbf24; }
         .swiss-header-top { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 4px; }
-        .swiss-flag { background: #dc2626; color: #fff; font-weight: 900; padding: 2px 8px; border-radius: 6px; border: 1.5px solid #fff; font-size: 11px; }
+        .swiss-flag { background: #dc2626; color: #fff; font-weight: 900; padding: 2px 8px; border-radius: 6px; border: 1.5px solid #fff; font-size: 11px; letter-spacing: 1px; }
         .olympic-rings { font-size: 15px; }
         header h1 { font-size: 22px; color: #fff; font-weight: 900; }
         header p { font-size: 11px; color: #fef08a; font-weight: 800; }
-        .xp-card { background: rgba(3,7,18,0.85); border: 1.5px solid #fbbf24; border-radius: 10px; padding: 8px 12px; margin-top: 10px; display: flex; align-items: center; justify-content: space-between; }
+
+        .xp-card { background: rgba(3, 7, 18, 0.85); border: 1.5px solid #fbbf24; border-radius: 10px; padding: 8px 12px; margin-top: 10px; display: flex; align-items: center; justify-content: space-between; }
         .xp-title { font-size: 11px; font-weight: 900; color: #fbbf24; text-transform: uppercase; }
         .xp-bar-bg { width: 45%; height: 8px; background: #1f2937; border-radius: 4px; overflow: hidden; }
         .xp-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #f59e0b, #fbbf24); transition: width 0.3s; }
+
         nav { background: #0b0f19; border-bottom: 2px solid #1f2937; display: flex; overflow-x: auto; position: sticky; top: 118px; z-index: 90; scrollbar-width: none; }
         nav::-webkit-scrollbar { display: none; }
         .nav-btn { flex: 1; min-width: 85px; padding: 10px 8px; background: none; border: none; color: #9ca3af; font-size: 11px; font-weight: 800; white-space: nowrap; cursor: pointer; border-bottom: 3px solid transparent; }
-        .nav-btn.active { color: #fbbf24; border-bottom-color: #dc2626; background: rgba(220,38,38,0.15); }
+        .nav-btn.active { color: #fbbf24; border-bottom-color: #dc2626; background: rgba(220, 38, 38, 0.15); }
+
         .container { max-width: 720px; margin: 0 auto; padding: 14px; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-        .card { background: #111827; border: 1px solid #1f2937; border-radius: 14px; padding: 16px; margin-bottom: 16px; }
-        .card-title { font-size: 16px; font-weight: 900; color: #38bdf8; margin-bottom: 12px; border-bottom: 1px solid #1f2937; padding-bottom: 6px; }
-        .hero-img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 12px; }
+
+        .card { background: #111827; border: 1px solid #1f2937; border-radius: 14px; padding: 16px; margin-bottom: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .card-title { font-size: 16px; font-weight: 900; color: #38bdf8; margin-bottom: 12px; border-bottom: 1px solid #1f2937; padding-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }
+        .section-title { font-size: 13px; font-weight: 900; color: #fbbf24; margin: 16px 0 8px 0; border-bottom: 1px dashed #374151; padding-bottom: 4px; }
+
+        .hero-img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 12px; border: 1px solid #374151; }
         .quote-box { background: linear-gradient(135deg, rgba(220,38,38,0.2), rgba(15,23,42,0.95)); border-left: 4px solid #dc2626; padding: 12px; border-radius: 8px; margin-bottom: 14px; }
+
         .form-group { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
         label { font-size: 10px; color: #9ca3af; font-weight: 800; text-transform: uppercase; }
-        input, select, textarea { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #374151; background: #030712; color: #fff; font-size: 13px; }
+        input, select, textarea { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #374151; background: #030712; color: #fff; font-size: 13px; outline: none; }
+
         .btn-primary { width: 100%; padding: 12px; background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; border: none; border-radius: 6px; font-weight: 900; cursor: pointer; }
         .btn-secondary { width: 100%; padding: 8px; background: #1f2937; color: #38bdf8; border: 1px solid #374151; border-radius: 6px; font-weight: 800; font-size: 12px; cursor: pointer; margin-top: 4px; }
+
         .timer-display { font-size: 40px; font-weight: 900; color: #38bdf8; text-align: center; font-family: monospace; margin: 10px 0; }
+        
         .article-box { background: #030712; border: 1px solid #1f2937; border-radius: 8px; padding: 12px; margin-bottom: 10px; }
         .article-title { font-size: 14px; font-weight: 900; color: #38bdf8; margin-bottom: 4px; }
-        .article-body { font-size: 12px; color: #d1d5db; }
+        .article-body { font-size: 12px; color: #d1d5db; line-height: 1.5; }
+        .article-body ul { margin-left: 16px; margin-top: 4px; }
+        .article-body li { margin-bottom: 4px; }
+
         .danger-box { background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; border-left: 4px solid #ef4444; padding: 12px; border-radius: 8px; margin-bottom: 10px; }
+        
         .badge-grid { display: flex; flex-direction: column; gap: 6px; }
         .badge-card { display: flex; align-items: center; gap: 10px; background: #030712; border: 1px solid #1f2937; padding: 8px 10px; border-radius: 8px; cursor: pointer; }
-        .check-item { display: flex; align-items: center; gap: 8px; background: #030712; border: 1px solid #1f2937; padding: 8px; border-radius: 6px; margin-bottom: 6px; }
+        .badge-info { flex: 1; }
+        .badge-name { font-weight: 800; font-size: 12px; color: #f3f4f6; }
+        .badge-desc { font-size: 10px; color: #9ca3af; }
+
+        .check-item { display: flex; align-items: flex-start; gap: 8px; background: #030712; border: 1px solid #1f2937; padding: 8px; border-radius: 6px; margin-bottom: 6px; }
+        .check-item input { width: 16px; height: 16px; accent-color: #0284c7; margin-top: 2px; }
+
         table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 6px; }
         th, td { padding: 8px 6px; border-bottom: 1px solid #1f2937; text-align: left; }
         th { color: #38bdf8; background: #030712; }
     </style>
 </head>
 <body>
+
     <header>
         <div class="swiss-header-top">
             <span class="swiss-flag">🇨🇭 SWISS SELECTION</span>
             <span class="olympic-rings">🥇🥇🥇</span>
         </div>
         <h1>🏊‍♂️ SwimPro Tommy</h1>
-        <p>Road to Gold & Swiss Olympic Hub</p>
+        <p>Road to Gold & Swiss Olympic Performance Hub</p>
+
         <div class="xp-card">
             <span class="xp-title">🥇 Level <span id="user-level">1</span> Champ</span>
             <div class="xp-bar-bg"><div class="xp-bar-fill" id="xp-fill"></div></div>
@@ -80,17 +103,19 @@
     </nav>
 
     <div class="container">
-        <!-- ZIELE -->
+
+        <!-- TAB 1: ZIELE -->
         <div id="tab-ziele" class="tab-content active">
             <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=1000&q=80" alt="Profi Schwimmer" class="hero-img">
             <div class="quote-box">
                 <div style="font-style: italic; font-size: 12px; color: #f3f4f6;">"Erfolg im Schwimmsport ist kein 50m-Sprint, sondern ein jahrelanger Marathon aus Disziplin, Wenden und Leidenschaft!"</div>
                 <span style="font-weight: 800; color: #fbbf24; font-size: 10px; display: block; margin-top: 4px;">— Inspiriert von Noè Ponti (Olympia 🇨🇭)</span>
             </div>
+
             <div class="card">
-                <div class="card-title">⏱️ Bestzeiten-Tracker</div>
+                <div class="card-title">⏱️ Tommy's Bestzeiten & Ziel-Tracker</div>
                 <div class="form-group">
-                    <label>Disziplin</label>
+                    <label>Disziplin wählen</label>
                     <select id="sw-style">
                         <option value="50m Freistil / Kraul">50m Freistil / Kraul</option>
                         <option value="50m Rücken">50m Rücken</option>
@@ -98,27 +123,29 @@
                         <option value="50m Schmetterling">50m Schmetterling</option>
                         <option value="100m Freistil">100m Freistil</option>
                         <option value="100m Lagen">100m Lagen</option>
+                        <option value="200m Freistil">200m Freistil</option>
                     </select>
                 </div>
                 <div style="display: flex; gap: 8px;">
                     <div class="form-group" style="flex: 1;"><label>Aktuell (s)</label><input type="number" step="0.01" id="sw-time" placeholder="36.45"></div>
-                    <div class="form-group" style="flex: 1;"><label>Ziel (s)</label><input type="number" step="0.01" id="sw-target" placeholder="33.00"></div>
+                    <div class="form-group" style="flex: 1;"><label>Zielzeit (s)</label><input type="number" step="0.01" id="sw-target" placeholder="33.00"></div>
                 </div>
                 <button class="btn-primary" onclick="addTimeLog()">Speichern & +30 XP</button>
                 <div id="times-list" style="margin-top: 12px;"></div>
             </div>
+
             <div class="card">
-                <div class="card-title">⚡ Renntaktik Split-Rechner</div>
-                <div class="form-group"><label>Zielzeit 50m (s)</label><input type="number" step="0.1" id="split-target" placeholder="34.0"></div>
-                <button class="btn-primary" onclick="calcSplits()">Splits Berechnen</button>
+                <div class="card-title">⚡ Renntaktik & Split-Rechner</div>
+                <div class="form-group"><label>Zielzeit für 50m (Sekunden)</label><input type="number" step="0.1" id="split-target" placeholder="34.0"></div>
+                <button class="btn-primary" onclick="calcSplits()">Wettkampf-Splits Berechnen</button>
                 <div id="split-res" style="margin-top: 8px; font-size: 12px; color: #d1d5db;"></div>
             </div>
         </div>
 
-        <!-- TIMER -->
+        <!-- TAB 2: TIMER -->
         <div id="tab-timer" class="tab-content">
             <div class="card">
-                <div class="card-title">⏱️ Stoppuhr</div>
+                <div class="card-title">⏱️ Intervall- & Serien-Stoppuhr</div>
                 <div class="timer-display" id="timer-val">00:00.0</div>
                 <div style="display: flex; gap: 8px;">
                     <button class="btn-primary" onclick="startTimer()" style="background: #22c55e;">Start</button>
@@ -128,163 +155,218 @@
             </div>
         </div>
 
-        <!-- QUIZ -->
+        <!-- TAB 3: QUIZ -->
         <div id="tab-quiz" class="tab-content">
             <div class="card">
-                <div class="card-title">🧩 Schwimm-Quiz (+50 XP)</div>
+                <div class="card-title">🧩 Schwimm-Profi Quiz (+50 XP)</div>
                 <p style="font-weight: 800; font-size: 13px; margin-bottom: 8px;" id="quiz-q"></p>
                 <div id="quiz-opts" style="display: flex; flex-direction: column; gap: 6px;"></div>
             </div>
         </div>
 
-        <!-- MOTIVATION -->
+        <!-- TAB 4: MOTIVATION -->
         <div id="tab-motivation" class="tab-content">
+            <img src="https://images.unsplash.com/photo-1519315901367-f34ff9154487?auto=format&fit=crop&w=1000&q=80" alt="Startblock Hallenbad" class="hero-img">
             <div class="card">
                 <div class="card-title">🔥 Marathon Mindset & Power</div>
                 <div class="article-box">
-                    <div class="article-title">1. Der Schwimmsport ist ein Marathon</div>
-                    <div class="article-body">Jeder einzelne Trainingsmeter summiert sich über Monate zu Goldzeiten. Hab Geduld und bleib täglich dran!</div>
+                    <div class="article-title">1. Die Marathon-Mentalität</div>
+                    <div class="article-body">
+                        Schwimmen ist ein Sport der Millionen Armzüge. Ein einziges schlechtes Training entscheidet gar nichts:
+                        <ul>
+                            <li><strong>Geduld & Kontinuität:</strong> Jeden Tag 100% geben summiert sich über Monate zu Goldzeiten.</li>
+                            <li><strong>Schlechte Tage nutzen:</strong> Wenn du müde bist und trotzdem trainierst, wächst deine mentale Stärke.</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="article-box">
                     <div class="article-title">2. Tunnelblick am Startblock</div>
-                    <div class="article-body">Fokussiere dich nur auf deine Bahn. Visualisiere vor dem Start die ersten 15m Unterwasserphase!</div>
+                    <div class="article-body">Auf "Auf die Plätze!" zählt nur deine Bahn. Schaue weder links noch rechts. Visualisiere vor dem Start die ersten 15m Unterwasserphase!</div>
+                </div>
+                <div class="article-box">
+                    <div class="article-title">3. Noè Ponti's Schweizer Erfolgsformel 🇨🇭</div>
+                    <div class="article-body">Unterwasser-Dominanz ist der Schlüssel: Wer die 15 Meter Unterwasserphase perfekt beherrscht, gewinnt die entscheidenden Zentimeter!</div>
                 </div>
             </div>
         </div>
 
-        <!-- MENTAL -->
+        <!-- TAB 5: MENTAL -->
         <div id="tab-mental" class="tab-content">
             <div class="card">
-                <div class="card-title">🧠 Mentaltraining</div>
+                <div class="card-title">🧠 Mentaltraining & Wettkampf-Protokoll</div>
                 <div class="article-box">
-                    <div class="article-title">1. 4-7-8 Atemtechnik gegen Nervosität</div>
-                    <div class="article-body">4 Sek Einatmen ➔ 7 Sek Atem halten ➔ 8 Sek kontrolliert Ausatmen.</div>
+                    <div class="article-title">1. Die 4-7-8 Atemtechnik gegen Nervosität</div>
+                    <div class="article-body">4 Sek Einatmen ➔ 7 Sek Atem anhalten ➔ 8 Sek kontrolliert Ausatmen für maximale Gelassenheit.</div>
                 </div>
                 <div class="article-box">
-                    <div class="article-title">2. Call-Room Protokoll</div>
-                    <div class="article-body">15 Min vor dem Start: Aktivierungs-Hüpfer, Schulterkreisen & Fokus schärfen.</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ATHLETIK -->
-        <div id="tab-athletik" class="tab-content">
-            <div class="card">
-                <div class="card-title">🏋️ Athletik & Dryland</div>
-                <div class="article-box">
-                    <div class="article-title">1. Core-Zirkel (Plank / Superman / Russian Twists)</div>
-                    <div class="article-body">3 Runden à 30 Sekunden für maximale Körperspannung im Wasser.</div>
-                </div>
-                <div class="article-box">
-                    <div class="article-title">2. Sprungkraft (Squat Jumps)</div>
-                    <div class="article-body">Explosive Kniebeugen-Sprünge für maximale Abdruckenergie am Startblock.</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- STILE -->
-        <div id="tab-stile" class="tab-content">
-            <div class="card">
-                <div class="card-title">🏊 Technik aller 4 Lagen</div>
-                <div class="article-box">
-                    <div class="article-title">1. Kraul (Crawl)</div>
-                    <div class="article-body">Flache Wasserlage, hoher Ellenbogen beim Überwasserzug, S-förmige Unterwasserphase.</div>
-                </div>
-                <div class="article-box">
-                    <div class="article-title">2. Schmetterling (Butterfly)</div>
-                    <div class="article-body">Ganzkörperwelle aus dem Brustkorb, 2 Kicks pro Armzug.</div>
-                </div>
-                <div class="article-box">
-                    <div class="article-title">3. Rücken (Backstroke)</div>
-                    <div class="article-body">Kopf stabil halten, Daumen raus, kleiner Finger zuerst ins Wasser.</div>
-                </div>
-                <div class="article-box">
-                    <div class="article-title">4. Brust (Breaststroke)</div>
-                    <div class="article-body">Kreisförmiger Beinschlag aus den Fersen, Gleitzug in Pfeilposition auskosten!</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- WENDEN -->
-        <div id="tab-wenden" class="tab-content">
-            <div class="card">
-                <div class="card-title">🔄 Wenden & Startsprung</div>
-                <div class="article-box">
-                    <div class="article-title">1. Kraul-Rollwende (Flip Turn)</div>
-                    <div class="article-body">Kein Atmen vorm schwarzem 'T', Kinn auf die Brust, explosiver Abstoß in Streamline-Pfeilposition.</div>
-                </div>
-                <div class="article-box">
-                    <div class="article-title">2. Track Start</div>
-                    <div class="article-body">Hauptfuß vorne, schlagartiger Abdruck beim Signal, durch ein einziges Loch eintauchen.</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PLANER -->
-        <div id="tab-planer" class="tab-content">
-            <div class="card">
-                <div class="card-title">📅 Wochen-Trainingsplan</div>
-                <div class="check-item"><input type="checkbox"><div style="font-size: 12px; font-weight: 800;">Dienstag: Schwimmclub Burgdorf (90 Min)</div></div>
-                <div class="check-item"><input type="checkbox"><div style="font-size: 12px; font-weight: 800;">Mittwoch: Unihockey</div></div>
-                <div class="check-item"><input type="checkbox"><div style="font-size: 12px; font-weight: 800;">Freitag: Hallenbad (45 Min selbstständig)</div></div>
-                <div class="check-item"><input type="checkbox"><div style="font-size: 12px; font-weight: 800;">Samstag: Schwimmkurs (40 Min)</div></div>
-            </div>
-        </div>
-
-        <!-- TAGEBUCH -->
-        <div id="tab-tagebuch" class="tab-content">
-            <div class="card">
-                <div class="card-title">📝 Swim Log</div>
-                <div class="form-group"><label>Datum / Ort</label><input type="text" id="log-date" placeholder="Dienstag Burgdorf"></div>
-                <div class="form-group"><label>Feedback</label><textarea id="log-text" rows="2" placeholder="Sehr schnelle Wenden heute!"></textarea></div>
-                <button class="btn-primary" onclick="addLogEntry()">Speichern (+50 XP)</button>
-                <div id="journal-list" style="margin-top: 12px;"></div>
-            </div>
-        </div>
-
-        <!-- ERNÄHRUNG -->
-        <div id="tab-ernaehrung" class="tab-content">
-            <div class="card">
-                <div class="card-title">🍌 Food & Regeneration</div>
-                <div class="article-box">
-                    <div class="article-title">1. WAS DU ESSEN MUSST</div>
-                    <div class="article-body">Pre-Workout (60 Min vorher): Banane mit Haferflocken. Post-Workout: Schokomilch / Kakaodrink & viel Wasser!</div>
-                </div>
-                <div class="danger-box">
-                    <div style="font-size: 13px; font-weight: 900; color: #f87171; margin-bottom: 4px;">2. ⚠️ DIE VERBOTENE LISTE</div>
-                    <div class="article-body" style="color: #fca5a5;">
-                        • 🚫 <strong>Softdrinks & Energy Drinks:</strong> Blutzucker-Crashes im Wasser!<br>
-                        • 🚫 <strong>Fast Food & Frittiertes:</strong> Liegt 6 Stunden schwer im Magen.<br>
-                        • 🚫 <strong>Süsse Riegel vor dem Start:</strong> Führt zu rapider Müdigkeit.
+                    <div class="article-title">2. Das Call-Room Protokoll</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>60 Min vorher:</strong> Einschwimmen & Ausrüstung prüfen.</li>
+                            <li><strong>30 Min vorher:</strong> Trockene Wettausrüstung anziehen & warmhalten.</li>
+                            <li><strong>15 Min vorher:</strong> Call-Room Betreten: Schulterkreisen & kurze Aktivierungs-Sprünge.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ABZEICHEN -->
-        <div id="tab-abzeichen" class="tab-content">
+        <!-- TAB 6: ATHLETIK -->
+        <div id="tab-athletik" class="tab-content">
             <div class="card">
-                <div class="card-title">
-                    <span>🏆 Swimsports CH Abzeichen</span>
-                    <span id="badge-progress-text" style="color: #fbbf24; font-size: 12px;">0%</span>
+                <div class="card-title">🏋️ Detaillierter Athletik- & Dryland-Zirkel</div>
+                <div class="article-box">
+                    <div class="article-title">1. Core- & Rumpf-Stabilität</div>
+                    <div class="article-body">Unterarmstütz (Plank), Superman (Rückenstrecker), Russian Twists & Dead Bug (3 Runden à 30 Sek) für die perfekte Flachlage im Wasser.</div>
                 </div>
-                <div class="badge-grid">
-                    <div class="badge-card" onclick="toggleBadge(0)"><span>🦀</span><div style="flex:1; font-weight:800; font-size:12px;">1. Krebs</div><input type="checkbox" id="b0"></div>
-                    <div class="badge-card" onclick="toggleBadge(1)"><span>🦄</span><div style="flex:1; font-weight:800; font-size:12px;">2. Seepferdchen</div><input type="checkbox" id="b1"></div>
-                    <div class="badge-card" onclick="toggleBadge(2)"><span>🐸</span><div style="flex:1; font-weight:800; font-size:12px;">3. Frosch</div><input type="checkbox" id="b2"></div>
-                    <div class="badge-card" onclick="toggleBadge(3)"><span>🐧</span><div style="flex:1; font-weight:800; font-size:12px;">4. Pinguin</div><input type="checkbox" id="b3"></div>
-                    <div class="badge-card" onclick="toggleBadge(4)"><span>🐙</span><div style="flex:1; font-weight:800; font-size:12px;">5. Tintenfisch</div><input type="checkbox" id="b4"></div>
-                    <div class="badge-card" onclick="toggleBadge(5)"><span>🐊</span><div style="flex:1; font-weight:800; font-size:12px;">6. Krokodil</div><input type="checkbox" id="b5"></div>
-                    <div class="badge-card" onclick="toggleBadge(6)"><span>🐻‍❄️</span><div style="flex:1; font-weight:800; font-size:12px;">7. Eisbär</div><input type="checkbox" id="b6"></div>
-                    <div class="badge-card" onclick="toggleBadge(7)"><span>🛡️</span><div style="flex:1; font-weight:800; font-size:12px; color:#ef4444;">WSC Check</div><input type="checkbox" id="b7"></div>
+                <div class="article-box">
+                    <div class="article-title">2. Sprungkraft (Start & Wende)</div>
+                    <div class="article-body">Squat Jumps (Kniebeugen-Sprünge) & Ausfallschritte für maximale Explosivität am Startblock.</div>
                 </div>
             </div>
         </div>
 
-        <!-- REKORDE -->
+        <!-- TAB 7: STILE -->
+        <div id="tab-stile" class="tab-content">
+            <div class="card">
+                <div class="card-title">🏊 Profi-Technik-Schule (Biomechanik)</div>
+                <div class="article-box">
+                    <div class="article-title">1. Freistil / Kraul (Crawl)</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>Wasserlage:</strong> Kopf schräg nach unten, Hüfte hoch an der Oberfläche.</li>
+                            <li><strong>Hoher Ellenbogen:</strong> Überwasserzug entspannt führen.</li>
+                            <li><strong>Catch, Pull & Push:</strong> S-förmiger Druck nach hinten bis zum Oberschenkel.</li>
+                            <li><strong>Atmung:</strong> Nur seitlich drehen (ein Auge im Wasser). 3er-Rhythmus.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="article-box">
+                    <div class="article-title">2. Schmetterling / Delfin (Butterfly)</div>
+                    <div class="article-body">Ganzkörperwelle aus dem Brustkorb, 2 Kicks pro Armzug, flacher Überzug knapp über der Wasseroberfläche.</div>
+                </div>
+                <div class="article-box">
+                    <div class="article-title">3. Rücken (Backstroke)</div>
+                    <div class="article-body">Kopf stabil halten wie auf einem Kissen, Körper bis 45° rotieren, Daumen verlässt zuerst das Wasser, kleiner Finger taucht ein.</div>
+                </div>
+                <div class="article-box">
+                    <div class="article-title">4. Brust (Breaststroke)</div>
+                    <div class="article-body">Kreisförmiger Kick aus den Fersen, Schlüsselloch-Armzug, Rhythmus: Zug - Atmen - Kick - Gleiten!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 8: WENDEN -->
+        <div id="tab-wenden" class="tab-content">
+            <div class="card">
+                <div class="card-title">🔄 Wenden- & Startsprung-Schule</div>
+                <div class="article-box">
+                    <div class="article-title">1. Die Kraul-Rollwende (Flip Turn)</div>
+                    <div class="article-body">Kein Atmen vorm schwarzem 'T', Kinn rasch auf die Brust ziehen, Beine werfen, Wandabstoß in Streamline-Pfeilposition + 3–5 Unterwasser-Kicks.</div>
+                </div>
+                <div class="article-box">
+                    <div class="article-title">2. Brust- & Delfin-Kippwende</div>
+                    <div class="article-body">Beide Hände berühren gleichzeitig die Wand. Ein Arm zieht unter Wasser zügig zurück, Knie anziehen.</div>
+                </div>
+                <div class="article-box">
+                    <div class="article-title">3. Track Start</div>
+                    <div class="article-body">Hauptfuß vorne an der Kante. Beim Signal schlagartig abspringen und durch ein einziges Bleistift-Loch eintauchen.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 9: PLANER -->
+        <div id="tab-planer" class="tab-content">
+            <div class="card">
+                <div class="card-title">📅 Tommy's Exakter Wochen-Trainingsplan</div>
+                <div class="check-item"><input type="checkbox"><div style="font-size: 12px; font-weight: 800;">Montag: Trockentraining zu Hause (Core & Dehnen)</div></div>
+                <div class="check-item"><input type="checkbox"><div style="font-size: 12px; font-weight: 800;">Dienstag: Schwimmclub Burgdorf (90 Min)</div></div>
+                <div class="check-item"><input type="checkbox"><div style="font-size: 12px; font-weight: 800;">Mittwoch: Unihockey (Ausdauer & Beinkraft)</div></div>
+                <div class="check-item"><input type="checkbox"><div style="font-size: 12px; font-weight: 800;">Donnerstag: Trockentraining (Sprungkraft)</div></div>
+                <div class="check-item"><input type="checkbox"><div style="font-size: 12px; font-weight: 800;">Freitag: Hallenbad (45 Min selbstständig)</div></div>
+                <div class="check-item"><input type="checkbox"><div style="font-size: 12px; font-weight: 800;">Samstag: Schwimmkurs (40 Min Technik)</div></div>
+                <div class="check-item"><input type="checkbox"><div style="font-size: 12px; font-weight: 800;">Sonntag: Regeneration & Dehnen</div></div>
+            </div>
+        </div>
+
+        <!-- TAB 10: TAGEBUCH -->
+        <div id="tab-tagebuch" class="tab-content">
+            <div class="card">
+                <div class="card-title">📝 Tommy's Swim Log & Trainer-Feedback</div>
+                <div class="form-group"><label>Datum & Einheit</label><input type="text" id="log-date" placeholder="z.B. Dienstag Hallenbad Burgdorf"></div>
+                <div class="form-group"><label>Wie lief das Training?</label><textarea id="log-text" rows="2" placeholder="z.B. Sehr schnelle Wenden heute!"></textarea></div>
+                <button class="btn-primary" onclick="addLogEntry()">Eintrag Speichern (+50 XP)</button>
+                <div id="journal-list" style="margin-top: 12px;"></div>
+            </div>
+        </div>
+
+        <!-- TAB 11: ERNÄHRUNG -->
+        <div id="tab-ernaehrung" class="tab-content">
+            <div class="card">
+                <div class="card-title">🍌 Champions Fuel & Ernährungs-Guide</div>
+                <div class="article-box">
+                    <div class="article-title">1. WAS DU ESSEN MUSST</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>Pre-Workout (60 Min vorher):</strong> Banane mit Haferflocken, Reiswaffeln mit Honig.</li>
+                            <li><strong>Post-Workout (Innerhalb 30 Min):</strong> Schokomilch / Kakaodrink (perfekter Protein-Mix!) & Reis mit Hähnchen.</li>
+                            <li><strong>Hydration:</strong> 1.5–2 Liter Wasser täglich.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="danger-box">
+                    <div style="font-size: 13px; font-weight: 900; color: #f87171; margin-bottom: 4px;">2. ⚠️ DIE VERBOTENE LISTE (Worauf verzichtet werden MUSS)</div>
+                    <div class="article-body" style="color: #fca5a5;">
+                        • 🚫 <strong>Softdrinks & Energy Drinks:</strong> Führen zu Blutzucker-Crashes im Wasser!<br>
+                        • 🚫 <strong>Fast Food & Frittiertes:</strong> Liegt 6 Stunden schwer im Magen.<br>
+                        • 🚫 <strong>Süsse Riegel vor dem Start:</strong> Machen nach kurzem Kick rasch müde.<br>
+                        • 🚫 <strong>Schwere Sahnesaucen & fettiges Fleisch:</strong> Verhindern schnelle Erholung.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 12: ABZEICHEN -->
+        <div id="tab-abzeichen" class="tab-content">
+            <div class="card">
+                <div class="card-title">
+                    <span>🏆 Swimsports CH Abzeichen Tracker</span>
+                    <span id="badge-progress-text" style="color: #fbbf24; font-size: 12px; font-weight: 900;">0%</span>
+                </div>
+                <div class="section-title">🦀 Grundlagentests 1–7</div>
+                <div class="badge-grid">
+                    <div class="badge-card" onclick="toggleBadge(0)"><span>🦀</span><div class="badge-info"><div class="badge-name">1. Krebs</div><div class="badge-desc">Gleiten & Blubberblasen</div></div><input type="checkbox" id="b0"></div>
+                    <div class="badge-card" onclick="toggleBadge(1)"><span>🦄</span><div class="badge-info"><div class="badge-name">2. Seepferdchen</div><div class="badge-desc">Fortbewegen & Atmen</div></div><input type="checkbox" id="b1"></div>
+                    <div class="badge-card" onclick="toggleBadge(2)"><span>🐸</span><div class="badge-info"><div class="badge-name">3. Frosch</div><div class="badge-desc">Rückenschwimmen</div></div><input type="checkbox" id="b2"></div>
+                    <div class="badge-card" onclick="toggleBadge(3)"><span>🐧</span><div class="badge-info"><div class="badge-name">4. Pinguin</div><div class="badge-desc">Crawl-Beinschlag</div></div><input type="checkbox" id="b3"></div>
+                    <div class="badge-card" onclick="toggleBadge(4)"><span>🐙</span><div class="badge-info"><div class="badge-name">5. Tintenfisch</div><div class="badge-desc">Kraul mit Seitatmung</div></div><input type="checkbox" id="b4"></div>
+                    <div class="badge-card" onclick="toggleBadge(5)"><span>🐊</span><div class="badge-info"><div class="badge-name">6. Krokodil</div><div class="badge-desc">Brust-Kombi & Kopfsprung</div></div><input type="checkbox" id="b5"></div>
+                    <div class="badge-card" onclick="toggleBadge(6)"><span>🐻‍❄️</span><div class="badge-info"><div class="badge-name">7. Eisbär</div><div class="badge-desc">Ausdauer & Wenden</div></div><input type="checkbox" id="b6"></div>
+                    <div class="badge-card" onclick="toggleBadge(7)"><span>🛡️</span><div class="badge-info"><div class="badge-name" style="color:#ef4444;">WSC Check</div><div class="badge-desc">Sicherheits-Check</div></div><input type="checkbox" id="b7"></div>
+                </div>
+
+                <div class="section-title">🏊‍♂️ Schwimmtests 1–4</div>
+                <div class="badge-grid">
+                    <div class="badge-card" onclick="toggleBadge(8)"><span>🐋</span><div class="badge-info"><div class="badge-name">Test 1 (Wal)</div></div><input type="checkbox" id="b8"></div>
+                    <div class="badge-card" onclick="toggleBadge(9)"><span>🦈</span><div class="badge-info"><div class="badge-name">Test 2 (Haifisch)</div></div><input type="checkbox" id="b9"></div>
+                    <div class="badge-card" onclick="toggleBadge(10)"><span>🐬</span><div class="badge-info"><div class="badge-name">Test 3 (Delfin)</div></div><input type="checkbox" id="b10"></div>
+                    <div class="badge-card" onclick="toggleBadge(11)"><span>🐟</span><div class="badge-info"><div class="badge-name">Test 4 (Hecht)</div></div><input type="checkbox" id="b11"></div>
+                </div>
+
+                <div class="section-title">🥇 Kombitests 1–4</div>
+                <div class="badge-grid">
+                    <div class="badge-card" onclick="toggleBadge(12)"><span>🥇</span><div class="badge-info"><div class="badge-name">Kombitest 1</div></div><input type="checkbox" id="b12"></div>
+                    <div class="badge-card" onclick="toggleBadge(13)"><span>🥈</span><div class="badge-info"><div class="badge-name">Kombitest 2</div></div><input type="checkbox" id="b13"></div>
+                    <div class="badge-card" onclick="toggleBadge(14)"><span>🥉</span><div class="badge-info"><div class="badge-name">Kombitest 3</div></div><input type="checkbox" id="b14"></div>
+                    <div class="badge-card" onclick="toggleBadge(15)"><span>🏆</span><div class="badge-info"><div class="badge-name">Kombitest 4</div></div><input type="checkbox" id="b15"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 13: REKORDE -->
         <div id="tab-zeiten" class="tab-content">
             <div class="card">
-                <div class="card-title">📊 Richtzeiten & Rekorde 🇨🇭</div>
+                <div class="card-title">📊 Richtzeiten & Schweizer Rekorde 🇨🇭</div>
                 <table>
                     <thead><tr><th>Disziplin</th><th>9-10 Jahre</th><th>Schweizer Rekord</th></tr></thead>
                     <tbody>
@@ -292,20 +374,25 @@
                         <tr><td>50m Schmetterling</td><td>37.00 - 43.00s</td><td style="color:#fbbf24; font-weight:900;">22.65 s (Noè Ponti)</td></tr>
                         <tr><td>50m Rücken</td><td>39.00 - 44.00s</td><td style="color:#fbbf24; font-weight:900;">24.75 s</td></tr>
                         <tr><td>50m Brust</td><td>43.00 - 48.00s</td><td style="color:#fbbf24; font-weight:900;">27.02 s</td></tr>
+                        <tr><td>100m Freistil</td><td>1:15.00 - 1:25.00</td><td style="color:#fbbf24; font-weight:900;">47.86 s</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- GEAR -->
+        <!-- TAB 14: GEAR -->
         <div id="tab-ausruestung" class="tab-content">
             <div class="card">
-                <div class="card-title">🎒 Profi-Schwimmtasche</div>
-                <div class="check-item"><input type="checkbox"><span style="font-size: 12px; font-weight: 800;">🤿 Schwimmbrille & Silikonkappe</span></div>
-                <div class="check-item"><input type="checkbox"><span style="font-size: 12px; font-weight: 800;">🦶 Kurzflossen & Pullbuoy</span></div>
-                <div class="check-item"><input type="checkbox"><span style="font-size: 12px; font-weight: 800;">🍾 Trinkflasche & Badetuch</span></div>
+                <div class="card-title">🎒 Tommy's Profi-Schwimmtasche</div>
+                <div class="check-item"><input type="checkbox"><span style="font-size: 12px; font-weight: 800;">🎒 Schwimm-Rucksack & Schwimmabo (Burgdorf)</span></div>
+                <div class="check-item"><input type="checkbox"><span style="font-size: 12px; font-weight: 800;">🩳 Badehose & Silikonkappe</span></div>
+                <div class="check-item"><input type="checkbox"><span style="font-size: 12px; font-weight: 800;">🤿 Schwimmbrille & Frontschnorchel</span></div>
+                <div class="check-item"><input type="checkbox"><div style="font-size: 12px; font-weight: 800;">🦶 Kurzflossen & Pullbuoy</div></div>
+                <div class="check-item"><input type="checkbox"><div style="font-size: 12px; font-weight: 800;">🍾 Trinkflasche & Sportriegel</div></div>
+                <div class="check-item"><input type="checkbox"><div style="font-size: 12px; font-weight: 800;">🧥 Warme Winterjacke & Kappe für feuchtes Haar</div></div>
             </div>
         </div>
+
     </div>
 
     <script>
@@ -353,7 +440,9 @@
 
         const quizData = [
             { q: "Wie weit darfst du nach dem Startsprung unter Wasser bleiben?", opts: ["10 Meter", "15 Meter", "20 Meter"], a: 1 },
-            { q: "Welcher Schweizer Schwimmer holte Olympia-Medaillen über Schmetterling?", opts: ["Noè Ponti", "Jeremy Desplanches", "Dominik Meichtry"], a: 0 }
+            { q: "Welcher Schweizer Schwimmer holte Olympia-Medaillen über Schmetterling?", opts: ["Noè Ponti", "Jeremy Desplanches", "Dominik Meichtry"], a: 0 },
+            { q: "Mit welchen Fingern taucht die Hand beim Rückenschwimmen ein?", opts: ["Daumen zuerst", "Kleiner Finger zuerst", "Flach mit der Handfläche"], a: 1 },
+            { q: "Wie viele Kicks macht man pro Armzug beim Schmetterling?", opts: ["1 Kick", "2 Kicks", "3 Kicks"], a: 1 }
         ];
         let quizIdx = 0;
         function renderQuiz() {
@@ -440,7 +529,7 @@
         }
 
         let savedBadges = JSON.parse(localStorage.getItem('tommy_badges_v9') || '[]');
-        if(savedBadges.length < 8) savedBadges = new Array(8).fill(false);
+        if(savedBadges.length < 16) savedBadges = new Array(16).fill(false);
 
         function renderBadges() {
             let checkedCount = 0;
