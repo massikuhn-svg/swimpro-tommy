@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SwimPro Tommy - Road to Gold & Olympia Hub</title>
+    <title>SwimPro Tommy - Ultimate Performance Hub</title>
     <meta name="theme-color" content="#0284c7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: #030712; color: #f9fafb; padding-bottom: 60px; font-size: 14px; line-height: 1.6; }
         
-        /* Header & Banner */
+        /* Header */
         header { background: linear-gradient(135deg, #0284c7, #0369a1, #0f172a); padding: 25px 16px; text-align: center; box-shadow: 0 4px 25px rgba(2, 132, 199, 0.4); position: sticky; top: 0; z-index: 100; border-bottom: 2px solid #38bdf8; }
         header h1 { font-size: 24px; color: #fff; font-weight: 900; letter-spacing: 0.8px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
         header p { font-size: 12px; color: #7dd3fc; font-weight: 800; margin-top: 3px; letter-spacing: 0.5px; }
 
-        /* Navigation Bar */
+        /* Nav Bar */
         nav { background: #0b0f19; border-bottom: 2px solid #1f2937; display: flex; overflow-x: auto; position: sticky; top: 78px; z-index: 90; scrollbar-width: none; }
         nav::-webkit-scrollbar { display: none; }
-        .nav-btn { flex: 1; min-width: 90px; padding: 14px 10px; background: none; border: none; color: #9ca3af; font-size: 12px; font-weight: 800; text-align: center; white-space: nowrap; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.25s ease; }
+        .nav-btn { flex: 1; min-width: 95px; padding: 14px 10px; background: none; border: none; color: #9ca3af; font-size: 12px; font-weight: 800; text-align: center; white-space: nowrap; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.25s ease; }
         .nav-btn.active { color: #38bdf8; border-bottom-color: #0284c7; background: linear-gradient(180deg, rgba(56, 189, 248, 0.05), rgba(56, 189, 248, 0.15)); }
 
-        /* Main Layout */
-        .container { max-width: 680px; margin: 0 auto; padding: 16px; }
+        /* Container & Animation */
+        .container { max-width: 720px; margin: 0 auto; padding: 16px; }
         .tab-content { display: none; }
         .tab-content.active { display: block; animation: fadeIn 0.3s ease-in-out; }
 
@@ -31,19 +31,19 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* Cards & Visual Components */
+        /* Cards */
         .card { background: #111827; border: 1px solid #1f2937; border-radius: 16px; padding: 20px; margin-bottom: 22px; box-shadow: 0 6px 20px rgba(0,0,0,0.5); }
         .card-title { font-size: 18px; font-weight: 900; color: #38bdf8; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #1f2937; padding-bottom: 10px; }
-        .section-title { font-size: 15px; font-weight: 900; color: #fbbf24; margin: 20px 0 12px 0; border-bottom: 1px dashed #374151; padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .section-title { font-size: 15px; font-weight: 900; color: #fbbf24; margin: 22px 0 12px 0; border-bottom: 1px dashed #374151; padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
         
-        .hero-img { width: 100%; height: 210px; object-fit: cover; border-radius: 12px; margin-bottom: 16px; border: 1px solid #374151; box-shadow: 0 4px 15px rgba(0,0,0,0.6); }
+        .hero-img { width: 100%; height: 220px; object-fit: cover; border-radius: 12px; margin-bottom: 16px; border: 1px solid #374151; box-shadow: 0 4px 15px rgba(0,0,0,0.6); }
         
-        /* High-Motivation Banners */
+        /* Banners */
         .quote-box { background: linear-gradient(135deg, rgba(2, 132, 199, 0.25), rgba(15, 23, 42, 0.95)); border-left: 6px solid #0284c7; padding: 16px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
         .quote-text { font-style: italic; font-size: 14px; color: #f3f4f6; font-weight: 600; line-height: 1.5; }
         .quote-author { font-style: normal; font-weight: 800; color: #38bdf8; font-size: 12px; margin-top: 8px; display: block; }
 
-        /* Form Inputs & Action Buttons */
+        /* Form Controls */
         .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
         label { font-size: 11px; color: #9ca3af; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
         input, select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #374151; background-color: #030712; color: #ffffff; font-size: 14px; outline: none; transition: border-color 0.2s; }
@@ -52,7 +52,7 @@
         .btn-primary { width: 100%; padding: 14px; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; border: none; border-radius: 10px; font-weight: 900; font-size: 15px; cursor: pointer; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4); transition: transform 0.1s; }
         .btn-primary:active { transform: scale(0.98); }
 
-        /* Tracker Records Display */
+        /* Tracker Item Display */
         .time-entry { background: #030712; border: 1px solid #1f2937; padding: 14px; border-radius: 12px; margin-top: 12px; }
         .time-header { display: flex; justify-content: space-between; font-weight: 900; color: #38bdf8; margin-bottom: 6px; font-size: 15px; }
         .time-details { display: flex; justify-content: space-between; font-size: 13px; color: #9ca3af; margin-bottom: 10px; }
@@ -60,7 +60,7 @@
         .progress-fill { height: 100%; background: linear-gradient(90deg, #0284c7, #38bdf8); border-radius: 5px; }
         .del-btn { background: #ef4444; color: white; border: none; padding: 4px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; font-weight: bold; }
 
-        /* Detaillierte Artikel & Guides */
+        /* Deep Content Boxes */
         .article-box { background: #030712; border: 1px solid #1f2937; border-radius: 12px; padding: 16px; margin-bottom: 16px; }
         .article-title { font-size: 16px; font-weight: 900; color: #38bdf8; margin-bottom: 8px; }
         .article-subtitle { font-size: 13px; color: #fbbf24; font-weight: 800; margin-bottom: 10px; }
@@ -68,7 +68,7 @@
         .article-body ul { margin-left: 20px; margin-top: 8px; }
         .article-body li { margin-bottom: 8px; }
 
-        /* High-Impact Badge Grid */
+        /* Badges System */
         .badge-grid { display: flex; flex-direction: column; gap: 10px; }
         .badge-card { display: flex; align-items: center; gap: 14px; background: #030712; border: 1px solid #1f2937; padding: 12px 14px; border-radius: 12px; cursor: pointer; transition: border-color 0.2s; }
         .badge-card:hover { border-color: #0284c7; }
@@ -78,15 +78,15 @@
         .badge-desc { font-size: 12px; color: #9ca3af; margin-top: 2px; }
         .badge-card input[type="checkbox"] { width: 22px; height: 22px; accent-color: #0284c7; cursor: pointer; }
 
-        /* Tables for Records & Benchmarks */
+        /* Tables */
         .table-wrap { overflow-x: auto; }
         table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; margin-top: 10px; }
         th, td { padding: 12px 10px; border-bottom: 1px solid #1f2937; }
         th { color: #38bdf8; background: #030712; font-weight: 900; }
         td.highlight { color: #38bdf8; font-weight: 900; }
 
-        /* Flexible Checkbox Systems (Planer & Equipment) */
-        .check-item { display: flex; align-items: flex-start; gap: 12px; background: #030712; border: 1px solid #1f2937; padding: 12px; border-radius: 10px; margin-bottom: 10px; transition: border-color 0.2s; }
+        /* Checkbox Lists */
+        .check-item { display: flex; align-items: flex-start; gap: 12px; background: #030712; border: 1px solid #1f2937; padding: 12px; border-radius: 10px; margin-bottom: 10px; }
         .check-item input { width: 20px; height: 20px; accent-color: #0284c7; margin-top: 2px; cursor: pointer; }
         .check-text { font-size: 13px; flex: 1; }
         .check-title { font-weight: 900; color: #f3f4f6; display: block; font-size: 14px; }
@@ -201,16 +201,16 @@
             </div>
         </div>
 
-        <!-- TAB 3: MENTALTRAINING -->
+        <!-- TAB 3: MENTALTRAINING & CALL ROOM -->
         <div id="tab-mental" class="tab-content">
             <img src="https://images.unsplash.com/photo-1508215885820-4585e56135c8?auto=format&fit=crop&w=1000&q=80" alt="Mentaltraining" class="hero-img">
 
             <div class="card">
-                <div class="card-title">🧠 Mentaltraining Masterclass</div>
+                <div class="card-title">🧠 Mentaltraining & Wettkampf-Protokoll</div>
                 <div class="article-box">
                     <div class="article-title">Die 4-7-8 Atemtechnik gegen Nervosität</div>
                     <div class="article-body">
-                        Vor dem Wettkampf ist Aufregung völlig normal. So steuerst du deinen Puls perfekt:
+                        Vor dem Start ist Aufregung völlig normal. So steuerst du deinen Puls perfekt:
                         <ul>
                             <li><strong>4 Sekunden:</strong> Tief durch die Nase in den Bauch einatmen.</li>
                             <li><strong>7 Sekunden:</strong> Den Atem ruhig anhalten und dich auf das Rennen fokussieren.</li>
@@ -218,6 +218,18 @@
                         </ul>
                     </div>
                 </div>
+
+                <div class="article-box">
+                    <div class="article-title">⏱️ Call-Room Protokoll (15 Minuten vor dem Start)</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>15 Min vorher:</strong> Muskeln warmhalten (Aktivierungs-Hüpfer, Schulterkreisen).</li>
+                            <li><strong>10 Min vorher:</strong> Brille und Kappe auf Sitz und Dichtigkeit prüfen.</li>
+                            <li><strong>5 Min vorher:</strong> 3x tief durchatmen, Augen schließen und das komplette Rennen im Kopf in Zeitraffer durchgehen.</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="article-box">
                     <div class="article-title">Die 15-Meter-Unterwasser-Regel</div>
                     <div class="article-body">
@@ -231,76 +243,136 @@
             </div>
         </div>
 
-        <!-- TAB 4: ATHLETIK -->
+        <!-- TAB 4: ATHLETIK & TROCKENTRAINING -->
         <div id="tab-athletik" class="tab-content">
             <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1000&q=80" alt="Trockentraining & Athletik" class="hero-img">
 
             <div class="card">
-                <div class="card-title">🏋️ Trockentraining & Athletik-Zirkel</div>
+                <div class="card-title">🏋️ Detaillierter Athletik- & Dryland-Zirkel</div>
+                
                 <div class="article-box">
-                    <div class="article-title">1. Der Rumpf- & Core-Zirkel (10 Minuten)</div>
-                    <div class="article-subtitle">3 Runden für eine bombenfeste Wasserlage:</div>
+                    <div class="article-title">1. Der Rumpf- & Core-Zirkel (10–12 Minuten)</div>
+                    <div class="article-subtitle">3 Runden • 30 Sek. Belastung / 15 Sek. Pause:</div>
                     <div class="article-body">
                         <ul>
-                            <li><strong>Plank (Unterarmstütz):</strong> 30 Sek. Rücken flach wie ein Tisch halten.</li>
-                            <li><strong>Superman:</strong> 30 Sek. auf den Bauch legen, Arme und Beine gleichzeitig anheben.</li>
-                            <li><strong>Russian Twists:</strong> 30 Sek. Oberkörper von links nach rechts drehen für starke schräge Bauchmuskeln.</li>
+                            <li><strong>Plank (Unterarmstütz):</strong> Rücken flach wie ein Tisch, Bauch und Po fest anspannen.</li>
+                            <li><strong>Superman (Rückenstrecker):</strong> Auf den Bauch legen, Arme und Beine gleichzeitig anheben und halten.</li>
+                            <li><strong>Russian Twists:</strong> Sitzen, Beine leicht anheben und den Oberkörper kontrolliert rotieren.</li>
+                            <li><strong>Dead Bug:</strong> Rückenlage, Arme und Beine überkreuz langsam absenken.</li>
                         </ul>
                     </div>
                 </div>
+
                 <div class="article-box">
-                    <div class="article-title">2. Sprungkraft & Beinkraft</div>
+                    <div class="article-title">2. Beinkraft & Sprungschulung (Start & Wende)</div>
+                    <div class="article-subtitle">3 Runden • 10–12 Wiederholungen:</div>
                     <div class="article-body">
                         <ul>
-                            <li><strong>Squat Jumps (Kniebeuge-Sprünge):</strong> Explosiv nach oben abspringen für den perfekten Startsprung.</li>
-                            <li><strong>Ausfallschritte (Lunges):</strong> Kräftigt die Oberschenkel für mehr Power beim Kraul- und Brustbeinschlag.</li>
+                            <li><strong>Squat Jumps (Kniebeuge-Sprünge):</strong> Tief in die Hocke gehen und lautlos, aber explosiv nach oben katapultieren!</li>
+                            <li><strong>Ausfallschritte (Lunges):</strong> Abwechselnd nach vorne steigen für stabile Knie und starken Beinschlag.</li>
+                            <li><strong>Wadenheben:</strong> Auf die Zehenspitzen drücken für maximale Abstoßkraft an der Wand.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="article-box">
+                    <div class="article-title">3. Schulter-Prehab & Beweglichkeit</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>Y-T-W-L Armkreisen:</strong> Schulterblätter bewusst nach hinten-unten ziehen.</li>
+                            <li><strong>Fußgelenk-Stretching:</strong> Auf die Fersen setzen, um die Fußgelenke für Delfinkicks extrem beweglich zu machen.</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 5: SCHWIMMSTILE -->
+        <!-- TAB 5: SCHWIMMSTILE & PROFI-TECHNIK -->
         <div id="tab-stile" class="tab-content">
             <img src="https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?auto=format&fit=crop&w=1000&q=80" alt="Kraultechnik" class="hero-img">
 
             <div class="card">
-                <div class="card-title">🏊 Profi-Technik-Schule</div>
+                <div class="card-title">🏊 Profi-Technik-Schule (Alle 4 Lagen)</div>
+                
                 <div class="article-box">
                     <div class="article-title">1. Freistil / Kraul (Crawl)</div>
                     <div class="article-body">
                         <ul>
-                            <li><strong>Wasserlage:</strong> Flach wie ein Brett, Kopf schaut schräg nach unten auf den Beckenboden.</li>
-                            <li><strong>Hoher Ellenbogen:</strong> Über Wasser führt der Ellenbogen die Hand nach vorne.</li>
-                            <li><strong>S-Zug unter Wasser:</strong> Erst das Handgelenk anwinkeln (Catch-Phase), dann kraftvoll unter dem Bauch durchziehen.</li>
+                            <li><strong>Wasserlage:</strong> Flach wie ein Holzbrett, Blick schräg nach unten auf den Beckenboden.</li>
+                            <li><strong>Hoher Ellenbogen:</strong> Beim Überwasserzug führt der Ellenbogen die Hand locker nach vorne.</li>
+                            <li><strong>Unterwasserzug (Catch & Pull):</strong> Erst das Handgelenk anwinkeln, dann S-förmig unter dem Bauch durchziehen.</li>
+                            <li><strong>Atmung:</strong> Ruhige 3er-Atmung; nur ein Brillenglas kommt beim Atmen aus dem Wasser!</li>
                         </ul>
                     </div>
                 </div>
+
                 <div class="article-box">
                     <div class="article-title">2. Schmetterling / Delfin (Butterfly)</div>
                     <div class="article-body">
                         <ul>
-                            <li><strong>Ganzkörperwelle:</strong> Die Bewegung beginnt im Brustkorb und fließt bis in die Zehenspitzen.</li>
-                            <li><strong>Zwei Kicks pro Armzug:</strong> 1. Kick beim Eintauchen der Hände, 2. Kick beim Abstoß an der Hüfte.</li>
+                            <li><strong>Ganzkörperwelle:</strong> Die Bewegung entspringt im Brustkorb und fließt dynamisch bis in die Zehenspitzen.</li>
+                            <li><strong>2 Kicks pro Armzug:</strong> 1. Kick beim Eintauchen der Hände, 2. Kick beim kräftigen Abstoß an der Hüfte.</li>
+                            <li><strong>Flache Kopfhaltung:</strong> Kinn bleibt beim Atmen haarscharf an der Wasseroberfläche.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="article-box">
+                    <div class="article-title">3. Rücken (Backstroke)</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>Schulterrotation:</strong> Der Körper dreht sich bei jedem Armzug um die Längsachse (Rollbewegung).</li>
+                            <li><strong>Handhaltung:</strong> Daumen verlässt zuerst das Wasser, kleiner Finger taucht zuerst wieder ein.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="article-box">
+                    <div class="article-title">4. Brust (Breaststroke)</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>Schwunggrätsche:</strong> Füße nach außen drehen und kreisförmig nach hinten peitschen.</li>
+                            <li><strong>Rhythmus:</strong> "Zug – Atmen – Kick – Gleiten". Die lange Gleitphase bringt die maximale Strecke!</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 6: WENDEN -->
+        <!-- TAB 6: WENDEN & STARTSPRUNG -->
         <div id="tab-wenden" class="tab-content">
             <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=1000&q=80" alt="Rollwende im Pool" class="hero-img">
 
             <div class="card">
                 <div class="card-title">🔄 Wenden- & Startsprung-Schule</div>
+                
                 <div class="article-box">
-                    <div class="article-title">Die Kraul-Rollwende (Flip Turn)</div>
+                    <div class="article-title">1. Die Kraul-Rollwende (Flip Turn)</div>
                     <div class="article-body">
                         <ul>
-                            <li><strong>Keine Atmung vor der Wende:</strong> Beim letzten Armzug vor der Wand nicht mehr atmen!</li>
+                            <li><strong>Keine Atmung vor der Wende:</strong> Beim letzten Armzug vor dem 'T' nicht mehr atmen!</li>
                             <li><strong>Kinn auf die Brust:</strong> Kopf schnell nach unten ziehen und die Beine schwungvoll über das Wasser ziehen.</li>
                             <li><strong>Explosiver Abstoß:</strong> In Pfeilposition (Streamline) abstoßen und unter Wasser auf den Bauch drehen.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="article-box">
+                    <div class="article-title">2. Die Kippwende (Brust & Schmetterling)</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>Beidhändiger Anschlag:</strong> Beide Hände berühren exakt gleichzeitig die Wand.</li>
+                            <li><strong>Ellenbogen anziehen:</strong> Ein Arm löst sich sofort, Beine schnell unter den Körper ziehen.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="article-box">
+                    <div class="article-title">3. Der Startsprung (Track Start)</div>
+                    <div class="article-body">
+                        <ul>
+                            <li><strong>Schwerpunkt nach vorne:</strong> Ein Fuß an der Kante, der andere hinten auf der Startbrücke.</li>
+                            <li><strong>Eintauchen durch ein Nadelöhr:</strong> Der gesamte Körper taucht an exakt derselben Stelle ins Wasser ein.</li>
                         </ul>
                     </div>
                 </div>
@@ -319,7 +391,7 @@
                     <input type="checkbox">
                     <div class="check-text">
                         <span class="check-title">Montag: Trockentraining zu Hause</span>
-                        <span class="check-sub">Rumpfspannung (Plank/Superman) & Armkreisen für eine stabile Wasserlage.</span>
+                        <span class="check-sub">Rumpfspannung (Plank/Superman/Dead Bug) & Schulter-Prehab für stabile Wasserlage.</span>
                     </div>
                 </div>
 
